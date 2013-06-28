@@ -1,3 +1,3 @@
 A very new conference project
 ==========
-No description yet
+No description yet.
