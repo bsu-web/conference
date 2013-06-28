@@ -1,6 +1,6 @@
 <?php
 /**
-    Useless demo class
+    Useless demo class 
     @author nekjine
     @version 0.0
     @see http://example.com Documentation
@@ -13,7 +13,7 @@ class Useless {
         @type int
     */
     protected $trickyCounter;
-    
+
     /**
         This function does nothing
         @param mixed magicParam Useless magic parameter
