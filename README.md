@@ -1,3 +1,9 @@
-A very new conference project
-==========
-No description yet.
+Установка:
+```bash
+composer install
+```
+
+Тестирование (демо):
+```bash
+./vendor/bin/phpunit test/request
+```
