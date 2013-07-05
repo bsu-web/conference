@@ -1,0 +1,10 @@
+#Deny from all
+#Allow from 127.0.0.1
+
+RewriteEngine on
+
+# TODO filter maybe 
+
+# handles simple rules like: /bsu, /add_record, /part2
+
+RewriteRule ^([a-z0-9\_]{2,16})$ ./index.php?route=$1 [L,QSA]
