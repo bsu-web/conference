@@ -46,16 +46,18 @@ class Fasade{
 	function __construct (){
 		$this->reg = Registry::instance();
 	}
-	function command($action, $object = null){
+	function command($object = null){
+		$action=$this->reg->get("action");
 		switch($action){
 		case 'registr' : 
 			echo 'Registration.<br>';
 			break;
 		case 'save':
-			echo 'Save.<br>';
+			echo 'Saved cow with name '.$this->reg->get('object')->getName().'<br>';
 			break;			
 		case 'create' :
-			$cow12 = new Cow($object);
+			$cow12 = new Cow($this->reg->get('cowname'));
+			$this->reg->set('object', $cow12);
 			echo 'Create. : '.$cow12->getName();
 			break;	
 		}
@@ -63,8 +65,13 @@ class Fasade{
 }
 
 $fas = new Fasade();
-$fas->command('create', 'Matilda');
-$fas->command('registr');
-$fas->command('save');
+$reg = Registry::instance();
+$reg->set('action','create');
+$reg->set('cowname','Matilda');
+$fas->command();
+$reg->set('action','registr');
+$fas->command();
+$reg->set('action','save');
+$fas->command();
 
 ?>
