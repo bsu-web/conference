@@ -1,16 +1,20 @@
 <?php
 abstract class Collection{
-	private $set=array();
-	private string $title="";
-	function insert (DomainObject $object){
-		if (in_array($object, $set(), true)){
+	public $set=array();
+	private $title="";
+	function insert ($object){
+		if (in_array($object, $this->set, true)){
 			return;
 		}
-		$this->set[]=$object;
-	}
-	function delete(DomainObject $object){
 		$id=$object->getId();
-		//удаление из множества объекта с id
+		$this->set[$id]=$object;
+	}
+	function delete($object){
+		$id=$object->getId();
+		$search_array = array_key_exists($id, $this->set);
+		if ($search_array){
+			unset($this->set[$id]);
+		}		
 	}
 }
 ?>
