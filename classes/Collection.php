@@ -2,14 +2,14 @@
 abstract class Collection{
 	public $set=array();
 	private $title="";
-	function insert ($object){
+	function insert (DomainObject $object){
 		if (in_array($object, $this->set, true)){
 			return;
 		}
 		$id=$object->getId();
 		$this->set[$id]=$object;
 	}
-	function delete($object){
+	function delete(DomainObject $object){
 		$id=$object->getId();
 		$search_array = array_key_exists($id, $this->set);
 		if ($search_array){
