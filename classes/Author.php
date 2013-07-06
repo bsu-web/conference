@@ -1,5 +1,6 @@
 <?php
-class Author extends DomainObjects{
+require_once('DomainObject.php');
+class Author extends DomainObject{
 private $name       =  "Имя автора ";
 private $family     =  "Фамилия автора ";
 private $patronymic =  "Отчество автора ";
