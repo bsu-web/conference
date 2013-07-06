@@ -25,7 +25,7 @@ class Request{
 		}
 	}
 	function setProperty($key,$val){
-		$this->propertiesp[$key]=$val;
+		$this->properties[$key]=$val;
 	}
 	function addFeedback($msg){
 		array_push($this->feedback,$msg);
