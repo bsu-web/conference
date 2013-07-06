@@ -36,7 +36,7 @@ class Cow{
 	}
 	
 	function getName(){
-		return 'I am a cow.My name is '.$this->name.'<br>';
+		return $this->name.'<br>';
 	}
 }
 
