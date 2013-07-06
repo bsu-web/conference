@@ -1,26 +1,26 @@
 <?php
 require_once('DomainObject.php');
 require_once('Authors.php');
-//àáñòðàêòíûé êëàññ- äîêóìåíò (ñòàòüÿ èëè òåçèñ èëè ïðåçåíòàöèÿ)
+//Ð°Ð±ÑÑ‚Ñ€Ð°ÐºÑ‚Ð½Ñ‹Ð¹ ÐºÐ»Ð°ÑÑ- Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ (ÑÑ‚Ð°Ñ‚ÑŒÑ Ð¸Ð»Ð¸ Ñ‚ÐµÐ·Ð¸Ñ Ð¸Ð»Ð¸ Ð¿Ñ€ÐµÐ·ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ)
 abstract class Document extends DomainObject{
-    private $Authors;  //òóò ó íàñ ñïèñîê àâòîðîâ
-    private $title;    //çàãîëîâîê äîêóìåíòà
+    private $Authors;  //Ñ‚ÑƒÑ‚ Ñƒ Ð½Ð°Ñ ÑÐ¿Ð¸ÑÐ¾Ðº Ð°Ð²Ñ‚Ð¾Ñ€Ð¾Ð²
+    private $title;    //Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°
     
     abstract function getDocument();
     
-    function setAuthors(Authors $Authors){  //çàäàåì ñïèñîê àâòîðîâ
+    function setAuthors(Authors $Authors){  //Ð·Ð°Ð´Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº Ð°Ð²Ñ‚Ð¾Ñ€Ð¾Ð²
         $this->Authors=$Authors;
     }
     
-    function getAuthors(){   //âûäàåì ñïèñîê àâòîðîâ
+    function getAuthors(){   //Ð²Ñ‹Ð´Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº Ð°Ð²Ñ‚Ð¾Ñ€Ð¾Ð²
         return $this->Authors;
     }
     
-    function setTitle($title){  //çàäàåì çàãîëîâîê
+    function setTitle($title){  //Ð·Ð°Ð´Ð°ÐµÐ¼ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº
         $this->title= $title;
     }
     
-    function getTitle(){  //âûäàåì çàãîëîâîê äîêóìåíòà
+    function getTitle(){  //Ð²Ñ‹Ð´Ð°ÐµÐ¼ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°
         return $this->title;
     }
 }

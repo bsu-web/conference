@@ -1,6 +1,6 @@
 <?php
 require_once('Collection.php');
 class Journal extends Collection{
-	//âûáîðêà ñòàòåé/ïðåçåíòàöèé/òåçèñîâ
+	//Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐ° ÑÑ‚Ð°Ñ‚ÐµÐ¹/Ð¿Ñ€ÐµÐ·ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ð¹/Ñ‚ÐµÐ·Ð¸ÑÐ¾Ð²
 }
 ?>

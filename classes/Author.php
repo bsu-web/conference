@@ -1,27 +1,27 @@
 <?php
 require_once('DomainObject.php');
-//êëàññ Àâòîð ñîäåðæèò â ñåáå-Èìÿ,Ôàìèëèþ,Îò÷åñòâî.
+//ÐºÐ»Ð°ÑÑ ÐÐ²Ñ‚Ð¾Ñ€ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ Ð² ÑÐµÐ±Ðµ-Ð˜Ð¼Ñ,Ð¤Ð°Ð¼Ð¸Ð»Ð¸ÑŽ,ÐžÑ‚Ñ‡ÐµÑÑ‚Ð²Ð¾.
 class Author extends DomainObject{
-private $name       =  "Èìÿ àâòîðà ";
-private $family     =  "Ôàìèëèÿ àâòîðà ";
-private $patronymic =  "Îò÷åñòâî àâòîðà ";
+private $name       =  "Ð˜Ð¼Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð° ";
+private $family     =  "Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð° ";
+private $patronymic =  "ÐžÑ‚Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð°Ð²Ñ‚Ð¾Ñ€Ð° ";
 
-	function setName($name){ 	 //çàäàòü Èìÿ àâòîðà
+	function setName($name){ 	 //Ð·Ð°Ð´Ð°Ñ‚ÑŒ Ð˜Ð¼Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð°
 		$this->name = $name;
 	}
-	function getName(){ 		 //ïîëó÷èòü Èìÿ àâòîðà
+	function getName(){ 		 //Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð˜Ð¼Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð°
 		return $this->name;
 	}
-	function setFamily($family){ //çàäàòü Ôàìèëèþ àâòîðà
+	function setFamily($family){ //Ð·Ð°Ð´Ð°Ñ‚ÑŒ Ð¤Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð°Ð²Ñ‚Ð¾Ñ€Ð°
 		$this->family = $family;
 	}	
-	function getFamily(){        //ïîëó÷èòü Ôàìèëèþ àâòîðà
+	function getFamily(){        //Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¤Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð°Ð²Ñ‚Ð¾Ñ€Ð°
 		return $this->family;
 	}
-	function setPatronymic($patronymic){	//çàäàòü Îò÷åñòâî àâòîðà
+	function setPatronymic($patronymic){	//Ð·Ð°Ð´Ð°Ñ‚ÑŒ ÐžÑ‚Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð°Ð²Ñ‚Ð¾Ñ€Ð°
 		$this->patronymic = $patronymic;	
 	}	
-	function getPatronymic(){				//ïîëó÷èòü Îò÷åñòâî àâòîðà
+	function getPatronymic(){				//Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÐžÑ‚Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð°Ð²Ñ‚Ð¾Ñ€Ð°
 		return $this->patronymic;
 	}		
 /*	function __construct($name, $family, $patronymic){

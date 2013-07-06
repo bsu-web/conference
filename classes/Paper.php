@@ -1,9 +1,9 @@
 <?php
 require_once('Document.php');
-//êëàññ äëÿ ñòàòüè
+//ÐºÐ»Ð°ÑÑ Ð´Ð»Ñ ÑÑ‚Ð°Ñ‚ÑŒÐ¸
 class Paper extends Document{
     
-    function getString(){ //ïîëó÷àåì ñòðîêó, ñîäåðæàùóþ íàçâàíèå ñòàòüè è ñïèñîê àâòîðîâ
+    function getString(){ //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÑ‚Ñ€Ð¾ÐºÑƒ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰ÑƒÑŽ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑÑ‚Ð°Ñ‚ÑŒÐ¸ Ð¸ ÑÐ¿Ð¸ÑÐ¾Ðº Ð°Ð²Ñ‚Ð¾Ñ€Ð¾Ð²
         return $this->getTitle()." ".$this->getAuthors()->getString()."<br/>";
     }
     

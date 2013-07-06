@@ -2,44 +2,44 @@
 require_once('../classes/Author.php');
 require_once('../classes/Authors.php');
 require_once('../classes/Collection.php');
-// тестируем всё это дело или хотя бы "пытаемся"
+// С‚РµСЃС‚РёСЂСѓРµРј РІСЃС‘ СЌС‚Рѕ РґРµР»Рѕ РёР»Рё С…РѕС‚СЏ Р±С‹ "РїС‹С‚Р°РµРјСЃСЏ"
 
-//создаем объект типа Автор с именем avtor1
+//СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ С‚РёРїР° РђРІС‚РѕСЂ СЃ РёРјРµРЅРµРј avtor1
 $avtor1 = new Author();
 $avtor1->setName('Alexsandr');
 $avtor1->setFamily('Makedonov');
 $avtor1->setPatronymic('Nicolaevich');
 $avtor1->setId(1);
 
-//создаем объект типа Автор с именем avtor2
+//СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ С‚РёРїР° РђРІС‚РѕСЂ СЃ РёРјРµРЅРµРј avtor2
 $avtor2 = new Author();
 $avtor2->setName('Sergey');
 $avtor2->setFamily('Nekgin');
 $avtor2->setPatronymic('Petrovich');
 $avtor2->setId(2);
 
-//создаем объект типа Автор с именем avtor3
+//СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ С‚РёРїР° РђРІС‚РѕСЂ СЃ РёРјРµРЅРµРј avtor3
 $avtor3 = new Author();
 $avtor3->setName('Irina');
 $avtor3->setFamily('Abageeva');
 $avtor3->setPatronymic('Yurevna');
 $avtor3->setId(3);
 
-//создаем объект типа Автор с именем avtor4
+//СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ С‚РёРїР° РђРІС‚РѕСЂ СЃ РёРјРµРЅРµРј avtor4
 $avtor4 = new Author();
 $avtor4->setName('Yulya');
 $avtor4->setFamily('Simonova');
 $avtor4->setPatronymic('Andreevna');
 $avtor4->setId(4);
 
-//создаем объект типа Автор с именем avtor5
+//СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ С‚РёРїР° РђРІС‚РѕСЂ СЃ РёРјРµРЅРµРј avtor5
 $avtor5 = new Author();
 $avtor5->setName('Svetlana');
 $avtor5->setFamily('Abasheeva');
 $avtor5->setPatronymic('Evgenevna');
 $avtor5->setId(5);
 
-// выводим имена авторов на печать
+// РІС‹РІРѕРґРёРј РёРјРµРЅР° Р°РІС‚РѕСЂРѕРІ РЅР° РїРµС‡Р°С‚СЊ
 echo "Avtors: <br/>".$avtor1->getName()." ";
 echo $avtor1->getFamily()." <br/>";
 echo $avtor2->getName()." ";
