@@ -1,5 +1,6 @@
 <?php
-require_once('../classes/RequestRegistry.php');
+require_once('RequestRegistry.php');
+
 class Request{
 	private $properties;
 	private $feedback=array();
