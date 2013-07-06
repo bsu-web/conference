@@ -5,7 +5,7 @@ abstract class DomainObject{
 	function getId(){
 		return $this->id;
 	}
-	function setId(int $id){
+	function setId($id){
 		$this->id=$id;
 	}
 }
