@@ -21,4 +21,4 @@ composer install
 ----------
 Сторонние библиотеки/фреймворки (PHPUnit, Smarty, etc.) описываются в composer.json 
 
-:o
+:O
