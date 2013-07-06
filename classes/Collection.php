@@ -1,6 +1,6 @@
 <?php
 abstract class Collection{
-	public $set=array();
+	private $set=array();
 	private $title="";
 	function insert (DomainObject $object){
 		if (in_array($object, $this->set, true)){
@@ -15,6 +15,9 @@ abstract class Collection{
 		if ($search_array){
 			unset($this->set[$id]);
 		}		
+	}
+	function getAll(){
+		return $this->set;
 	}
 }
 ?>
