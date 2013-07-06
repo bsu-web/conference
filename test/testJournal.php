@@ -1,5 +1,5 @@
 <?php
-require_once('Author.php');
+require_once('../classes/Author.php');
 // тестируем всё это дело или хотя бы "пытаемся"
 $avtor1 = new Author();
 $avtor1->setName('Alexsandr');
@@ -33,6 +33,11 @@ $avtor5->setId(5);
 
 // вывод на печать
 echo $avtor1->getName();
+echo $avtor2->getName();
+echo $avtor3->getName();
+echo $avtor4->getName();
+echo $avtor5->getName();
+
 /*
 $paper1 = new Paper();
 $paper1->setName('Alexsandr');
