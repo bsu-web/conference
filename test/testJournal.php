@@ -1,5 +1,6 @@
 <?php
 require_once('../classes/Author.php');
+require_once('../classes/Collection.php');
 // тестируем всё это дело или хотя бы "пытаемся"
 $avtor1 = new Author();
 $avtor1->setName('Alexsandr');
@@ -32,12 +33,15 @@ $avtor5->setPatronymic('Evgenevna');
 $avtor5->setId(5);
 
 // вывод на печать
-echo $avtor1->getName();
-echo $avtor2->getName();
-echo $avtor3->getName();
-echo $avtor4->getName();
-echo $avtor5->getName();
+echo "Avtors: <br/>".$avtor1->getName()." ";
+echo $avtor2->getName()." ";
+echo $avtor3->getName()." ";
+echo $avtor4->getName()." ";
+echo $avtor5->getName()." <br/> ";
 
+$authors new Authors();
+$authors->insert($avtor1);
+$authors->insert($avtor2);
 /*
 $paper1 = new Paper();
 $paper1->setName('Alexsandr');
