@@ -1,5 +1,5 @@
 <?php
 /**
-  Entry point 1
+  Entry point 2
 */
 ?>
