@@ -1,3 +1,9 @@
+# composer's stuff
 vendor/
 *.lock
+
+# smarty's stuff
+s_*/
+
+# other
 __conf.php

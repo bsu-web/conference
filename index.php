@@ -1,5 +1,5 @@
 <?php
-/**
-  Entry point 3
-*/
+require "autoload.php";
+
+Controller::run();
 ?>
