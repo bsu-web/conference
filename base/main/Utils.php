@@ -3,9 +3,6 @@
 * Вспомогательные функции и константы
 **/
 class Utils {
-	/**
-	* Request method helper constants
-	**/
 	const METHOD_UNKNOWN 	= 0;
 	const METHOD_GET 		= 1;
 	const METHOD_POST 		= 2;
