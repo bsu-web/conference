@@ -1,7 +1,6 @@
 <?php
-require_once('Request.php');
-require_once('Command.php');
 require_once('DefaultCommand.php');
+
 class commandResolver{
 	private static $base_cmd;
 	private static $default_cmd;
