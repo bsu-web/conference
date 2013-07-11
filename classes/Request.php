@@ -1,9 +1,8 @@
 <?php
-require_once('RequestRegistry.php');
-
 class Request{
 	private $properties;
 	private $feedback=array();
+
 	function __construct(){
 		$this->init();
 		RequestRegistry::setRequest($this);
@@ -11,6 +10,7 @@ class Request{
 	function init(){
 		if (isset($_SERVER['REQUEST_METHOD'])){
 			$this->properties=$_REQUEST;
+			$this->setProperty("_method", $_SERVER["REQUEST_METHOD"]);
 			return;
 		}
 		foreach ($_SERVER['argv'] as $arg){

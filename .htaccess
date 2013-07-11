@@ -1,10 +1,11 @@
-#Deny from all
-#Allow from 127.0.0.1
+RewriteEngine on
 
-#RewriteEngine on
+# Redirect to app/assets folder
 
-# TODO filter maybe 
+RewriteRule ^$ app/www/ [L]
+RewriteRule (.*) app/www/$1 [L]
 
-# handles simple rules like: /bsu, /add_record, /part2
-
-#RewriteRule ^([a-z0-9\_]{2,16})$ ./index.php?route=$1 [L,QSA]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^([a-z0-9\_\/]+)$ ./index.php?_route=$1 [L,QSA]
+# RewriteRule ^(.*)$ index.php [L,QSA]

@@ -1,6 +1,7 @@
 <?php
 define("CLASS_DIR", __DIR__."/classes");
 define("COMMAND_DIR", CLASS_DIR."/commands");
+define("CONTROLLER_DIR", CLASS_DIR."/controllers");
 
 function autoloader($className){
 	// echo "autoloader:: attempting to load $className<br />";
