@@ -10,3 +10,6 @@ __conf.php
 
 # sublime project
 *.sublime-*
+
+# application's temp dir
+app/tmp
