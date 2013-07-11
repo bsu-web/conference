@@ -44,7 +44,7 @@ abstract class Controller {
 	}
 
 	/**
-	* Обёртки над внутренними объектами
+	* Обёртки
 	**/
 
 	/**
@@ -63,6 +63,7 @@ abstract class Controller {
 	final protected function redirect($to){
 		$this->response->setRedirection($to);
 	}
+
 	/**
 	* Передаёт параметры в шаблон
 	* @param string $key Ключ
@@ -72,6 +73,7 @@ abstract class Controller {
 	final protected function assign($key, $value){
 		$this->getView()->assign($key, $value);
 	}
+
 	/**
 	* Выводит шаблон
 	* @param string $tpl Имя шаблона

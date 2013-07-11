@@ -1,8 +1,13 @@
 <?php
 return array(
-	"/smarty" => array(
+	"/counter" => array(
 		"method" => Utils::METHOD_GET
-	,	"controller" => "TestController"
-	,	"action" => "PerformSmarty"
+	,	"controller" => "CounterController"
+	,	"action" => "View"
+	),
+	"/counter_reset" => array(
+		"method" => Utils::METHOD_GET
+	,	"controller" => "CounterController"
+	,	"action" => "Clear"
 	)
 );
