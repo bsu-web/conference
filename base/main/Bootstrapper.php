@@ -15,6 +15,7 @@ class Bootstrapper {
 	public function __construct(){
 		App::loadConfig("db");
 		App::loadConfig("smarty");
+
 		$routeMap = App::loadConfig("routemap", true);
 
 		$this->router = new Router( $routeMap );
@@ -40,6 +41,7 @@ class Bootstrapper {
 			throw new Exception("Controller ${controller_name} does not implements required methods, review your route table");
 		}
 
+		App::sessionStart();
 		$controller = $controller_refl->newInstance( $request );
 		$controller->$action_name();
 	}

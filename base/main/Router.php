@@ -1,6 +1,8 @@
 <?php
 /**
 * Роутер, служащий для расшифровки запроса и сопоставления контроллера
+* TODO: не обрабатывает маршруты со вторым уровнем вложенности
+* /counter/reset
 **/
 class Router {
 	/**
@@ -61,6 +63,6 @@ class Router {
 			App::loadController("DefaultController");
 		}
 		
-		return array("controller"=>"DefaultController", "action"=>"index");
+		return array("controller"=>"DefaultController", "action"=>"Index");
 	}
 }

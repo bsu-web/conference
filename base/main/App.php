@@ -1,7 +1,8 @@
 <?php
 /**
 * Класс Приложение, содержит связки с внешней средой
-* TODO: убрать беспорядок
+* TODO: меньше статики
+* TODO: убрать бардак
 * TODO: дополнить документацией
 * 
 **/
@@ -95,5 +96,9 @@ class App {
 		$smarty->setCompileDir( App::getConfig("smarty_compile_dir") );
 		$smarty->caching = App::getConfig("smarty_cache");
 		return $smarty;
+	}
+
+	public static function sessionStart(){
+		session_start();
 	}
 }
