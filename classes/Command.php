@@ -1,5 +1,4 @@
 <?php
-require_once('Request.php');
 abstract class Command{
 	final function __construct(){
 		
