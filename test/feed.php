@@ -1,10 +1,10 @@
 <?php
-class testView extends Command{
+class feed extends Command{
 	function doExecute(Request $request){
-		$avtor=$request->getProperty("author");		
-		//$way=$request->getProperty("family");
-		$request->addFeedback("Avtor name ".$avtor->getName()."<br> family=".$avtor->getFamily());
-		include("../main.php");
+		$say=$request->getProperty("say");		
+		$way=$request->getProperty("way");
+		$request->addFeedback("FEEDBACK PAGE ".$say."<br> DIRECTION=".$way);
+		include("files/main.php");
 	}
 }
 ?>
