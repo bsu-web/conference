@@ -1,0 +1,71 @@
+@charset "windows-1251";
+/* CSS Document tiny Carousel Slider1 */
+#calendar {
+	width:100%;
+	min-width:1000px;
+	min-height:360px;
+	background-image:url(../images/bg-calender.png);
+	padding-top:50px;
+	overflow:auto;
+	padding-bottom:50px;
+}
+.days {
+	width: 700px; 
+	min-height: 400px;
+	background-color:#FFF;
+	overflow:auto;
+}
+#slider { 
+	width:950px;
+	margin:0 auto;
+	min-height:400px; 
+	overflow:hidden;
+}
+#slider .viewport { 
+	float: left; 
+	width: 700px; 
+	min-height: 380px; 
+	overflow: hidden; 
+	position: relative;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}
+#slider .buttons { 
+	background:url(../images/bt-prev.png) no-repeat scroll 0 0 transparent; 
+	display: block; 
+	margin: 130px 10px 0 0;
+	text-indent: -999em; 
+	float: left; 
+	width:100px; 
+	height:100px; 
+	overflow: hidden; 
+	position: relative;
+}
+#slider .next {
+	background-image:url(../images/bt-next.png);
+	margin: 130px 0 0 10px;
+}
+#slider .disable { 
+	visibility: hidden; 
+}
+#slider .overview { 
+	list-style: none; 
+	position: absolute; 
+	padding: 0; 
+	margin: 0; 
+	width: 800px; 
+	min-height:400px;
+	left: 0 top: 0;
+	
+}
+#slider .overview li{
+	display:block;
+	float: left;
+	margin:0;
+	padding:0;  
+	min-height: 450px;
+	width: 800px;
+	overflow:auto;
+}
+
