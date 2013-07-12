@@ -1,4 +1,15 @@
+# composer's stuff
 vendor/
-*.lock
+# *.lock
+
+# smarty's stuff
+s_*/
+
+# other
 __conf.php
-*.sublime*
+
+# sublime project
+*.sublime-*
+
+# application's temp dir
+app/tmp
