@@ -99,6 +99,11 @@ class App {
 	}
 
 	public static function sessionStart(){
+		/**
+		* ??? убрать как появится нормально настроенный веб-сервер
+		**/
+		session_save_path(APP.SLASH."tmp");
+		/*******/
 		session_start();
 	}
 }
