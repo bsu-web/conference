@@ -3,7 +3,7 @@ require_once('Registry.php');
 
 class ApplicationRegistry extends Registry{
 	private static $instance;
-	private $freezedir = "data";
+	private $freezedir = "DATA";
 	private $values = array();
 	private $mtimes = array();
 	
@@ -20,14 +20,14 @@ class ApplicationRegistry extends Registry{
 		$path = $this->freezedir.DIRECTORY_SEPARATOR.$key;
 		if(file_exists($path)){
 			clearstatcache();
-			$mtime=filetime($path);
+			$mtime=filemtime($path);
 			if (!isset($this->mtimes[$key])){
 				$this->mtimes[$key] = 0;
 			}
 			if ($mtime > $this->mtimes[$key]){
 				$data = file_get_contents($path);
 				$this->mtimes[$key]=$mtime;
-				return ($this->values[$key]=unserialize($data);
+				return ($this->values[$key]=unserialize($data));
 			}
 		}
 		if (isset($this->values[$key])){
@@ -36,10 +36,10 @@ class ApplicationRegistry extends Registry{
 		return null;
 	}
 	
-	protected function set($key, $value){
+	protected function set($key, $val){
 		$this->values[$key] = $val;
 		$path = $this->freezedir.DIRECTORY_SEPARATOR.$key;
-		file_put_contens($path, serialize($val));
+		file_put_contents($path, serialize($val));
 		$this->mtime[$key]=time();
 	}
 	

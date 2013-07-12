@@ -14,14 +14,14 @@ class RequestRegistry extends Registry{
 	}
 	
 	protected function get($key){
-		if ( !isset($this->$values[$key]) ){
-			return $this->$values[$key];
+		if ( isset($this->values[$key]) ){
+			return $this->values[$key];
 		}
 		return null;
 	}
 	
 	protected function set($key, $val){
-		$this->$values[$key] = $val;
+		$this->values[$key] = $val;
 	}
 	
 	public function setRequest(Request $request){

@@ -15,7 +15,7 @@ class SessionRegistry extends Registry{
 	}
 	
 	protected function get($key){
-		if ( !isset($_SESSION[__CLASS__][$key]) ){
+		if ( isset($_SESSION[__CLASS__][$key]) ){
 			return $_SESSION[__CLASS__][$key];
 		}
 		return null;

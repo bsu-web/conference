@@ -1,3 +1,4 @@
 vendor/
 *.lock
 __conf.php
+*.sublime*
