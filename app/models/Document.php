@@ -1,26 +1,42 @@
 <?php
 require_once('DomainObject.php');
 require_once('Authors.php');
-//абстрактный класс- документ (статья или тезис или презентация)
+/**
+ * абстрактный класс- документ (статья или тезис или презентация)
+ * @author Симонова Ю.
+ * @todo Будет апгрейдится)
+ * @package files
+ */
 abstract class Document extends DomainObject{
-    private $Authors;  //тут у нас список авторов
-    private $title;    //заголовок документа
-    
+    private $Authors; 
+    private $title;    
     abstract function getDocument();
-    
-    function setAuthors(Authors $Authors){  //задаем список авторов
+    /**
+     * задаем список авторов
+     * @param $Authors Список авторов
+
+     */
+    function setAuthors(Authors $Authors){  
         $this->Authors=$Authors;
     }
-    
-    function getAuthors(){   //выдаем список авторов
+    /**
+     * выдаем список авторов
+     */    
+    function getAuthors(){   
         return $this->Authors;
     }
-    
-    function setTitle($title){  //задаем заголовок
+    /**
+     * задаем заголовок
+     * @param $title заголвок
+     */    
+    function setTitle($title){  
         $this->title= $title;
     }
-    
-    function getTitle(){  //выдаем заголовок документа
+    /**
+     * выдаем заголовок документа
+     * @return string
+     */    
+    function getTitle(){  
         return $this->title;
     }
 }
