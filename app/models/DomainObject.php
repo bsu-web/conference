@@ -1,11 +1,11 @@
 <?php
-abstract class DomainObject{
+abstract class DomainObject{ //àáñòğàêòíûé êëàññ äëÿ âñåõ(!) îáúåêòîâ
 	private $id;
 	
-	function getId(){
+	function getId(){ //ïîëó÷åíèå id îáúåêòà
 		return $this->id;
 	}
-	function setId($id){
+	function setId($id){ //çàäàíèå id îáúåêòà
 		$this->id=$id;
 	}
 }

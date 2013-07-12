@@ -1,22 +1,22 @@
 <?php
-abstract class Collection{
+abstract class Collection{ //àáñòğàêòíûé êëàññ íàáîğà îáúåêòîâ
 	private $set=array();
 	private $title="";
-	function insert (DomainObject $object){
+	function insert (DomainObject $object){ //ôóíêöèÿ äîáàâëÿåíèÿ îáúåêòà â íàáîğ
 		if (in_array($object, $this->set, true)){
 			return;
 		}
 		$id=$object->getId();
 		$this->set[$id]=$object;
 	}
-	function delete(DomainObject $object){
+	function delete(DomainObject $object){ //ôóíêöèÿ óäàëåíèÿ ıëåìåíòà èç íàáîğà
 		$id=$object->getId();
 		$search_array = array_key_exists($id, $this->set);
 		if ($search_array){
 			unset($this->set[$id]);
 		}		
 	}
-	function getAll(){
+	function getAll(){ //ôóíêöèÿ âûäàåò ìàññèâ âñåõ îáúåêòîâ êëàññà
 		return $this->set;
 	}
 }
