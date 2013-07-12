@@ -19,6 +19,11 @@ return array(
 		"method" => Utils::METHOD_POST
 	,	"controller" => "AuthorController"
 	,	"action" => "Add"
+	),
+	"/authors_drop" => array(
+		"method" => Utils::METHOD_GET
+	,	"controller" => "AuthorController"
+	,	"action" => "Drop"
 	)
 
 );
