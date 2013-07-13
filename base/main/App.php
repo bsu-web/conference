@@ -10,23 +10,9 @@ class App {
 	/**
 	* @var array
 	**/
-	protected static $config;
 
-	private function __construct(){}
-
-	public static function getConfig($key){
-		if(!isset(self::$config[$key])){
-			return null;
-		}
-		return self::$config[$key];
-	}
-
-	protected static function setConfig($key, $value){
-		self::$config[$key] = $value;
-	}
-
-	public static function init(){
-		
+	private function __construct(){
+	
 	}
 
 	public static function autoload($className){
@@ -76,34 +62,13 @@ class App {
 		}
 	}
 
-	public static function loadConfig($cfgFile, $notHere=false){
-		$cfg = include(APP.SLASH."configs".SLASH.$cfgFile.".php");
-		if(!is_null($cfg) && is_array($cfg)){
-			if($notHere){
-				return $cfg;
-			}else{
-				foreach($cfg as $key=>$value){
-					self::setConfig($key, $value);
-				}
-			}
-		}
-	}
-
 	public static function getSmarty(){
 		$smarty = new Smarty();
-		$smarty->setTemplateDir( App::getConfig("smarty_templates_dir") );
-		$smarty->setCacheDir( App::getConfig("smarty_cache_dir") );
-		$smarty->setCompileDir( App::getConfig("smarty_compile_dir") );
-		$smarty->caching = App::getConfig("smarty_cache");
+		$smarty->setTemplateDir( ApplicationHelper::getConfig("smarty_templates_dir") );
+		$smarty->setCacheDir( ApplicationHelper::getConfig("smarty_cache_dir") );
+		$smarty->setCompileDir( ApplicationHelper::getConfig("smarty_compile_dir") );
+		$smarty->caching = ApplicationHelper::getConfig("smarty_cache");
 		return $smarty;
 	}
 
-	public static function sessionStart(){
-		/**
-		* ??? убрать как появится нормально настроенный веб-сервер
-		**/
-		session_save_path(APP.SLASH."tmp");
-		/*******/
-		session_start();
-	}
 }

@@ -1,7 +1,7 @@
 <?php
 class AuthorController extends Controller {
 	public function Add(){
-		$session = new Session("Authors");
+		$session = new SessionRegistry("Authors");
 
 		$name = $this->getParam("name");
 		$family = $this->getParam("family");
@@ -24,7 +24,7 @@ class AuthorController extends Controller {
 	}
 
 	public function Index(){
-		$session = new Session("Authors");
+		$session = new SessionRegistry("Authors");
 
 		$c = $session->get("authors");
 		$this->assign("authors", $c);
@@ -33,7 +33,7 @@ class AuthorController extends Controller {
 	}
 
 	public function Drop(){
-		$session = new Session("Authors");
+		$session = new SessionRegistry("Authors");
 
 		$c = $session->set("authors", null);
 		$this->redirect("authors");
