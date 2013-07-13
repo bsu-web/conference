@@ -1,5 +1,5 @@
 # composer's stuff
-vendor/
+# vendor/
 # *.lock
 
 # smarty's stuff

@@ -102,7 +102,8 @@ class App {
 		/**
 		* ??? убрать как появится нормально настроенный веб-сервер
 		**/
-		session_save_path(APP.SLASH."tmp");
+		//session_save_path(APP.SLASH."tmp");
+		session_save_path("C:\\Windows\\temp");
 		/*******/
 		session_start();
 	}
