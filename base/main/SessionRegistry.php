@@ -1,37 +1,43 @@
 <?php
-require_once('Registry.php');
-class SessionRegistry extends Registry{
-	private static $instance;
-	
-	private function __construct(){
-		session_start();
-	}
-	
-	static function instance(){
-		if ( !isset(self::$instance) ){
-			self::$instance = new self();
+/**
+* Класс для работы с сессией
+**/
+class SessionRegistry extends Registry {
+	/**
+	* Префикс всех переменных данной сессии
+	* @var string
+	**/
+	protected $prefix = null;
+
+	/**
+	* Конструктор
+	* @param string $namespace Пространство имён (в нашем случае просто префикс) всех переменных данной сессиии
+	**/
+	public function __construct($namespace = "g"){
+		if(!isset($_SESSION)){
+			session_start();
 		}
-		return self::$instance;
+		$this->prefix = $namespace . "_";
 	}
-	
-	protected function get($key){
-		if ( isset($_SESSION[__CLASS__][$key]) ){
-			return $_SESSION[__CLASS__][$key];
+
+	/**
+	* Устанавливает значение переменной сессии
+	* @param string $key Имя переменной
+	* @param string $value Новое значение переменной
+	**/
+	public function set($key, $value){
+		$_SESSION[$this->prefix . $key] = $value;
+	}
+
+	/**
+	* Возвращает значение переменной сессии
+	* @param string $key Имя переменной
+	* @return string Значение переменной
+	**/
+	public function get($key){
+		if(!isset($_SESSION[$this->prefix.$key])){
+			return null;
 		}
-		return null;
+		return $_SESSION[$this->prefix . $key];
 	}
-	
-	protected function set($key, $val){
-		$_SESSION[__CLASS__][$key] = $val;
-	}
-	
-	public function setComplex(Complex $complex){
-		self::instance()->set('complex', $complex);
-	}
-	
-	public function getComplex(){
-		return self::instance()->get('complex');
-	}
-	
 }
-?>
