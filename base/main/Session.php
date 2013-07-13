@@ -2,7 +2,7 @@
 /**
 * Класс для работы с сессией
 **/
-class Session {
+class Session extends Registry {
 	/**
 	* Префикс всех переменных данной сессии
 	* @var string
