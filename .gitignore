@@ -1,12 +1,6 @@
 # composer's stuff
-# vendor/
+vendor/
 # *.lock
-
-# smarty's stuff
-s_*/
-
-# other
-__conf.php
 
 # sublime project
 *.sublime-*

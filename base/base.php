@@ -23,6 +23,7 @@ if($qm_pos !== false ){
 /**
 * Если приложение не в корневой веб-папке, то удалим все лишние пути из REQUEST_URI
 **/
+
 define("REQUEST", substr($full_uri, strlen(ROOT_URI) == 1 ? 0 : strlen(ROOT_URI)));
 define("REQUEST_METHOD", constant("Utils::METHOD_".$_SERVER["REQUEST_METHOD"]));
 
