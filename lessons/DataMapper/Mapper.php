@@ -3,17 +3,17 @@ require_once('Author.php');
 require_once('DomainObject.php');
 
 abstract class Mapper{
-	protected static $DBH;
+	protected static $pdo;
 	function __construct(){
-		if (!isset(self::$DBH)){
+		if (!isset(self::$pdo)){
 			$base='test';
 			$user='root';
 			$password='';
-			self::$DBH=new PDO("mysql:host=localhost;dbname=".$base,$user,$password);
-			self::$DBH->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			self::$DBH->prepare("set character_set_client='cp1251'")->execute();
-			self::$DBH->prepare("set character_set_results='cp1251'")->execute();
-			self::$DBH->prepare("set collation_connection='cp1251_general_ci'")->execute();
+			self::$pdo=new PDO("mysql:host=localhost;dbname=".$base,$user,$password);
+			self::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			self::$pdo->prepare("set character_set_client='cp1251'")->execute();
+			self::$pdo->prepare("set character_set_results='cp1251'")->execute();
+			self::$pdo->prepare("set collation_connection='cp1251_general_ci'")->execute();
 		}
 	} 
     
