@@ -10,6 +10,7 @@ require_once('Authors.php');
 abstract class Document extends DomainObject{
     private $Authors; 
     private $title;    
+	private $content;
     abstract function getDocument();
     /**
      * задаем список авторов
