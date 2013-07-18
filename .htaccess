@@ -1,9 +1,4 @@
-RewriteEngine on
-RewriteBase /
-
-RewriteRule ^$ app/www/ [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule (.*) app/www/$1 [L]
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteRule (.*) app/www/$1 [L]
+</IfModule>

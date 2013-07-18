@@ -1,14 +1,14 @@
 <?php
 class CounterController extends Controller {
 	public function Clear(){
-		$session = new Session("Counter");
+		$session = new SessionRegistry("Counter");
 
 		$session->set("counter", 0);
 		$this->redirect("counter");
 	}
 
 	public function View(){
-		$session = new Session("Counter");
+		$session = new SessionRegistry("Counter");
 
 		$c = $session->get("counter");
 		if(is_null($c)){

@@ -46,7 +46,7 @@ class ApplicationHelper {
 	* @param bool $notHere параметр true->возвращает значения/false->устанавливает через setConfig
 	**/	
 	public static function loadConfig($cfgFile, $notHere=false){
-		$cfg = include(APP.SLASH."configs".SLASH.$cfgFile.".php");
+		$cfg = include(APP.DS."configs".DS.$cfgFile.".php");
 		if(!is_null($cfg) && is_array($cfg)){
 			if($notHere){
 				return $cfg;

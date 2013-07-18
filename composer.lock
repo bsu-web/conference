@@ -3,11 +3,8 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b184762a124f06f198162b30aeb63a2b",
+    "hash": "2ad1ca6c3983351886157c4bcb839f71",
     "packages": [
-
-    ],
-    "packages-dev": [
         {
             "name": "smarty/smarty",
             "version": "v3.1.14",
@@ -27,7 +24,7 @@
                     "distribution/libs/sysplugins/smarty_security.php"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-3.0"
             ],
@@ -52,6 +49,9 @@
             ],
             "time": "2013-07-02 16:38:47"
         }
+    ],
+    "packages-dev": [
+
     ],
     "aliases": [
 

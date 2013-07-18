@@ -41,13 +41,13 @@ class Request {
 	}
 
 	/**
-	* Само-инициализация Запроса в текущем окружении
+	* Самоинициализация Запроса в текущем окружении
 	* @return void
 	**/
 	protected function init(){
 		$this->method = REQUEST_METHOD;
 		//$this->subject = $this->_parseSubject(REQUEST);
-		$this->request = REQUEST;
+		$this->request = REQUEST_URI;
 		$this->params = $_REQUEST;
 	}
 
@@ -92,9 +92,9 @@ class Request {
 	}
 
 	//protected function _parseSubject($request_uri){
-	//	$sec_slash = strpos($request_uri, "/", 1);
-	//	if($sec_slash !== false){
-	//		return substr($request_uri, 0, $sec_slash);
+	//	$sec_DS = strpos($request_uri, "/", 1);
+	//	if($sec_DS !== false){
+	//		return substr($request_uri, 0, $sec_DS);
 	//	}
 	//	return $request_uri;
 	//}

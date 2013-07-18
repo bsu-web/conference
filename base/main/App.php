@@ -20,17 +20,17 @@ class App {
 	}
 
 	public static function loadController($controllerName){
-		self::loadClass($controllerName, array(APP.SLASH."controllers"), "Controller");
+		self::loadClass($controllerName, array(APP.DS."controllers"), "Controller");
 	}
 
 	protected static function loadClass($className, $overridePath=null, $shouldInheritFrom=null){
 
 		if(is_null($overridePath)){
 			$paths = array(
-				APP . SLASH . "models",
-				/*APP . SLASH . "controllers",*/
-				APP . SLASH . "views",
-				BASE . SLASH . "main"
+				APP . DS . "models",
+				/*APP . DS . "controllers",*/
+				APP . DS . "views",
+				BASE . DS . "main"
 			);
 		}else{
 			$paths = $overridePath;
@@ -40,7 +40,7 @@ class App {
 		$found = false;
 
 		foreach($paths as $path){
-			$filePath = $path .SLASH. $fileName;
+			$filePath = $path .DS. $fileName;
 			if(is_readable($filePath)){
 				include_once($filePath);
 				if(!class_exists($className, false)){

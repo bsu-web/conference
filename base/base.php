@@ -1,34 +1,57 @@
 <?php
 /**
-* Последний рубеж перед запуском
+* Выполняется в самом начале
 **/
-require_once "main".SLASH."App.php";
+if(!defined("DS"))
+define("DS", DIRECTORY_SEPARATOR);
+/**
+* Абсолютный путь ко всей папке проекта
+**/
+define("ROOT", realpath(dirname(dirname(__FILE__))));
+/**
+* Путь к ядру
+**/
+define("BASE", ROOT.DS."base");
+/**
+* Путь к приложению (конференции)
+**/
+define("APP", ROOT.DS."app" );
+
+require_once ROOT.DS."vendor".DS."autoload.php";
+require_once BASE.DS."base.php";
+require_once "main".DS."App.php";
 
 /**
 * Назначаем автозагружатель классов
 **/
 spl_autoload_register(array("App", "autoload"));
 
-/**
-* Получение чистой строки запроса, без параметров
-**/
-$qm_pos = strpos($_SERVER["REQUEST_URI"], "?");
-
-if($qm_pos !== false ){
-	$full_uri = substr($_SERVER["REQUEST_URI"], 0, $qm_pos);
+$full_req_uri = $_SERVER["REQUEST_URI"];
+$upper_junk = dirname($_SERVER["REQUEST_URI"]);
+if(strlen($upper_junk) > 1){
+	define("REQUEST_URI_FULL",
+		str_replace(
+			$upper_junk,
+			"",
+			$full_req_uri
+		)
+	);
 }else{
-	$full_uri = $_SERVER["REQUEST_URI"];
+	define("REQUEST_URI_FULL", $full_req_uri);
 }
 
 /**
-* Если приложение не в корневой веб-папке, то удалим все лишние пути из REQUEST_URI
+* Получение чистой строки запроса, без параметров
 **/
+$qm_pos = strpos(REQUEST_URI_FULL, "?");
 
-define("REQUEST", substr($full_uri, strlen(ROOT_URI) == 1 ? 0 : strlen(ROOT_URI)));
+if($qm_pos !== false ){
+	define("REQUEST_URI", substr(REQUEST_URI_FULL, 0, $qm_pos));
+}else{
+	define("REQUEST_URI", REQUEST_URI_FULL);
+}
+
 define("REQUEST_METHOD", constant("Utils::METHOD_".$_SERVER["REQUEST_METHOD"]));
-
-error_reporting(E_ALL);
-
 /**
 * Запускаем всё и вся
 **/

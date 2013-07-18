@@ -34,6 +34,6 @@ class View {
 	* @return string Результат рендеринга
 	**/
 	public function render($template_name){
-		return $this->_smarty->fetch(APP.SLASH."views".SLASH.$template_name.".tpl");
+		return $this->_smarty->fetch(APP.DS."views".DS.$template_name.".tpl");
 	}
 }
