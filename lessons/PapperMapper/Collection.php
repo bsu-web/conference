@@ -35,7 +35,7 @@ abstract class Collection implements Iterator{
     
     private function getRow($num){
         $this->notifyAccess();
-        if ($num>=$this->total || $num=0){
+        if ($num>=$this->total){
             return null;
         }
         

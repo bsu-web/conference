@@ -24,9 +24,15 @@ abstract class Document extends DomainObject{
      */    
     function getAuthors(){   
         if (! isset($this->authors)){
-            $this->Authors= self::getCollection('Author');
+            $this->authors= self::getCollection('Author');
         }
         return $this->authors;
+    }
+    
+    function getAuthorStr(){
+        foreach ($this->authors as $author){
+            echo $author->getName().'  '.$author->getFamily().'</br>';    
+        }
     }
     
     function addAuthor(Author $author){
