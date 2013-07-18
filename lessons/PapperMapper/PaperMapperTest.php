@@ -6,8 +6,10 @@ $paper_mapper= new PaperMapper();
 $paper= $paper_mapper->find(1); //берем статью из БД
 echo $paper->getTitle().'</br>'.$paper->getContent().'</br>';
 $authors=$paper->getAuthors();
-$author1= $authors->next();
-echo $author1->getName().' '.$author1->getFamily().'</br>';
+$paper->getAuthorStr();
+
+
+
 
 //а теперь сами добавим новую статью в БД
 
@@ -33,5 +35,6 @@ $map_pap->insert($paper2);
 
 //если посмотреть в бд- вроде все норм работает. но я еще не до конца допилила
 
-
+$paper2->setTitle('Измененный заголовок!');
+$map_pap->update($paper2);
 ?>

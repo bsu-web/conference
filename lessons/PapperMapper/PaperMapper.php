@@ -11,7 +11,7 @@ class PaperMapper extends Mapper{
         $this->updateStmt= self::$pdo->prepare("UPDATE `paper` SET `title`=? WHERE `id`=?");
         $this->insertStmt= self::$pdo->prepare("INSERT INTO `paper` (`title`, `content`) VALUES (?,?)");
         $this->insertLinksStmt= self::$pdo->prepare("INSERT INTO `paper_authors` (`paper_id`, `author_id`) VALUES (?,?)");
-        $this->findByJournalStmt= self::$pdo->prepare("SELECT * FROM `authors` INNER JOIN `paper_authors` ON `id`=`author_id` WHERE `paper_id`=?");
+        $this->findByJournalStmt= self::$pdo->prepare("");
     }
     
     protected function doCreateObject(array $array){
@@ -36,7 +36,6 @@ class PaperMapper extends Mapper{
     
     function update(DomainObject $object){
         $values[]=$object->getTitle();
-        $values[]=$object->getContent();
         $values[]=$object->getId();
         $this->updateStmt->execute($values);
     }
@@ -53,8 +52,8 @@ class PaperMapper extends Mapper{
         //return new AuthorCollection($raw,$this);
     }
     
-    protected function InsertLinks($id, AuthorCollection $authos){
-        foreach ($authos->getArray() as $author){
+    protected function InsertLinks($id, AuthorCollection $authors){
+        foreach ($authors->getArray() as $author){
             $values= array();
             $values[]=$id;
             $values[]=$author->getId();

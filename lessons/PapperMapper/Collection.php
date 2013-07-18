@@ -35,7 +35,7 @@ abstract class Collection implements Iterator{
     
     private function getRow($num){
         $this->notifyAccess();
-        if ($num>=$this->total || $num=0){
+        if ($num>=$this->total){
             return null;
         }
         
@@ -65,6 +65,14 @@ abstract class Collection implements Iterator{
         $row=$this->getRow($this->pointer);
         if ($row){
             $this->pointer++;
+        }
+        return $row;
+    }
+	
+	public function prev(){
+        $row=$this->getRow($this->pointer);
+        if ($row){
+            $this->pointer--;
         }
         return $row;
     }
