@@ -68,6 +68,14 @@ abstract class Collection implements Iterator{
         }
         return $row;
     }
+	
+	public function prev(){
+        $row=$this->getRow($this->pointer);
+        if ($row){
+            $this->pointer--;
+        }
+        return $row;
+    }
     
     public function valid(){
         return(! is_null($this->current()));
