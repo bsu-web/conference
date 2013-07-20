@@ -23,7 +23,6 @@ class getPapers extends Command{
 		$count=0; //количество статей
 		while ($arr=$STH->fetch()){ //по всем paper'ам
 			$count++;
-//			echo "<h3>статья #".$count."</h3>";
 			$object=new Paper();
 			$object->setTitle($arr[1]);
 			$object->setContent($arr[2]);
@@ -36,12 +35,8 @@ class getPapers extends Command{
 			$count1=0; //количество авторов в данной статье
 			while ($arr1=$STH1->fetch()){ //по всем author'ам данного paper'а, при заданном id этого paper'а
 				$count1++;
-/*				echo $count1.") ";
-				print_r($arr1);
-				echo "<br><br>";
-				
-				echo "для данной статьи id автора: ".$arr1[1]."<br>";
-*/				$STH2=$DBH->prepare("SELECT * FROM author WHERE id=?");
+
+				$STH2=$DBH->prepare("SELECT * FROM author WHERE id=?");
 				$STH2->execute(array($arr1[1]));
 				$AuthorP=$STH2->fetch();
 				
@@ -50,19 +45,12 @@ class getPapers extends Command{
 				$object1->setFamily($AuthorP[2]);
 				$object1->setPatronymic($AuthorP[3]);
 				$object1->setId($AuthorP[0]);
-/*				echo "new Author:<br>";
-				print_r($object1);
-				echo "<br><hr>";
-*/				$authors->add($object1);
+
+				$authors->add($object1);
 			}
 			$object->setAuthors($authors);
 			$request->setProperty('obj'.$count,$object);
-			//$request->setProperty('obj_A'.$count,$authors);
-			//$request->setProperty('count'.$count,$count1);
-/*			echo "<b>АВТОРЫ:</b><br>";
-			print_r($authors);
-			echo "<br><hr><hr><hr>";
-*/		}
+		}
 		$request->setProperty('count',$count);
 		return self::statuses('CMD_OK');
 	}
