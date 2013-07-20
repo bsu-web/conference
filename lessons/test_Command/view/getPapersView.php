@@ -20,28 +20,5 @@ For ($i=1;$i<=$count;$i++){
 	echo "<div style=\"margin-left:50px\"><b>".$r->getId().") ".$r->getTitle()."</b><br>".$r->getContent()."<br><br><u>Список авторов:</u><br>";
 	echo $r->getAuthorStr();
 	echo "</div><hr>";
-	
-	//echo "<b>".$r->getId().") ".$r->getTitle()."</b><br>".$r->getContent()." ".$r->getAuthorStr()."<br><hr>";
-
-	/*	echo "<br>";
-	print_r($r);
-	echo "<br><hr>";
-*/	
-	
-	/*
-	while ($au=$r1->fetch()){
-		echo $au[0].") ".$au[1]." ".$au[2]." ".$au[3]."<br>";
-	}
-	
-	$r1=$req->getProperty('obj_A'.$i);
-	echo "переменная r1:<br>";
-	print_r($r1);
-	echo "<br><br>";
-	$count1=$req->getProperty('count'.$i);
-	For ($j=1;$j<=$count1;$j++){
-		
-	}
-	echo "<hr>";
-	*/
 }
 ?>
