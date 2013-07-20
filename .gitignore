@@ -1,9 +1,2 @@
-# composer's stuff
-vendor/
-# *.lock
-
-# sublime project
+templates_c/
 *.sublime-*
-
-# application's temp dir
-app/tmp

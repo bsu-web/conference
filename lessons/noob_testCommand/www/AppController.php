@@ -20,19 +20,19 @@ class AppController {
 	}	
 	
 	public function getView(Request $req){
-		$view = $this->getResourse($req, "View");
+		$view = $this->getresource($req, "View");
 		return $view;
 	}
 	
 	function getForward(Request $req){
-		$forward = $this->getResourse($req, "Forward");
+		$forward = $this->getresource($req, "Forward");
 		if ($forward){
 			$req->setProperty('cmd', $forward);
 		}
 		return $forward;
 	}
 	
-	private function getResourse(Request $req, $res){
+	private function getresource(Request $req, $res){
 		$cmd_str = $req->getProperty('cmd');
 		$previous = $req->getLastCommand();
 		$status = $previous->getStatus();
@@ -41,21 +41,21 @@ class AppController {
 		}
 		$acquire = "get$res";
 		
-		$resourse = $this->controllerMap->$acquire($cmd_str, $status);
+		$resource = $this->controllerMap->$acquire($cmd_str, $status);
 		
-		if (!$resourse){
-			$resourse = $this->controllerMap->$acquire($cmd_str, 0);
+		if (!$resource){
+			$resource = $this->controllerMap->$acquire($cmd_str, 0);
 		}
 		
-		if (!$resourse) {
-			$resourse = $this->controllerMap->$acquire('default', $status);
+		if (!$resource) {
+			$resource = $this->controllerMap->$acquire('default', $status);
 		}
 		
-		if (!$resourse){
-			$resourse = $this->controllerMap->$acquire('default', 0);
+		if (!$resource){
+			$resource = $this->controllerMap->$acquire('default', 0);
 		}
 		
-		return $resourse;
+		return $resource;
 	}
 	
 	public function getCommand(Request $req){

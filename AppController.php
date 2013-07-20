@@ -1,9 +1,9 @@
-<?php
+ï»¿<?php
 require_once 'Request.php';
 require_once 'ControllerMap.php';
 require_once 'AppException.php';
 require_once 'DefaultCommand.php';
-//require_once '';
+
 class AppController {
 	private static $base_cmd;
 	private static $default_cmd;
@@ -20,19 +20,19 @@ class AppController {
 	}	
 	
 	public function getView(Request $req){
-		$view = $this->getResourse($req, "View");
+		$view = $this->getresource($req, "View");
 		return $view;
 	}
 	
 	function getForward(Request $req){
-		$forward = $this->getResourse($req, "Forward");
+		$forward = $this->getresource($req, "Forward");
 		if ($forward){
 			$req->setProperty('cmd', $forward);
 		}
 		return $forward;
 	}
 	
-	private function getResourse(Request $req, $res){
+	private function getresource(Request $req, $res){
 		$cmd_str = $req->getProperty('cmd');
 		$previous = $req->getLastCommand();
 		$status = $previous->getStatus();
@@ -41,21 +41,21 @@ class AppController {
 		}
 		$acquire = "get$res";
 		
-		$resourse = $this->controllerMap->$acquire($cmd_str, $status);
+		$resource = $this->controllerMap->$acquire($cmd_str, $status);
 		
-		if (!$resourse){
-			$resourse = $this->controllerMap->$acquire($cmd_str, 0);
+		if (!$resource){
+			$resource = $this->controllerMap->$acquire($cmd_str, 0);
 		}
 		
-		if (!$resourse) {
-			$resourse = $this->controllerMap->$acquire('default', $status);
+		if (!$resource) {
+			$resource = $this->controllerMap->$acquire('default', $status);
 		}
 		
-		if (!$resourse){
-			$resourse = $this->controllerMap->$acquire('default', 0);
+		if (!$resource){
+			$resource = $this->controllerMap->$acquire('default', 0);
 		}
 		
-		return $resourse;
+		return $resource;
 	}
 	
 	public function getCommand(Request $req){
@@ -74,11 +74,11 @@ class AppController {
 		}
 		$cmd_obj = $this->resolveCommand($cmd);
 		if (!$cmd_obj) {
-			throw new AppException("Êîìàíäà '$cmd' íå íàéäåíà");
+			throw new AppException("ÐšÐ¾Ð¼Ð°Ð½Ð´Ð° '$cmd' Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°");
 		}
 		$cmd_class = get_class($cmd_obj);
 		if (isset($this->invoked[$cmd_class])) {
-			throw new AppException("Öèêëè÷åñêèé âûçîâ");
+			throw new AppException("Ð¦Ð¸ÐºÐ»Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ð²Ñ‹Ð·Ð¾Ð²");
 		}
 		$this->invoked[$cmd_class]=1;
 		return $cmd_obj;
@@ -87,7 +87,7 @@ class AppController {
 	public function resolveCommand($cmd){
 		$classroot = $this->controllerMap->getClassroot($cmd);
 		//$filepath = "/command/$classroot.php";
-		$filepath = "$classroot.php";
+		$filepath = "command/$classroot.php";
 		//$classname = "\\command\\$classroot";
 		$classname = "$classroot";
 		if (file_exists($filepath)) {
