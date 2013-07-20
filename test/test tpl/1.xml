@@ -1,0 +1,56 @@
+<config>
+	<control>
+		<view>main</view>
+		<view status="CMD_OK">main</view>
+		<view status="CMD_ERROR">error</view>
+		
+		<command name="ListVenues">
+			<view>listvenues</view>
+		</command>
+		
+		<command name="qaddvenue">
+			<classroot name="addvenue"/>
+			<view>qadd</view>
+		</command>
+		
+		<command name="addvenue">
+			<view>addvenue</view>
+			<status value="CMD_OK">
+				<forward>addspace</forward>
+			</status>
+		</command>
+		
+		<command name="addspace">
+			<view>addspace</view>
+			<status value="CMD_OK">
+				<forward>listvenues</forward>
+			</status>
+		</command>
+		
+		<command name="dcom">
+			<view>main</view>
+			<status value="CMD_OK">
+				<forward>defaultcommand</forward>
+			</status>
+		</command>
+		
+		<command name="createobj">
+			<view>main</view>
+			<status value="CMD_OK">
+				<forward>changeobj</forward>
+			</status>
+		</command>
+		
+		<command name="changeobj">
+			<view>main</view>
+			<status value="CMD_OK">
+				<forward>viewobj</forward>
+			</status>
+		</command>
+		
+		<command name="viewobj">
+			<view>main</view>
+		</command>
+		
+	</control>
+</config>
