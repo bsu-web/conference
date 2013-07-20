@@ -1,14 +1,44 @@
 <?php
 
-require_once 'Request.php';
-require_once 'ApplicationRegistry.php';
-require_once 'ApplicationHelper.php';
-
-
+/** 
+ * @author user
+ * 
+ */
 class Controller {
 	private $applicationHelper;
 	
 	private function __construct() {}
+	
+	public static function autoload($className){
+		self::loadClass($className);
+	}
+	protected static function loadClass($className){
+	
+		$paths = array(
+				ROOT,
+				/*APP . DS . "models",
+				APP . DS . "controllers",
+				APP . DS . "views",
+				BASE . DS . "main"*/
+		);
+	
+		$fileName = $className . ".php";
+		$found = false;
+	
+		foreach($paths as $path){
+			$filePath = $path .DS. $fileName;
+			if(is_readable($filePath)){
+				include_once($filePath);
+				if(!class_exists($className, false)){
+					throw new Exception("Class $className not found in file $filePath");
+				}else					
+					$found = true;
+			}
+		}
+		if(!$found){
+			//throw new Exception("Class file not found");
+		}
+	}
 	
 	public static function run(){
 		$instance = new Controller();
@@ -25,26 +55,16 @@ class Controller {
 		$request = new Request();
 		$app_c = ApplicationRegistry::appController();
 		while ($cmd = $app_c->getCommand($request)){
+			//print "Выполняется ".get_class($cmd)."\n";
 			$cmd->execute($request);
 		}
 		$this->invokeView($app_c->getView($request));
 	}
-
-	public function invokeView($target){
-		/**
-		 * TODO: No passchecks ???
-		 */
-		//include("view/$target.php");
-		include("smarty/Smarty.class.php"); // not good
-		$smarty = new Smarty;
-		
-		$smarty->assign("Request", RequestRegistry::instance()->getRequest());
-		$smarty->display("view/${target}.tpl"); // not good
-
-
-		exit; // too bad
-	}
 	
+	public function invokeView($target){
+		include("view/$target.php");
+		exit;
+	}
 }
 
 ?>
