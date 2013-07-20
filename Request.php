@@ -14,16 +14,33 @@ class Request {
 	}
 	
 	public function init(){
-		if (isset($_SERVER['REQUEST_METHOD'])) {
-			$this->properties = $_REQUEST;
+		/*if (isset($_SERVER['REQUEST_METHOD'])) {
+			$this->properties = $_REQUEST;				//просто вытянули из $_REQUEST
 			return;
-		}
-		foreach ($_SERVER['argv'] as $arg){
+		}*/
+		/*foreach ($_SERVER['argv'] as $arg){
 			if (strpos($arg, '=')) {
-				list($key, $val) = explode("=", $arg);
+				list($key, $val) = explode("=", $arg);  //name=value
 				$this->setProperty($key, $val);
 			}
+		}*/
+		$key=0;
+		$argv = explode('/', $_SERVER['REQUEST_URI']);
+		
+		$this->setProperty('cmd', $argv[1]);
+		$argv = array_splice($argv, 2);
+		foreach ($argv as $arg){						//value/value2/value3/...
+			$this->setProperty($key, $arg);
+			$key++;
 		}
+		
+		/*$cmd = $argv[2].$argv[1];
+		$this->setProperty('cmd', $cmd);
+		 $argv = array_splice($argv, 3);
+				foreach ($argv as $arg){				//type/command/value1/value2/...    cmd=commandType
+				$this->setProperty($key, $arg);
+				$key++;
+		}*/
 	}
 	
 	public function getProperty($key){
