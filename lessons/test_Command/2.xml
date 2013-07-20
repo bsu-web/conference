@@ -12,5 +12,10 @@
 			<view>getPapersView</view>  
 		</command>
 		
+		<command name="getJournals">
+			<view>getJournalsView</view>  
+		</command>
+				
+		
 	</control>
 </config>
