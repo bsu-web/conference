@@ -14,7 +14,7 @@ $app_h->init();*/
 if(!defined("DS"))
 	define("DS", DIRECTORY_SEPARATOR);
 
-define("ROOT", realpath(dirname(dirname(__FILE__))).DS.'project kernel');
+define("ROOT", realpath(dirname(dirname(__FILE__))).DS);
 
 spl_autoload_register(array("Controller", "autoload"));
 
