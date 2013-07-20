@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<control>
+		<view>main</view>
+		<view status="CMD_OK">main</view>
+		<view status="CMD_ERROR">error</view>
+		
+
+		<command name="Voodoo">
+			<view>main</view>
+			<status value="CMD_OK">
+				<forward>test</forward>
+			</status>
+		</command>
+
+		
+	</control>
+</config>

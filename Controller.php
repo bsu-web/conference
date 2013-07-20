@@ -3,10 +3,8 @@
 require_once 'Request.php';
 require_once 'ApplicationRegistry.php';
 require_once 'ApplicationHelper.php';
-/** 
- * @author user
- * 
- */
+
+
 class Controller {
 	private $applicationHelper;
 	
@@ -27,15 +25,24 @@ class Controller {
 		$request = new Request();
 		$app_c = ApplicationRegistry::appController();
 		while ($cmd = $app_c->getCommand($request)){
-			//print "Выполняется ".get_class($cmd)."\n";
 			$cmd->execute($request);
 		}
 		$this->invokeView($app_c->getView($request));
 	}
-	
+
 	public function invokeView($target){
-		include("view/$target.php");
-		exit;
+		/**
+		 * TODO: No passchecks ???
+		 */
+		//include("view/$target.php");
+		include("smarty/Smarty.class.php"); // not good
+		$smarty = new Smarty;
+		
+		$smarty->assign("Request", RequestRegistry::instance()->getRequest());
+		$smarty->display("view/${target}.tpl"); // not good
+
+
+		exit; // too bad
 	}
 	
 }

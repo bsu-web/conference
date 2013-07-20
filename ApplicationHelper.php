@@ -1,16 +1,13 @@
-<?php
+ï»¿<?php
 
 require_once 'ControllerMap.php';
 require_once 'ApplicationRegistry.php';
 require_once 'Command.php';
 require_once 'AppException.php';
-/** 
- * @author user
- * 
- */
+
 class ApplicationHelper {
 	private static $instance;
-	private $config = "1.xml";
+	private $config = "./config/default.xml";
 	
 	private function __construct() {}
 	
@@ -26,15 +23,17 @@ class ApplicationHelper {
 		//if(!is_null($dsn)){
 		//	return;
 		//}
+		//
 		$this->getOptions();
 	}
 	
 	private function getOptions(){
-		$this->ensure(file_exists($this->config), "Ôàéë êîíôèãóðàöèè íå íàéäåí");
-		$options = @simplexml_load_file($this->config);
+		$this->ensure(file_exists($this->config), "Ð¤Ð°Ð¹Ð» ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½");
+		$options = simplexml_load_file($this->config);
+
 		//$dsn = (string)$options->dsn;
-		$this->ensure($options instanceof SimpleXMLElement, "Ôàéë êîíôèãóðàöèè çàïîð÷åí");
-		//$this->ensure($dsn, "DSN íå íàéäåí");
+		$this->ensure($options instanceof SimpleXMLElement, "Ð¤Ð°Ð¹Ð» ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸ Ð·Ð°Ð¿Ð¾Ñ€Ñ‡ÐµÐ½");
+		//$this->ensure($dsn, "DSN Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½");
 		//ApplicationRegistry::setDSN($dsn);
 		
 		$map = new ControllerMap();

@@ -7,7 +7,7 @@ require_once 'Command.php';
  */
 class DefaultCommand extends Command {
 	public function doExecute(Request $request){
-		echo 123;
+		echo "Default Command call";
 	}
 }
 

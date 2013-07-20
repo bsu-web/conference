@@ -5,7 +5,7 @@
  * 
  */
 require_once 'DomainObject.php';
-class Author {
+class Author extends DomainObject {
 	private $name       =  "Имя автора ";
 	private $family     =  "Фамилия автора ";
 	private $patronymic =  "Отчество автора ";
@@ -28,11 +28,11 @@ class Author {
 	function getPatronymic(){				//получить Отчество автора
 		return $this->patronymic;
 	}
-	/*	function __construct($name, $family, $patronymic){
+	function __construct($name, $family, $patronymic){
 	 $this->name		  = $name;
 	$this->family	  = $family;
 	$this->patronymic = $patronymic;
-	}	*/
+	}
 }
 
 ?>

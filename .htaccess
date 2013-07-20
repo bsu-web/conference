@@ -1,4 +1,0 @@
-<IfModule mod_rewrite.c>
-	RewriteEngine on
-	RewriteRule (.*) app/www/$1 [L]
-</IfModule>

@@ -1,9 +1,9 @@
 <?php
 require_once 'RequestRegistry.php';
 /** 
- * @author user
- * 
+ * The holy grail 
  */
+
 class Request {
 	private $properties;
 	private $feedback = array();
