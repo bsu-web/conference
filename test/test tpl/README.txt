@@ -1,19 +1,3 @@
-<config>
-	<control>
-		<view>main</view>
-		<view status="CMD_OK">main</view>
-		<view status="CMD_ERROR">error</view>
-		
-		<command name="testCom"> <!--- название файла, класса и эта штука ОДИНАКОВЫ -->
-			<view>fileView</view> <!--- делегирует классу authorView при получении статуса 'CMD_OK'-->
-			<status value='CMD_OK'>
-				<forward>authorView</forward>
-			</status>
-		</command>
-		
-		<command name="authorView">
-			<view>authorView</view>  <!--- В ПАПКЕ VIEW. Это название файла, в котором хранятся команды (будущие .tpl) и оно в папке view -->
-		</command>
-		
-	</control>
-</config>
+Работает getAuthors, getPapers
+
+для работы getJournal необходимо описать в document.php функции вывода из отдельного журнала инфы на экран

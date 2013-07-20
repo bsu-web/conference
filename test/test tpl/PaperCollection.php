@@ -6,6 +6,7 @@ class PaperCollection extends Collection{
     function targetClass(){
         return "Paper";
     }
+
 }
 
 ?>

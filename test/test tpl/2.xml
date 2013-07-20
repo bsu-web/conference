@@ -1,6 +1,6 @@
 <config>
 	<control>
-		<view>main</view>
+		<view>lol</view>
 		<view status="CMD_OK">main</view>
 		<view status="CMD_ERROR">error</view>
 		

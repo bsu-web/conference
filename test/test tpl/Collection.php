@@ -19,9 +19,9 @@ abstract class Collection implements Iterator{
     
     function add(DomainObject $object){
         $class=$this->targetClass();
-        if (! ($object instanceof $class)){
-            throw new Exception ('Это коллекция {$class}');
-        }
+  //      if (! ($object instanceof $class)){
+   //         throw new Exception ('Это коллекция {$class}');
+   //     }
         $this->notifyAccess();
         $this->objects[$this->total]=$object;
         $this->total++;
@@ -37,18 +37,15 @@ abstract class Collection implements Iterator{
         $this->notifyAccess();
         if ($num>=$this->total){
             return null;
-
         }
         
         if (isset($this->objects[$num])){
             return $this->objects[$num];
-
         }
         
         if (isset($this->raw[$num])){
             $this->objects[$num]=$this->mapper->createObject($this->raw[$num]);
             return $this->objects[$num];
-
         }
     }
     

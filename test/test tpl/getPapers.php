@@ -5,6 +5,8 @@ require_once('Mapper.php');
 require_once("Author.php" );
 require_once("AuthorMapper.php" );
 require_once("AuthorCollection.php" );
+require_once("PaperCollection.php" );
+
 
 class getPapers extends Command{
 	public function doExecute(Request $request){
@@ -16,9 +18,10 @@ class getPapers extends Command{
 		$STH=$DBH->prepare("SELECT * FROM paper");
 		$STH->execute();
 
-		$count=0; //количество статей
+		$paper_col=new PaperCollection;
+		$count_p=0; //количество статей
 		while ($arr=$STH->fetch()){ //по всем paper'ам
-			$count++;
+			$count_p++;
 
 			$object=new Paper();
 			$object->setTitle($arr[1]);
@@ -29,9 +32,9 @@ class getPapers extends Command{
 			$STH1->execute(array($object->getId()));
 			$authors=array();
 			$authors=new AuthorCollection();
-			$count1=0; //количество авторов в данной статье
+			$count_a=0; //количество авторов в данной статье
 			while ($arr1=$STH1->fetch()){ //по всем author'ам данного paper'а, при заданном id этого paper'а
-				$count1++;
+				$count_a++;
 
 				$STH2=$DBH->prepare("SELECT * FROM author WHERE id=?");
 				$STH2->execute(array($arr1[1]));
@@ -46,9 +49,10 @@ class getPapers extends Command{
 				$authors->add($object1);
 			}
 			$object->setAuthors($authors);
-			$request->setProperty('obj'.$count,$object);
+			$paper_col->add($object);
 		}
-		$request->setProperty('count',$count);
+		$request->setProperty('doc',$paper_col);
+		$request->setProperty('count',$count_p);
 		return self::statuses('CMD_OK');
 	}
 }

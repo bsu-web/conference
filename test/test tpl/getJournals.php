@@ -9,6 +9,7 @@ require_once("PaperMapper.php" );
 require_once("PaperCollection.php" );
 require_once("Journal.php" );
 require_once("JournalMapper.php" );
+require_once("JournalCollection.php" );
 
 class getJournals extends Command{
 	public function doExecute(Request $request){
@@ -21,7 +22,7 @@ class getJournals extends Command{
 //*******************************************************************************************************
 		$STH0=$DBH->prepare("SELECT * FROM journal");
 		$STH0->execute();
-		
+		$journal_col=new JournalCollection;
 		$count0=0;	
 		while ($arr0=$STH0->fetch()){ //по всем journal'ам
 			$count0++;
@@ -30,10 +31,10 @@ class getJournals extends Command{
 			$object0->setTitle($arr0[1]);
 			$object0->setId($arr0[0]);
 			
-			echo "<br><b>new Journal:<br>";
+		/*	echo "<br><b>new Journal:<br>";
 			print_r($object0);
 			echo "</b><br>";
-			
+		*/	
 			$STH=$DBH->prepare("SELECT * FROM journal_paper WHERE journal_id=?");
 			$STH->execute(array($object0->getId()));
 			$authors0=array();
@@ -53,10 +54,10 @@ class getJournals extends Command{
 				$object->setContent($arr[2]);
 				$object->setId($arr[0]);
 				
-				echo "<br>new Paper:<br>";
+			/*	echo "<br>new Paper:<br>";
 				print_r($object);
 				echo "<br><hr>";
-			
+			*/
 				$STH1=$DBH->prepare("SELECT * FROM paper_authors WHERE paper_id=?");
 				$STH1->execute(array($object->getId()));
 				$authors=array();
@@ -75,19 +76,21 @@ class getJournals extends Command{
 					$object1->setPatronymic($AuthorP[3]);
 					$object1->setId($AuthorP[0]);
 					
-					echo "<br>new Author:<br>";
+			/*		echo "<br>new Author:<br>";
 					print_r($object1);
 					echo "<br>";
-					
+			*/		
 					$authors->add($object1);
 				}
-				echo "<hr><hr><hr>";
+			//	echo "<hr><hr><hr>";
 				$object->setAuthors($authors);
+				$authors0->add($object0);
 				//$request->setProperty('obj'.$count,$object);
 			}
-			$authors0->add($object0);
+			$object0->setPapers($authors0);
+			$journal_col->add($object0);
 		}
-		$object0->setPapers($authors0);
+		$request->setProperty('doc',$journal_col);
 		$request->setProperty('count',$count0);
 		return self::statuses('CMD_OK');
 	}
