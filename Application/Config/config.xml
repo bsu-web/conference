@@ -1,67 +1,10 @@
 <?xml version="1.0" encoding='UTF-8'?>
-<!--
-	Главный конфигурационный файл приложения
-	** TODO: Обязательно добавить кеширование в fastload вид **
--->
 <config>
-	<!-- Карта маршрутов -->
 	<routemap>
-		<!--
-		<command name="users">
-			<view>default</view>
-		</command>
-
-		<command name="auth_form">
-			<view>auth_form</view>
-		</command>
-
-		<command name="authorize">
-			<status value="CMD_OK">
-				<forward>default</forward>
-			</status>
-			<status value="CMD_ERROR">
-				<forward>auth_form</forward>
-			</status>
-		</command>
-	
-		Допустим, после authorize нам нужно кинуть юзера на /users/{uid} (что уже 
-		невозможно в таком ввиде, но допустим что мы что-то подкрутили).
-		Что нам добавить? Это?:
-
-			<status value="CMD_OK">
-				<forward>{WHERE_TO}</forward>
-			</status>
-
-		Что должно быть на месте WHERE_TO? Имя команды? Пути?
-		Допустим имя команды. Допустим show_user_profile.
-		Как это делать внутри UserAuthorize?:
-
-			function doExecute(){
-				...
-				if($success){
-					return CMD_OK;
-				}
-			}
-
-		Что, а uid впихнуть в какой-нибудь request? (lol)
-		Нет. Зачем? Дадим понять прямо, какая команда нам нужна и с какими параметрами её вызвать.
-		Делаем _примерно_ так:
-			function doExecute(){
-				...
-				if($success){
-					/*return array(
-						"next" => array(
-							"command" => "show_user_profile",
-							"params" => array(
-								"uid" => $uid;
-							)
-						)
-					)*/
-					// sh0rth4nd
-					return $this->to_cmd("");
-				}
-			}
-		-->
+		<route path="*">
+			<command>DefaultCommand</command>
+			<view>DefaultView</view>
+		</route>
 
 		<route path="/users/{uid}">
 			<param_pattern param="uid">[0-9]{1,32}</param_pattern>

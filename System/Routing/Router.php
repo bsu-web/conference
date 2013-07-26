@@ -1,6 +1,8 @@
 <?php
 namespace System\Routing;
 
+use System\Core\Application;
+
 /**
  * Router, он же модернизированный ControllerMap --
  * сопоставляет строку запроса с именем команды, которая должна быть выполнена
@@ -73,7 +75,7 @@ class Router {
 	public function match($str){
 		$found = false;
 		foreach($this->_routes as $pattern => $route){
-			if( preg_match("/^".str_replace("/", "\/", $pattern)."$/", $str) > 0 ){
+			if( preg_match("/^".preg_quote($pattern, "/")."$/", $str) > 0 ){
 				return $route;
 			}
 		}
@@ -83,6 +85,13 @@ class Router {
 		// }
 		// 
 		// return array("controller"=>"DefaultController", "action"=>"Index");
+	}
+
+	public function getDefaultRoute(){
+		if(!isset($this->_routes["*"])){
+			throw new \Exception("Default route is not specified");
+		}
+		return $this->_routes["*"];
 	}
 
 	// public function generateURL($command_name, $parameters){
@@ -137,7 +146,8 @@ class Router {
 			$url = str_replace("{{$req_param_name}}", $parameters[$req_param_name], $url);
 		}
 
-		return $url;
+		$prefix = Application::instance()->_url_prefix;
+		return $prefix . $url;
 	}
 
 	/**

@@ -1,34 +1,60 @@
 <?php
-namespace \System\Utils;
-/**
-* Парсер для запросов вида /dir/conf/show_rediska
-*/
+namespace System\Utils;
+
 class URIParser {
-	public static function parse($full_req_uri = $_SERVER["REQUEST_URI"]){
-		/*
-		$full_req_uri = $_SERVER["REQUEST_URI"];
-		$upper_junk = dirname($_SERVER["REQUEST_URI"]);
-		if(strlen($upper_junk) > 1){
-			define("REQUEST_URI_FULL",
-				str_replace(
-					$upper_junk,
-					"",
-					$full_req_uri
-				)
-			);
-		}else{
-			define("REQUEST_URI_FULL", $full_req_uri);
+	/**
+	* Выделяет префикс из строки запроса и расположения сайта, чтобы
+	* использовать его в формировании ссылок
+	* TODO:
+	*		Проблемы: Для /adewaie D:/adewa возвращается /adewa
+	* 	быдлокодинг некритичен, но во имя добра -- пофиксить
+	*/
+	public static function extractPrefix( $uri, $upt=ROOT ){
+		$upt = str_replace(DS, "/", $upt);
+
+		$max_collisions = 0;
+		$mc_cmp_number = 0;
+
+		for($cmp_number = 1; $cmp_number <= min( strlen($uri), strlen($upt) ); ++$cmp_number){
+			$collisions = 0;
+			// much way cheaper than substr() == substr()
+			for(
+				$uri_pos = 0,
+				$upt_pos = strlen($upt)-$cmp_number;
+
+				$uri_pos < $cmp_number;
+
+				++$uri_pos, ++$upt_pos
+			){
+				if( $upt[$upt_pos] != $uri[$uri_pos] ){
+					$collisions = 0;
+					break;
+				}else{
+					++$collisions;
+				}
+			}
+
+			if($collisions > $max_collisions){
+				$max_collisions = $collisions;
+				$mc_cmp_number = $cmp_number;
+			}
 		}
 
-		$qm_pos = strpos(REQUEST_URI_FULL, "?");
-
-		if($qm_pos !== false ){
-			define("REQUEST_URI", substr(REQUEST_URI_FULL, 0, $qm_pos));
-		}else{
-			define("REQUEST_URI", REQUEST_URI_FULL);
+		if($mc_cmp_number == 0){
+			return "";
 		}
+		
+		return substr($uri, 0, $mc_cmp_number);
+	}
 
-		define("REQUEST_METHOD", constant("Utils::METHOD_".$_SERVER["REQUEST_METHOD"]));
-		*/
+	/**
+	* Убирает вышестоящие директории из запроса
+	*/
+	public static function extractRequest($uri){
+		$prefix_lh = strlen(self::extractPrefix($uri));
+		if($prefix_lh > 0){
+			return substr($uri, $prefix_lh, strlen($uri) - $prefix_lh);
+		}
+		return $uri;
 	}
 }
