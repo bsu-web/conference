@@ -6,7 +6,6 @@ use System\Network\Response;
 use System\Core\Application;
 
 use System\Core\Dispatcher;
-use System\Config\Reader\XML as XMLConfig;
 
 /**
  * 
@@ -14,9 +13,7 @@ use System\Config\Reader\XML as XMLConfig;
  */
 class FrontController {
 	public function __construct(){
-		$xml = new XMLConfig();
-		$config = $xml->readFromFile(APP.DS."Config".DS."config.xml");
-		Application::instance()->config = $config;
+		Application::instance()->loadConfig(APP.DS."Config".DS."config.xml");
 	}
 
 	public function handle(){

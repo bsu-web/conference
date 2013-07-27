@@ -14,7 +14,7 @@ class Router {
 	protected $_commands 		= array();
 	protected $_views 			= array();
 	protected $_required_params = array();
-	protected $_param_patterns 	= array();
+	protected $_params 	= array();
 */
 	public function __construct(){
 
@@ -57,25 +57,32 @@ class Router {
 	}
 
 	//public function setParamPattern($path, $param, $pattern){
-	//	if(!isset($this->_param_patterns[$path])){
-	//		$this->_param_patterns[$path] = array();
+	//	if(!isset($this->_params[$path])){
+	//		$this->_params[$path] = array();
 	//	}
-	//	$this->_param_patterns[$path][$param] = $pattern;
+	//	$this->_params[$path][$param] = $pattern;
 	//}
 //
 	//public function getParamPattern($path, $param){
-	//	if(is_array($this->_param_patterns[$path])){
-	//		if(isset($this->_param_patterns[$path][$param])){
-	//			return $this->_param_patterns[$path][$param];
+	//	if(is_array($this->_params[$path])){
+	//		if(isset($this->_params[$path][$param])){
+	//			return $this->_params[$path][$param];
 	//		}
 	//	}
 	//	return null;
 	//}
 
 	public function match($str){
-		$found = false;
+		//$found = false;
 		foreach($this->_routes as $pattern => $route){
-			if( preg_match("/^".preg_quote($pattern, "/")."$/", $str) > 0 ){
+			//echo str_replace("/", "\/", $pattern) . "\n";
+			if( preg_match("/^".str_replace("/", "\/", $pattern)."$/", $str, $param_matches) > 0 ){
+				
+				// var_dump($route["params"]);
+				//foreach($route["params"] as $param){
+					
+				//}
+
 				return $route;
 			}
 		}
@@ -88,10 +95,10 @@ class Router {
 	}
 
 	public function getDefaultRoute(){
-		if(!isset($this->_routes["*"])){
+		if(!isset($this->_routes["~"])){
 			throw new \Exception("Default route is not specified");
 		}
-		return $this->_routes["*"];
+		return $this->_routes["~"];
 	}
 
 	// public function generateURL($command_name, $parameters){
@@ -119,7 +126,8 @@ class Router {
 	/**
 	* PS/TODO: Находит ТОЛЬКО один паттерн для команды
 	*/
-	public function generateURL($command_name, $parameters){
+	public function generateURL($route_id, $params){
+		/*
 		$found = false;
 		foreach($this->_routes as $key=>$val){
 			if($val["cmd"] == $command_name){
@@ -148,14 +156,25 @@ class Router {
 
 		$prefix = Application::instance()->_url_prefix;
 		return $prefix . $url;
+		*/
+		$app = Application::instance();
+
+		foreach($params as $pkey=>$pvalue){
+
+		}
 	}
 
 	/**
 	* Добавить новый маршрут
+	* @param string $path Путь маршрута, например "/profile/{user_id}"
+	* @param string $command_name Имя класса для команды выполнения
+	* @param string $view_name Имя представления (шаблона)
+	* @param array $params Массив регулярных выражений для параметров, array("uid" => "[0-9]{1,8}")
 	*/
-	public function addRoute($path, $cmd, $view, $param_patterns){
+	public function addRoute($route_id, $path, $command_name, $view_name=null, $params=null){
+		/*
 		// все-е паттерны
-		$all_param_patterns = $param_patterns;
+		$all_params = $params;
 		// все имена параметров в path
 		$all_params = $this->_getParams($path);
 		// все паттерны (брат $all_params), для str_replace
@@ -163,16 +182,16 @@ class Router {
 
 		// во "все паттерны" пишем недостающие регекспы по-умолчанию, также оборачиваем их для будущего preg_match
 		foreach($all_params as $ap_param_name){
-			if(!isset($all_param_patterns[$ap_param_name])){
-				$all_param_patterns[$ap_param_name] = "([0-9a-zA-Z]{1,32})";
+			if(!isset($all_params[$ap_param_name])){
+				$all_params[$ap_param_name] = "([0-9a-zA-Z]{1,32})";
 			}else{
-				$all_param_patterns[$ap_param_name] = "(".$all_param_patterns[$ap_param_name].")";
+				$all_params[$ap_param_name] = "(".$all_params[$ap_param_name].")";
 			}
 		}
 
 		// готовим закваску для str_replace, чтобы подставить регекспы в $path на место плейсхолдеров "{$var}"
 		foreach($all_params as $a_key => $a_param){
-			$all_patterns[] = $all_param_patterns[$a_param];
+			$all_patterns[] = $all_params[$a_param];
 			$all_params[$a_key] = "{".$a_param."}";
 		}
 
@@ -181,7 +200,31 @@ class Router {
 		$this->_routes[$route_pattern] = array(
 			"cmd" => $cmd,
 			"view" => $view,
-			"path" => $path
+			"path" => $path,
+			"params" => $params
 		);
+		*/
+		// меняем все {параметры} на их (регулярные выражения)
+		$pattern = preg_replace_callback(
+			"/\{([a-z0-9\_]{1,32})\}/", 
+
+			function($x) use($params) {
+				return "(".$params[$x[1]].")";
+			}
+		,$path);
+
+		$this->_routes[$route_id] = array(
+			"pattern" => $pattern,
+			"cmd" => $command_name
+		);
+		if(!is_null($view_name)){
+			$this->_routes[$route_id]["view"] = $view_name;
+		}
+		if(!is_null($params)){
+			$this->_routes[$route_id]["params"] = $params;
+		}
+
+		//var_dump($this->_routes[$route_pattern]);
+		// echo "Add new route with pattern " .$route_pattern."\n";
 	}
 }

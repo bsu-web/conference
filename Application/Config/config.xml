@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <config>
-	<routemap>
-		<route path="*">
-			<command>DefaultCommand</command>
-			<view>DefaultView</view>
-		</route>
+	<routes>
+		<route id="default" path="~" command="default" />
 
-		<route path="/users/{uid}">
-			<param_pattern param="uid">[0-9]{1,32}</param_pattern>
-			<command>show_user_profile</command>
-			<view>user_profile</view>
-		</route>
+		<route id="profile" path="/profile" command="show_profile" />
+		<route id="profile_edit" path="/profile/edit" command="show_profile_edit" />
+		<route id="profile_save" path="/profile/save" command="save_profile" method="post" />
 
-		<route path="/users">
-			<command>show_user_list</command>
-			<view>user_list</view>
-		</route>
 
-		<route path="/auth_form">
-			<command>show_auth_form</command>
-			<view>auth_form</view>
-		</route>
+	</routes>
 
-		<route path="/authorize">
-			<command>user_authorize</command>
-		</route>
-	</routemap>
+	<commands>
+		<command id="default" class="DefaultCommand" view="default" />
+		<command id="show_profile" class="ShowProfile" view="profile" guests="0" />
+		<command id="show_profile_edit" class="ShowProfileEdit" view="edit_profile" guests="0" />
+		<command id="save_profile" class="SaveProfile" guests="0"/>
+	</commands>
+
+	<views>
+		<view id="default" template="DefaultView" />
+		<view id="profile" template="Profile" />
+		<view id="edit_profile" template="EditProfile" />
+	</views>
+
 </config>

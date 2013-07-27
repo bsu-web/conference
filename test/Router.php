@@ -4,6 +4,22 @@
 */
 
 $router = new System\Routing\Router;
+
+$router->addRoute(
+	"id0",
+	"/test/{param1}/{param2}",
+	"testcmd",
+	"testview",
+	array(
+		"param1" => "[0-9]{1}",
+		"param2" => "[0-9]{4}"
+	)
+);
+
+//$route = $router->match("/test/4/1234");
+
+//var_dump($route);
+/*
 $p = $router->_getParams("/a/b/{di}/{cu}/{faid}/{123_bouffe2}");
 
 assert( $p[0] == "di" );
@@ -26,3 +42,4 @@ if(error_get_last() == null){
 }else{
 	echo ":( Some tests failed\n";
 }
+*/
