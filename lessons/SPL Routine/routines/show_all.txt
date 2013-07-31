@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `show_all`()
+BEGIN
+SELECT cow_name FROM cows;
+END//

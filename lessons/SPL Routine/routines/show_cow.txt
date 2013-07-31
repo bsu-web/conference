@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `show_cow`(IN cowid INT)
+BEGIN
+SELECT cow_name,cow_color,corral_name FROM cows,corral WHERE cow_id=cowid AND cows.corral_id=corral.corral_id;
+END//

@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_cow`(IN cowname TEXT,IN cowcolor TEXT,corral INT)
+BEGIN
+INSERT INTO `cows` (`cow_name`, `cow_color`, `corral_id`) VALUES (cowname,cowcolor,corral);
+END//
