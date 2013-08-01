@@ -1,2 +1,4 @@
 templates_c/
 *.sublime-*
+.buildpath
+.project
