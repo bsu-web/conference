@@ -2,11 +2,18 @@
 namespace System\Core;
 
 class Application {
-	static protected $instance;
-	static protected $app_data = array();
+	const CONFIG_FILE_NAME = "config.xml";
 
-	protected function __construct(){
+	static private $instance;
+	private $app_data = array();
 
+	const DIR_VIEW = "View";
+	const DIR_MODEL = "Model";
+	const DIR_CONFIG = "Config";
+	const DIR_COMMAND = "Command";
+
+	private function __construct(){
+		$this->loadConfig();
 	}
 
 	static public function instance(){
@@ -16,57 +23,81 @@ class Application {
 		return self::$instance;
 	}
 
+	public function set($key, $val){
+		$this->app_data[$key] = $val;
+	}
+
+	public function get($key){
+		return $this->app_data[$key];
+	}
+
+	// DELETE
 	public function __get($key){
-		if(!isset(self::$app_data[$key])){
+		if(!isset($this->app_data[$key])){
 			return null;
 		}
-		return self::$app_data[$key];
+		return $this->app_data[$key];
 	}
 
+	// DELETE
 	public function __set($key, $value){
-		if($key[0] == "_" && isset(self::$app_data[$key])){
+		if($key[0] == "_" && isset($this->app_data[$key])){
 			throw new \Exception("You can not overwrite read-only key");
 		}
-		self::$app_data[$key] = $value;
+		$this->app_data[$key] = $value;
 	}
 
-	public function loadConfig($cfg){
+	public function getData(){
+		return $this->app_data["config"];
+	}
+
+	private function loadConfig(){
 		$xml = new \System\Config\Reader\XML;
-		$config = $xml->readFromFile(APP.DS."Config".DS."config.xml");
-		self::$app_data = $config;
+		$config = $xml->readFromFile(APP.DS.self::DIR_CONFIG.DS.(self::CONFIG_FILE_NAME));
+
+		$this->app_data["config"] = $config;
 	}
 
 	public function getRouteById($route_id){
-		foreach( self::$app_data->routes->route as $route ){
-			if( $route["id"] == $route_id ){
+		foreach( $this->getData()->routes->route as $route ){
+			if( (string)$route["id"] == $route_id ){
 				return $route;
 			}
 		}
 		return null;
 	}
-
+/*
 	public function getCommandById($command_id){
-		foreach( self::$app_data->commands->command as $command ){
-			if( $command["id"] == $command_id ){
+		foreach( $this->getData()->commands->command as $command ){
+			if( (string)$command["id"] == $command_id ){
+				return $command;
+			}
+		}
+		return null;
+	}
+*/
+	public function getCommandByClass($command_class){
+		foreach( $this->getData()->commands->command as $command ){
+			if( (string)$command["class"] == $command_class ){
 				return $command;
 			}
 		}
 		return null;
 	}
 
-	public function getFilterById($filter_id){
-		foreach( self::$app_data->filters->filter as $filter ){
-			if( $filter["id"] == $filter_id ){
-				return $filter;
+	public function getViewById($view_id){
+		foreach( $this->getData()->views->view as $view ){
+			if( (string)$view["id"] == $view_id ){
+				return $view;
 			}
 		}
 		return null;
 	}
 
-	public function getViewById($view_id){
-		foreach( self::$app_data->views->view as $view ){
-			if( $view["id"] == $view_id ){
-				return $view;
+	public function getPatternById($pattern_id){
+		foreach( $this->getData()->patterns->pattern as $pattern ){
+			if( (string)$pattern["id"] == $pattern_id ){
+				return $pattern;
 			}
 		}
 		return null;

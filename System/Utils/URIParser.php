@@ -5,9 +5,9 @@ class URIParser {
 	/**
 	* Выделяет префикс из строки запроса и расположения сайта, чтобы
 	* использовать его в формировании ссылок
-	* TODO:
+	* @todo:
 	*		Проблемы: Для /adewaie D:/adewa возвращается /adewa
-	* 	быдлокодинг некритичен, но во имя добра -- пофиксить
+	* 	быдлокодинг некритичен, но пофиксить
 	*/
 	public static function extractPrefix( $uri, $upt=ROOT ){
 		$upt = str_replace(DS, "/", $upt);
@@ -52,9 +52,20 @@ class URIParser {
 	*/
 	public static function extractRequest($uri){
 		$prefix_lh = strlen(self::extractPrefix($uri));
+
+
 		if($prefix_lh > 0){
-			return substr($uri, $prefix_lh, strlen($uri) - $prefix_lh);
+			$res = substr($uri, $prefix_lh, strlen($uri) - $prefix_lh);
+		}else{
+			$res = $uri;
 		}
-		return $uri;
+		// foo/bar/ => foo/bar
+		if($res != "/"){
+			if( $res[strlen($res) - 1] == "/" ){
+				$res = substr($res, 0, strlen($res) - 1);
+			}
+		}
+
+		return $res;
 	}
 }

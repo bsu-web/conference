@@ -28,7 +28,7 @@ class CLI {
 				echo "\n\n***************************\n";
 				include($ePath);
 			}else{
-				echo "Script ".$ePath.".php"." not found\n";
+				echo "Script ".$ePath." not found\n";
 			}
 		}else{
 			echo "Too many parameters\n";

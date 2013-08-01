@@ -85,12 +85,12 @@ class Request {
 	/**
 	* Получение параметров запроса
 	*/
-	/*public function __get($key){
+	public function __get($key){
 		if(!isset($this->data[$key])){
 			return null;
 		}
 		return $this->data[$key];
-	}*/
+	}
 
 	public function getData(){
 		return $this->data;

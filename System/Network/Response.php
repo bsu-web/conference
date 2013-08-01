@@ -50,10 +50,12 @@ class Response {
 	/**
 	* Перенаправляет на указанный url
 	* @param string $url Целевой url
+	* @param int $status Статус http-ответа
 	* @return void
 	**/
-	public function setRedirection($url){
+	public function setRedirection($url, $status = 301){
 		if(is_string($url)){
+			$this->setStatus($status);
 			header("Location: ${url}");
 			$this->headers_sent = true;
 		}

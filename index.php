@@ -13,7 +13,9 @@ if(defined("STDIN")){
 }
 
 
-use System\Core\FrontController;
+use System\Core\Dispatcher;
+use System\Network\Request;
+use System\Network\Response;
 
-$fc = new FrontController;
-$fc->handle();
+$dispatcher = new Dispatcher(new Request, new Response);
+$dispatcher->dispatch();
