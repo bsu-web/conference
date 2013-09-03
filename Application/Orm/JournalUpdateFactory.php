@@ -2,7 +2,7 @@
 namespace Application\Orm;
 
 class JournalUpdateFactory extends System\Orm\UpdateFactory{
-    function newUpdate(DomainObject $obj){
+    function newUpdate(app\models\DomainObject $obj){
         //ѕроверку типов желательно добавить
         $id= $obj->getId();
         $cond=null;
@@ -14,7 +14,7 @@ class JournalUpdateFactory extends System\Orm\UpdateFactory{
         return $this->buildStatement('journal',$values,$cond,true);
     }
     
-    function InsertLink(DomainObject $obj){
+    function InsertLink(app\models\DomainObject $obj){
         $papers=$obj->getPapers();
         $links= array('journal_id','paper_id'); 
         $query=$this->buildLinks('journal_paper',$links);
