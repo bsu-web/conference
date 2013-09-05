@@ -4,18 +4,26 @@
 html,body {width:100%; height:100%; display:block;}
 /* Стили относящиеся только к верхней панеле */
 #topPanel {width:100%; height:40px; position:fixed; top:0; border-bottom:1px solid #666; left:0; right:0;
-box-shadow:0 0 5px #424242; -moz-box-shadow:0 0 5px #424242; -o-box-shadow:0 0 5px #424242; -webkit-box-shadow:0 0 5px #424242; -ms-box-shadow:0 0 5px #424242; z-index:2; background-image:url(../images/backgrounds/topPanel-bg.png);}
-#topPanel ul {float:right;height:40px; display:block;min-width:225px; margin-right:1%;}
+box-shadow:0 0 5px #424242; -moz-box-shadow:0 0 5px #424242; -o-box-shadow:0 0 5px #424242; -webkit-box-shadow:0 0 5px #424242; -ms-box-shadow:0 0 5px #424242; z-index:2; background-color:#424242;}
+#topPanel ul {float:right;height:40px; display:block;min-width:280px; margin-right:1%;}
 #topPanel ul li {float:left;display:block; height:40px; width:auto; min-width:23px;  text-align:center; color:#FAFAFA; font-size:12px; font-weight:bold; text-shadow:0 1px #000; text-decoration:none;}
 #topPanel .brd a {display:block; width:auto; min-width:19px;height:20px; padding:10px 5px 10px 5px; text-decoration:none; color:#Fafafa; vertical-align:middle; line-height:20px;}
 #topPanel .brd .texts {margin-left:5px; margin-top:2px;}
 #topPanel li:hover #messeges {background-image:url(../images/icons/32px/mail2-hover.png);}
 #topPanel li:hover #settings {background-image:url(../images/icons/32px/cog2-hover.png);}
 #topPanel li:hover #exit {background-image:url(../images/icons/32px/exit-hover.png);}
+#topPanel li:hover #myPapers {background-image:url(../images/icons/32px/file4-hover.png);}
+#topPanel li:hover #myJournals {background-image:url(../images/icons/32px/book-hover.png);}
+#topPanel li:hover #myFriends {background-image:url(../images/icons/32px/friends-hover.png);}
 #topPanel li:hover img {}
+#topPanel .brd:hover .texts {color:#09F;}
 #topPanel ul li .blc img {border:1px solid #CCC;}
-#topPanel #messeges,#topPanel #settings,#topPanel #exit,#topPanel li img {display:block; width:19px; height:19px; float:left;}
-#topPanel #messeges { background:url(../images/icons/32px/mail2.png) no-repeat; background-size:100%;-moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
+#messeges,#topPanel #settings,#topPanel #exit,#topPanel li img,#topPanel #myPapers,#topPanel #myJournals,#topPanel #myFriends {display:block; width:19px; height:19px; float:left;}
+#topPanel #myPapers { background:url(../images/icons/32px/file4.png) no-repeat; background-size:100%;-moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
+#topPanel #myJournals { background:url(../images/icons/32px/book.png) no-repeat; background-size:100%;-moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
+#topPanel #myFriends { background:url(../images/icons/32px/friends.png) no-repeat; background-size:100%;-moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
+#messeges { background:url(../images/icons/32px/mail2.png) no-repeat; background-size:100%;-moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
+#topPanel .count {display:block;color:#fafafa; max-width:30px; overflow:hidden; height:auto; font-size:12px; height:19px; min-width:19px; text-align:center; float:right; font-weight:bold; margin-left:2px; background-color:#903; border-radius:3px;box-shadow:0 0 5px #424242; -moz-box-shadow:0 0 5px #424242; -o-box-shadow:0 0 5px #424242; -webkit-box-shadow:0 0 5px #424242; -ms-box-shadow:0 0 5px #424242; line-height:19px;}
 #topPanel #settings {background:url(../images/icons/32px/cog2.png) no-repeat; background-size:100%; -moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
 #topPanel #exit {background:url(../images/icons/32px/exit.png) no-repeat; background-size:100%; margin-top:2px; -moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
 /*Неавторизованный пользователь*/
@@ -26,14 +34,14 @@ box-shadow:0 0 5px #424242; -moz-box-shadow:0 0 5px #424242; -o-box-shadow:0 0 5
 #topPanel ul #go-enter:hover,#topPanel ul li .noblc:hover {text-decoration:underline;}
 
 
-@media screen and (max-width:768px), only screen and (max-device-width:768px) {
+@media screen and (max-width:815px), only screen and (max-device-width:815px) {
 	#topPanel .texts {display:none;}
-	#topPanel ul {border:0;}
-	#topPanel .brd {border:0; margin-left:10%; float:left;}
-	
+	#topPanel ul {max-width:100%;}
+	#topPanel .brd {margin-right:2%;}	
 }
 @media screen and (max-width:390px), only screen and (max-device-width:390px) {
 	#topPanel ul {margin-right:0}
+	#topPanel .brd {margin-right:0;}
 	#topPanel ul #vs {}
 	#topPanel ul #vs:before {content:"или";}
 	#topPanel ul li #ftext {display:none;}	
