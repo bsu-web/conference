@@ -1,8 +1,8 @@
 <?php
 namespace Application\Orm;
 
-class PaperUpdateFactory extends System\Orm\UpdateFactory{
-    function newUpdate(app\models\DomainObject $obj){
+class PaperUpdateFactory extends \System\Orm\UpdateFactory{
+    function newUpdate(\app\models\DomainObject $obj){
         //Проверку типов желательно добавить
         $id= $obj->getId();
         $cond=null;
@@ -15,7 +15,7 @@ class PaperUpdateFactory extends System\Orm\UpdateFactory{
         return $this->buildStatement('paper',$values,$cond,true);
     }
     
-    function InsertLink(app\models\DomainObject $obj){
+    function InsertLink(\app\models\DomainObject $obj){
         $authors=$obj->getAuthors();
         $links= array('paper_id','author_id'); //поля табоицы связей
         $query=$this->buildLinks('paper_authors',$links); // имя таблицы связей + массив полей

@@ -14,7 +14,7 @@ namespace System\Orm;
         return $obj;  
     }
     
-    private function getFromMap($id){
+    private function getFromMap($id){		
 		return ObjectWatcher::exists($this->targetClass(),$id);
 	}
     

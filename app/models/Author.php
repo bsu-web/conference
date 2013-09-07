@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 //класс Автор содержит в себе-Имя,Фамилию,Отчество.
-class Author extends DomainObject{
+class Author extends \System\Orm\DomainObject{
 private $name       =  "Имя автора ";
 private $family     =  "Фамилия автора ";
 private $patronymic =  "Отчество автора ";

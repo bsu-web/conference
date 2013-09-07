@@ -1,2 +1,3 @@
 <h1>View Profile</h1>
-UID: {$uid}
+UID:
+<br/>{$family}<br/>{$name}<br/>{$patronymic}

@@ -12,44 +12,44 @@ class PersistenceFactory {
     }
     
     public function getCollection(array $raw=null){
-        $collection= "{$this->type}Collection";
+        $collection= "\Application\Orm\\".$this->type."Collection";
         if(class_exists($collection)){
             return new $collection($raw,$this->getDomainObjectFactory());
         }
-        throw new Exception( "Unknown: $collection" );        
+        throw new \Exception( "Unknown: $collection" );        
     }
     
-    public function getDefferedCollection(PDOStatement $stmt_handle, array $value_array){
-        $collection= "Deferred{$this->type}Collection";
+    public function getDefferedCollection(\PDOStatement $stmt_handle, array $value_array){
+        $collection= "\Application\Orm\Deferred".$this->type."Collection";
         if(class_exists($collection)){
             return new $collection($this->getDomainObjectFactory(),$stmt_handle,$value_array);
         }
-        throw new Exception( "Unknown: $collection" );      
+        throw new \Exception( "Unknown: $collection" );      
     }
     public function getDomainObjectFactory(){
-        $DomainObjectFactory= "{$this->type}DomainObjectFactory"; 
+        $DomainObjectFactory= "\Application\Orm\\".$this->type."DomainObjectFactory"; 
         if(class_exists($DomainObjectFactory)){
             return new $DomainObjectFactory;
         }
-        throw new Exception( "Unknown: $DomainObjectFactory" );  
+        throw new \Exception( "Unknown: $DomainObjectFactory" );  
              
     }
     public function getIndentityObject(){
-        $idobj="{$this->type}IdentityObject";
+        $idobj="\Application\Orm\\".$this->type."IdentityObject";
         if(class_exists($idobj)){
             return new $idobj;
         }
-        throw new Exception( "Unknown: $idobj" );      
+        throw new \Exception( "Unknown: $idobj" );      
     }
     public function getSelectionFactory(){
         return new SelectionFactory();     
     }
     public function getUpdateFactory(){
-        $update="{$this->type}UpdateFactory";
+        $update="\Application\Orm\\".$this->type."UpdateFactory";
         if(class_exists($update)){
             return new $update;
         }
-        throw new Exception( "Unknown: $update" );     
+        throw new \Exception( "Unknown: $update" );     
     }
     
     public function getType(){
