@@ -3,7 +3,7 @@ namespace Application\Orm;
 
 class PaperDomainObjectFactory extends \System\Orm\DomainObjectFactory{
     function doCreateObject(array $array){
-        $obj= new \app\models\Paper();
+        $obj= new \Application\Models\Paper();
         $obj->setTitle($array['title']);
         $obj->setContent($array['content']);
         $obj->setId($array['id']);

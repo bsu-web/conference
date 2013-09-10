@@ -3,7 +3,7 @@ namespace Application\Orm;
 
 class AuthorDomainObjectFactory extends \System\Orm\DomainObjectFactory{
     function doCreateObject(array $array){
-        $obj= new \app\models\Author();
+        $obj= new \Application\Models\Author();
         $obj->setName($array['name']);
         $obj->setFamily($array['family']);
         $obj->setPatronymic($array['patronymic']);
