@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <config>
-	<db>
-		<host>localhost</host>
-		<user>dbuser</user>
-		<pass>dbpass</pass>
-		<dbname>dbname</dbname>
-	</db>
+	<db host="localhost" user="dbuser" pass="dbpass" dbname="dbname" />
 	<routes>
 		<route id="default" path="/" command="DefaultCommand" />
 

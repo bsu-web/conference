@@ -35,7 +35,7 @@ class Dispatcher {
 		$this->app = Application::instance();
 
 		$this->app->set("router", $router);
-
+		xlog("hey dude");
 		/**
 		* Загружаем все маршруты в роутер
 		*/

@@ -44,10 +44,10 @@ class DbConn {
 		$app = \System\Core\Application::instance();
 
 		$db_data = $app->getData("db");
-		$pdo_host = (string) $db_data->host;
-		$pdo_user = (string) $db_data->user;
-		$pdo_pass = (string) $db_data->pass;
-		$pdo_dbname = (string) $db_data->dbname;
+		$pdo_host = (string) $db_data["host"];
+		$pdo_user = (string) $db_data["user"];
+		$pdo_pass = (string) $db_data["pass"];
+		$pdo_dbname = (string) $db_data["dbname"];
 
 		try{
 			self::$pdo = new \PDO("mysql:host=${pdo_host};dbname=${pdo_dbname}", $pdo_user, $pdo_pass, array(

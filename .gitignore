@@ -4,3 +4,4 @@ templates_c/
 .project
 phpinfo.php
 o_*.xml
+Application/Tmp/

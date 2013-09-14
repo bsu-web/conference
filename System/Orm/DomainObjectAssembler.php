@@ -9,11 +9,12 @@ class DomainObjectAssembler{
     function __construct(PersistenceFactory $factory){
         $this->factory= $factory;
         if (!isset(self::$pdo)){
-			$base='test';
-			$user='root';
-			$password='';
-			self::$pdo=new \PDO("mysql:host=localhost;dbname=".$base,$user,$password);
-			self::$pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
+			// $base='test';
+			// $user='root';
+			// $password='';
+			self::$pdo=\System\Core\DbConn::getPDO();
+            // new \PDO("mysql:host=localhost;dbname=".$base,$user,$password);
+			// self::$pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
 			self::$pdo->prepare("set character_set_client='cp1251'")->execute();
 			self::$pdo->prepare("set character_set_results='cp1251'")->execute();
 			self::$pdo->prepare("set collation_connection='cp1251_general_ci'")->execute();
