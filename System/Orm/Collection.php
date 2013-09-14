@@ -1,7 +1,7 @@
 <?php
 namespace System\Orm;
 
-abstract class Collection implements Iterator{
+abstract class Collection implements \Iterator{
     protected $dofact;
     protected $total=0;
     protected $raw= array();

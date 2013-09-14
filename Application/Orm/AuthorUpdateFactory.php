@@ -1,8 +1,8 @@
 <?php
 namespace Application\Orm;
 
-class AuthorUpdateFactory extends System\Orm\UpdateFactory{
-    function newUpdate(app\models\DomainObject $obj){
+class AuthorUpdateFactory extends \System\Orm\UpdateFactory{
+    function newUpdate(\app\models\DomainObject $obj){
         //ѕроверку типов желательно добавить
         $id= $obj->getId();
         $cond=null;

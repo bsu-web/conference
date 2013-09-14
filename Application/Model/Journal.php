@@ -1,7 +1,8 @@
 <?php
-namespace app\models;
+namespace Application\Model;
+
 //класс для журнала
-class Journal extends DomainObject {
+class Journal extends \System\Orm\DomainObject {
     private $title;
     private $papers;
     

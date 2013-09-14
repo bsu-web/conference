@@ -3,18 +3,20 @@
 * {margin:0; padding:0; font-family:Arial, Helvetica, sans-serif;}
 html,body {width:100%; height:100%; display:block;}
 /* —тили относ€щиес€ только к верхней панеле */
-#topPanel {width:100%; height:40px; position:fixed; top:0; border-bottom:1px solid #666; left:0; right:0;
+#topPanel {width:100%; height:40px; position:fixed; top:0; border-bottom:1px solid #666;
 box-shadow:0 0 5px #424242; -moz-box-shadow:0 0 5px #424242; -o-box-shadow:0 0 5px #424242; -webkit-box-shadow:0 0 5px #424242; -ms-box-shadow:0 0 5px #424242; z-index:2; background-image:url(../images/backgrounds/topPanel-bg.png);}
-#topPanel ul {float:right;height:40px; display:block;min-width:225px; margin-right:1%;}
-#topPanel ul li {float:left;display:block; height:40px; width:auto; min-width:23px;  text-align:center; color:#FAFAFA; font-size:12px; font-weight:bold; text-shadow:0 1px #000; text-decoration:none;}
-#topPanel .brd a {display:block; width:auto; min-width:19px;height:20px; padding:10px 5px 10px 5px; text-decoration:none; color:#Fafafa; vertical-align:middle; line-height:20px;}
-#topPanel .brd .texts {margin-left:5px; margin-top:2px;}
+#topPanel ul {float:right; margin-right:1%; height:40px; display:block; width:auto; min-width:225px;}
+#topPanel ul li {float:left;display:block; height:40px; width:auto; min-width:23px;  text-align:center; color:#FAFAFA; font-size:12px; font-weight:bold; text-shadow:0 1px #000;}
+#topPanel ul .brd {border-right:1px inset #333; padding:0;}
+#topPanel ul li .blc {color:#FAFAFA; text-decoration:none; font-size:12px; font-weight:bold; text-shadow:0 1px #000; display:block; height:23px; width:auto; min-width:19px; padding:10px 5px 7px 5px;}
+#topPanel ul li:hover .blc {color:#09F;}
 #topPanel li:hover #messeges {background-image:url(../images/icons/32px/mail2-hover.png);}
 #topPanel li:hover #settings {background-image:url(../images/icons/32px/cog2-hover.png);}
 #topPanel li:hover #exit {background-image:url(../images/icons/32px/exit-hover.png);}
 #topPanel li:hover img {}
 #topPanel ul li .blc img {border:1px solid #CCC;}
-#topPanel #messeges,#topPanel #settings,#topPanel #exit,#topPanel li img {display:block; width:19px; height:19px; float:left;}
+#topPanel #messeges,#topPanel #settings,#topPanel #exit,#topPanel li .blc img {display:block; width:19px; height:19px; float:left;}
+#topPanel .texts {vertical-align:middle; line-height:21px; margin-left:5px;}
 #topPanel #messeges { background:url(../images/icons/32px/mail2.png) no-repeat; background-size:100%;-moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
 #topPanel #settings {background:url(../images/icons/32px/cog2.png) no-repeat; background-size:100%; -moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
 #topPanel #exit {background:url(../images/icons/32px/exit.png) no-repeat; background-size:100%; margin-top:2px; -moz-background-size: 100%; -o-background-size:100%; -webkit-background-size:100%;}
@@ -29,12 +31,12 @@ box-shadow:0 0 5px #424242; -moz-box-shadow:0 0 5px #424242; -o-box-shadow:0 0 5
 @media screen and (max-width:768px), only screen and (max-device-width:768px) {
 	#topPanel .texts {display:none;}
 	#topPanel ul {border:0;}
-	#topPanel .brd {border:0; margin-left:10%; float:left;}
+	#topPanel ul .brd {border:0; margin-right:20px;}
 	
 }
 @media screen and (max-width:390px), only screen and (max-device-width:390px) {
-	#topPanel ul {margin-right:0}
-	#topPanel ul #vs {}
+	#topPanel ul {margin-right:2%;}
+	#topPanel ul #vs {margin-left:0;}
 	#topPanel ul #vs:before {content:"или";}
 	#topPanel ul li #ftext {display:none;}	
 }

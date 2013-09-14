@@ -1,7 +1,8 @@
 <?php
-namespace app\models;
+namespace Application\Model;
+
 //класс для статьи
-class Paper extends Document{
+class Paper extends Application\Model\Document{
     function getDocument(){
      //clear   
     }

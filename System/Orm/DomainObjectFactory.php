@@ -5,7 +5,6 @@ namespace System\Orm;
     function createObject(array $array){
         $old=$this->getFromMap($array['id']);
 		if ($old){
-		  echo '”же есть! </br>';
 			return $old;
 		}
         $obj= $this->doCreateObject($array);
@@ -14,7 +13,7 @@ namespace System\Orm;
         return $obj;  
     }
     
-    private function getFromMap($id){
+    private function getFromMap($id){		
 		return ObjectWatcher::exists($this->targetClass(),$id);
 	}
     

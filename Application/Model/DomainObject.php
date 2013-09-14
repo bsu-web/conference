@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace Application\Model;
 
 abstract class DomainObject{ //абстрактный класс для всех(!) объектов
     private $id= -1;

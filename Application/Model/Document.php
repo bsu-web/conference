@@ -1,12 +1,12 @@
 <?php
-namespace app\models;
+namespace Application\Model;
 /**
  * абстрактный класс- документ (статья или тезис или презентация)
  * @author Симонова Ю.
  * @todo Будет апгрейдится)
  * @package files
  */
-abstract class Document extends DomainObject{
+abstract class Document extends \System\Orm\DomainObject{
     private $authors; 
     private $title;    
 	private $content;
@@ -14,7 +14,6 @@ abstract class Document extends DomainObject{
     /**
      * задаем список авторов
      * @param $Authors Список авторов
-
      */
     function setAuthors(Application\Orm\AuthorCollection $authors){
         $this->authors= $authors;        

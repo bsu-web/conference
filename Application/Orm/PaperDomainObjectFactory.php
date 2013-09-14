@@ -1,9 +1,9 @@
 <?php
 namespace Application\Orm;
 
-class PaperDomainObjectFactory extends System\Orm\DomainObjectFactory{
+class PaperDomainObjectFactory extends \System\Orm\DomainObjectFactory{
     function doCreateObject(array $array){
-        $obj= new app\models\Paper();
+        $obj= new \Application\Model\Paper();
         $obj->setTitle($array['title']);
         $obj->setContent($array['content']);
         $obj->setId($array['id']);
@@ -13,8 +13,8 @@ class PaperDomainObjectFactory extends System\Orm\DomainObjectFactory{
     }
     
     function createCollection($id){
-        $factory= PersistenceFactory::getFactory('Author');
-        $finder= new DomainObjectAssembler($factory); 
+        $factory= \System\Orm\PersistenceFactory::getFactory('Author');
+        $finder= new \System\Orm\DomainObjectAssembler($factory); 
         $idobj=$factory->getIndentityObject();
         $idobj->addJoin('INNER',array('author','paper_authors'),array('id','author_id'));
         $idobj->field('paper_id')->eq($id);
