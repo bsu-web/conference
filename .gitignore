@@ -2,3 +2,5 @@ templates_c/
 *.sublime-*
 .buildpath
 .project
+phpinfo.php
+o_*.xml

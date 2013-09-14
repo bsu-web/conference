@@ -2,6 +2,7 @@
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", str_replace("/", DS, dirname($_SERVER["SCRIPT_FILENAME"])));
 define("APP", ROOT.DS."Application");
+define("TMP", APP.DS."Tmp");
 define("SYS", ROOT.DS."System");
 
 require SYS.DS."Core".DS."Loader.php";
@@ -11,7 +12,6 @@ if(defined("STDIN")){
 	$CLI->main($argc, $argv);
 	exit;
 }
-
 
 use System\Core\Dispatcher;
 use System\Network\Request;

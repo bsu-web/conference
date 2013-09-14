@@ -13,6 +13,7 @@ use System\Log\Logger;
 use System\View\View;
 
 /**
+ * Диспетчер, обслуживает запросы
  * @author nekjine
  */
 class Dispatcher {
@@ -24,28 +25,21 @@ class Dispatcher {
 
 	const BASE_CMD_CLASS = "\\System\\Core\\Command";
 	const APP_CMD_PREFIX = "\\Application\\Command\\";
-/*
-	private $allowedCmdActions = array(
-		"render",
-		"view",
-		"redirectToURI",
-		"redirectToRoute"
-	);
-*/
+
 	public function __construct($req, $res){
 		$this->req = $req;
 		$this->res = $res;
 		$this->router = new Router;
 
 		$router = $this->router;
-		Application::instance()->set("router", $router);
-
 		$this->app = Application::instance();
+
+		$this->app->set("router", $router);
 
 		/**
 		* Загружаем все маршруты в роутер
 		*/
-		foreach( $this->app->getData()->routes->route as $route ){
+		foreach( $this->app->getData("routes")->route as $route ){
 			$route_id = (string)$route["id"];
 			$route_path = (string)$route["path"];
 			if(isset($route["method"])){
@@ -176,7 +170,7 @@ class Dispatcher {
 					}
 					$view = new View;
 					$view->assign($result["view_params"]);
-
+					
 					$this->res->write( $view->render($view_name) );
 					// put here global break;
 					$exit = true;
