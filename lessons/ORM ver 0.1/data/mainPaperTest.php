@@ -9,7 +9,7 @@ $paper= $finder->findOne($idobj);
 echo $paper->getTitle().'</br>'.$paper->getContent().'</br>';
 $authors= $paper->getAuthors();
 foreach ($authors as $author){
-    echo $author->getName().' '.$author->getFamily().'</br>';
+    echo "-> ".$author->getName().' '.$author->getFamily().'</br>';
 }
 
 $paper->setTitle('я изменила заголовок!');
@@ -18,6 +18,7 @@ $finder->insert($paper);
 //вставка статьи!!!
 $author_factory=PersistenceFactory::getFactory('Author');
 $finder_aut= new DomainObjectAssembler($author_factory);
+
 $idobj_au=$author_factory->getIndentityObject()->field('id')->eq(15);
 $a1=$finder_aut->findOne($idobj_au);
 echo $a1->getName().' '.$a1->getFamily().'</br>';
@@ -36,6 +37,4 @@ $pap_ins->setTitle('Статья');
 $pap_ins->setContent('Контент...контент...контент');
 $pap_ins->setAuthors($au_col);
 $finder->insert($pap_ins);
-
-
 ?>
