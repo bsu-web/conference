@@ -5,7 +5,6 @@ namespace System\Orm;
     function createObject(array $array){
         $old=$this->getFromMap($array['id']);
 		if ($old){
-		  echo "”же есть! </br>";
 			return $old;
 		}
         $obj= $this->doCreateObject($array);

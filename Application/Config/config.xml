@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <config>
+	<db host="localhost" user="dbuser" pass="dbpass" dbname="dbname" />
 	<routes>
 		<route id="default" path="/" command="DefaultCommand" />
 
@@ -15,51 +16,16 @@
 		<route id="profile_edit" path="/profile/edit" command="EditProfile" method="get" />
 		<route id="profile_save" path="/profile/edit" command="SaveProfile" method="post" />
 
-		<route id="profile_create" 		path="/profile/create" 		command="CreateProfile" />		
-		<route id="profile_createStart" path="/profile/createStart" command="CreateProfileStart" method="post" />
-		
-		<route id="profile_edit_uid" path="/profile/edit/{uid}" command="EditUidProfile" >		
-			<param name="uid" pattern="uid" />
-		</route>
-		<route id="profile_uidEdit" path="/profile/UidEdit" command="UidEdit" method="post" />
-		<route id="profile_all" 	path="/profile/all" 	command="AllProfile" />		
-		
-		<route id="paper_create" 	  path="/paper/create" 		command="CreatePaper" />	
-		<route id="paper_createStart" path="/paper/createStart" command="CreatePaperStart" method="post" />
-		<route id="paper_edit_pid" 	  path="/paper/edit/{pid}"  command="EditPidProfile" >		
-			<param name="pid" pattern="uid" />
-		</route>
-		<route id="paper_pidEdit" 	path="/paper/PidEdit" 	command="PidEdit" method="post" />
-			<route id="paper_all" 	path="/paper/all" 		command="AllPaper" />	
-		</routes>
+	</routes>
 
 	<commands>
 		<command class="DefaultCommand" view="DefaultView" />
-		<command class="ShowProfile" 	view="Profile">
-			<param name="uid" 	required="1" />
+		<command class="ShowProfile" view="Profile">
+			<param name="uid" required="1" />
 			<param name="extra" required="0">Default value</param>
 		</command>
 		<command class="EditProfile" view="EditProfile" />
-		<command class="SaveProfile" view="SaveProfile" />
-
-		<command class="EditUidProfile" 	view="EditUidProfile" >
-			<param name="uid" required="1" />
-		</command>
-		
-		<command class="CreateProfile" 		view="CreateProfile" />
-		<command class="CreateProfileStart" view="CreateProfileStart" />
-		<command class="UidEdit" 			view="UidEdit" />
-		<command class="AllProfile" 		view="AllProfile" />
-
-		
-		<command class="EditPidProfile"		view="EditPidProfile" >
-			<param name="pid" required="1" />
-		</command>
-		
-		<command class="CreatePaper"	    view="CreatePaper" />
-		<command class="CreatePaperStart"   view="CreatePaperStart" />
-		<command class="PidEdit" 			view="PidEdit" />
-		<command class="AllPaper" 			view="AllPaper" />
+		<command class="SaveProfile" />
 	</commands>
 
 	<patterns>

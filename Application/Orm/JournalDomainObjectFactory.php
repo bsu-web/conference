@@ -3,7 +3,7 @@ namespace Application\Orm;
 
 class JournalDomainObjectFactory extends \System\Orm\DomainObjectFactory{
     function doCreateObject(array $array){
-        $obj= new \Application\Models\Journal();
+        $obj= new \Application\Model\Journal();
         $obj->setTitle($array['title']);
         $obj->setId($array['id']);
         $paper_collection=$this->createCollection($obj->getId());

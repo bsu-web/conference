@@ -27,7 +27,7 @@ class IdentityObject{
 	
 	function field($fieldname){
 		if (!$this->isVoid()&&$this->currentfield->isIncomplete()){
-			throw new \Exception("Неполное поле");
+			throw new Exception("Неполное поле");
 		}
 		$this->enforceField($fieldname);
 		if (isset($this->fields[$fieldname])){
@@ -45,7 +45,7 @@ class IdentityObject{
 	function enforceField($fieldname){
 		if (!in_array($fieldname,$this->enforce)&&!empty($this->enforce)){
 			$forcelist=implode(',',$this->enforce);
-			throw new \Exception("Поле {$fieldname} не является корректным полем {$forcelist}");
+			throw new Exception("Поле {$fieldname} не является корректным полем {$forcelist}");
 		}
 	}
 	function eq($value){
@@ -64,7 +64,7 @@ class IdentityObject{
     }
 	private function operator($symbol,$value){
 		if($this->isVoid()){
-			throw new \Exception("Поле не определено");
+			throw new Exception("Поле не определено");
 		}
 		$this->currentfield->addTest($symbol,$value);
 		return $this;
@@ -98,7 +98,7 @@ class IdentityObject{
             $this->join[]=$tables;
             $this->join[]=$raws;
         } else{
-            throw new \Exception("Ошибка в передаваемых параметрах");            
+            throw new Exception("Ошибка в передаваемых параметрах");            
         }
     }
     
@@ -116,7 +116,7 @@ class IdentityObject{
             foreach($order as $row=>$dir){
                 $this->enforceField($row);
                 if (!in_array($dir,array('DESC','ASC'))){
-                    throw new \Exception('Недопустимое имя сортировки для проедложения ORDER!');    
+                    throw new Exception('Недопустимое имя сортировки для проедложения ORDER!');    
                 }                
             }
             $this->order=$order;
@@ -139,7 +139,7 @@ class IdentityObject{
             }elseif(count($limit)==2&&is_numeric($limit[0])&&is_numeric($limit[1])){
                 $this->limit['start']=$limit[0];
                 $this->limit['count']=$limit[1];
-            }else throw new \Exception('Недопустимое число элементов массива $limit!');
+            }else throw new Exception('Недопустимое число элементов массива $limit!');
         }    
     }
     
