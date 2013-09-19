@@ -19,9 +19,10 @@ abstract class Collection implements \Iterator{
     }
     
     function add(DomainObject $object){
-        $class=$this->targetClass();
+        $class="\Application\Models\\".$this->targetClass();
+
         if (! ($object instanceof $class)){
-            throw new Exception ('Это коллекция {$class}');
+            throw new \Exception ('Это коллекция {$class}');
         }
         $this->notifyAccess();
         $this->objects[$this->total]=$object;

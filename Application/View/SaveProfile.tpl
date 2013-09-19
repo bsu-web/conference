@@ -1,2 +1,2 @@
-<h1>View Profile</h1>
-UID: {$uid}
+<h1>Save Profile</h1>
+UID: {$uid}asdasd

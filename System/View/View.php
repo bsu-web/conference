@@ -8,14 +8,8 @@ class View {
 	const SMARTY_POSTFIX = ".tpl";
 
 	public function __construct(){
-		include ROOT.DS."smarty".DS."Smarty.class.php";
+		@include ROOT.DS."smarty".DS."Smarty.class.php";
 		$this->_smarty = new \Smarty;
-		$this->_smarty->compile_dir = TMP.DS."smarty_templates_c";
-		$this->_smarty->cache_dir = TMP.DS."smarty_cache";
-		// $f = fopen(TMP.DS."f", "rw");
-		// fwrite($f, "i");
-		// fclose($f);
-		// echo "HI!";
 	}
 
 	public function assign($key, $val = null){

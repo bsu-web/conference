@@ -29,7 +29,6 @@ class SelectionFactory{
     function buildWhat(IdentityObject $obj, $table){
         $fields= $obj->checkWhat();
         $core=$core="SELECT $fields FROM $table";
-        xlog($core);
         return $core;
     }
 }

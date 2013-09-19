@@ -2,7 +2,7 @@
 namespace Application\Orm;
 
 class AuthorUpdateFactory extends \System\Orm\UpdateFactory{
-    function newUpdate(\app\models\DomainObject $obj){
+    function newUpdate(\System\Orm\DomainObject $obj){
         //ѕроверку типов желательно добавить
         $id= $obj->getId();
         $cond=null;

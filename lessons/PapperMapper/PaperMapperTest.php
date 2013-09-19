@@ -22,6 +22,7 @@ $map->insert($a1);
 $a2= $map->find(2);
 
 $authors2= HelperFactory::getCollection('Author');
+echo "<br><br>111<br>";
 $authors2->add($a1);
 $authors2->add($a2);
 
