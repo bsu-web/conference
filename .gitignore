@@ -1,7 +1,7 @@
-templates_c/
+# sublime project file
 *.sublime-*
+# eclipse project files
 .buildpath
 .project
-phpinfo.php
+# custom config
 o_*.xml
-Application/Tmp/
