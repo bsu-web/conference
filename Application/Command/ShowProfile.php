@@ -9,10 +9,8 @@ class ShowProfile extends \System\Core\Command {
 	    $idobj=$factory->getIndentityObject();
 	    $idobj->field('id')->eq(1);
 	    $author= $finder->findone($idobj);
-	    xdump($author);
-	    // var_dump($idobj);
-	    exit(0);
-	    //print_r($author);  
+	    
+	   
 		return $this->render(
 			array("name" => $author->getName(),"family" => $author->getFamily(),"patronymic" => $author->getPatronymic())
 		);
