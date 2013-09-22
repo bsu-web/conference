@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<rules>
+		<group name="USER">
+			<allow>
+				<command class="SignOut"/>
+				<command class="Msg404"/>
+				<command class="DefaultCommand"/>
+				<command class="ShowMessageGroups"/>
+				<command class="ShowMessageGroup"/>
+			</allow>
+		</group>
+		<group name="GUEST">
+			<allow>
+				<command class="SignIn"/>
+				<command class="SignInResult"/>
+				<command class="DefaultCommand"/>
+				<command class="Msg404"/>
+			</allow>
+		</group>
+		<group name="TEST" parent="USER">
+			<allow>
+				<command class="DefaultCommand"/>
+			</allow>
+		</group>
+	</rules>
+</config>
