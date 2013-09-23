@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Models;
+namespace Application\Model;
 
 /**
  * @author Zalutskii

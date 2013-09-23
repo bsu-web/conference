@@ -1,10 +1,10 @@
 <?php
 
-namespace Application\Models;
+namespace Application\Model;
 
 /**
 * @author Zalutskii
-* @version 2.0 автор будет объектом 07.09.13
+* @version 07.09.13
 * Класс сообщений
 */
 
