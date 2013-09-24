@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<commands override='1'>
+	<commands>
 		<command class="DefaultCommand" view="DefaultView" />
 		<command class="ShowProfile" view="Profile" mainObj="User">
 			<param name="uid" required="1" objId="1" />

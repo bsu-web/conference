@@ -2,7 +2,7 @@
 
 namespace Application\Command;
 
-use Auth\Login;
+use System\Auth\Login;
 /**
  *
  * @author user

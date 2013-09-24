@@ -1,11 +1,11 @@
 <?php
-namespace Auth;
+namespace System\Auth;
 
 use System\Core\Application;
 use System\Core\Command;
-use auth\RuleMap;
+use System\Auth\RuleMap;
 use PDO;
-use auth\Group;
+use System\Auth\Group;
 use System\Session\Session;
 /** 
  * @author user

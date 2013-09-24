@@ -10,7 +10,7 @@ class NewMessageGroup extends \System\Core\Command{
 		$user_id = $session->get('user_id');
 		
 		try {  
-			$DBH = new PDO("mysql:host=localhost;dbname=auth", "root", '');
+			$DBH = new PDO("mysql:host=localhost;dbname=test", "root", '');
 			$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		}catch(PDOException $e) {  
 		   	echo $e->getMessage();  
