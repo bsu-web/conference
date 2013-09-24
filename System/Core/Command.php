@@ -3,6 +3,7 @@ namespace System\Core;
 
 use \System\Network\Request;
 use \System\Network\Response;
+use Auth\AccessManager;
 
 abstract class Command {
 	protected $data;
@@ -30,7 +31,35 @@ abstract class Command {
 	* @return mixed
 	**/
 	public function _exec(){
-		return $this->exec();
+		$acm = AccessManager::instance();
+		$objType = NULL;
+		$obj_id = NULL;
+		$app = Application::instance();
+		
+		$cmd_name = get_class($this);
+		$temp = explode("\\", $cmd_name);
+		$cmd_name = end($temp);
+		
+		$command = $app->getCommandByClass($cmd_name);
+		
+		$objType = (string)$command["mainObj"];
+				
+		if ($objType) {
+			foreach ($command->param as $param){
+				if ($param["objId"]) {
+					$param_name = (string)$param["name"];
+					$obj_id = $this->data[$param_name];
+				}
+			}
+		}
+		
+		if($acm->check($this, $obj_id, $objType)){
+			return $this->exec();
+		}
+		else {
+			//print_r("ACCESS DENIED<br>");
+			return $this->forward("Msg404", null);
+		}
 	}
 
 	/**

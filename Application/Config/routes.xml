@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<routes override='1'>
+		<route id="default" path="/" command="DefaultCommand" />
+
+		<route id="profile" path="/users/{uid}" command="ShowProfile">
+			<param name="uid" pattern="uid" />
+		</route>
+
+		<route id="profile_ex" path="/users/{uid}/{extra}" command="ShowProfile">
+			<param name="uid" pattern="uid" />
+			<param name="extra">hello|world</param>
+		</route>
+
+		<route id="profile_edit" path="/profile/edit" command="EditProfile" method="get" />
+		<route id="profile_save" path="/profile/edit" command="SaveProfile" method="post" />
+		
+		<route id="SignIn" path="/SignIn" command="SignIn" method="get" />
+		<route id="SignInResult" path="/SignIn" command="SignInResult" method="post" />
+		
+		<route id="SignOut" path="/SignOut" command="SignOut" method="get"/>
+		
+		<route id="Msg404" path="/Msg404" command="Msg404" method="get"/>
+		
+		<route id="show_messagegroups" path="/message/show/groups" command="ShowMessageGroups" method="get" />
+		<route id="show_messagegroup" path="/message/show/group/{mgid}" command="ShowMessageGroup">
+			<param name="mgid">[1-333]</param>
+		</route>
+		<route id="create_message" path="/message/create/message" command="CreateMessage" method="post"/>
+		<route id="new_messagegroup" path="/message/new/group" command="NewMessageGroup" method="get"/>
+		<route id="create_messagegroup" path="/message/create/group" command="CreateMessageGroup" method="post"/>
+	</routes>
+</config>
