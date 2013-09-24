@@ -1,5 +1,5 @@
 <?php
-namespace Auth;
+namespace System\Auth;
 use System\Session\Session;
 use PDO;
 /** 
@@ -22,11 +22,9 @@ class Login {
 			if ($pass === $passdb['pass']){
 				$session = new Session();
 				$session->set('user_id', $passdb['user_id']);
+				return "OK";
 			}
-			else{
-				$session = new Session();
-				$session->set('user_id', 'Access Denied');
-			}
+			return "DENIED";
 	}
 	
 	public function SignOut(){

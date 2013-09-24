@@ -1,5 +1,5 @@
 <?php
-namespace Auth;
+namespace System\Auth;
 /** 
  * @author user
  * 

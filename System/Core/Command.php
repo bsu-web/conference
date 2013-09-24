@@ -3,7 +3,7 @@ namespace System\Core;
 
 use \System\Network\Request;
 use \System\Network\Response;
-use Auth\AccessManager;
+use \System\Auth\AccessManager;
 
 abstract class Command {
 	protected $data;

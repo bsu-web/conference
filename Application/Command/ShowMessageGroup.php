@@ -9,7 +9,7 @@ class ShowMessageGroup extends \System\Core\Command{
 		$mgid=$this->data["mgid"];
 		
 		try {  
-			$DBH = new PDO("mysql:host=localhost;dbname=auth", "root", '');
+			$DBH = new PDO("mysql:host=localhost;dbname=test", "root", '');
 			$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		}catch(PDOException $e) {  
 		   	echo $e->getMessage();  

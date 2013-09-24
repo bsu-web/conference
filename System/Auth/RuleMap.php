@@ -1,7 +1,7 @@
 <?php
 
-namespace Auth;
-use auth\Group;
+namespace System\Auth;
+use System\Auth\Group;
 use PDO;
 /**
  *
@@ -38,7 +38,7 @@ class RuleMap {
 	public function getGroup($group_name){
 		if (is_numeric($group_name)){
 			try {
-				$DBH = new PDO("mysql:host=localhost;dbname=auth", "root", '');
+				$DBH = new PDO("mysql:host=localhost;dbname=test", "root", '');
 			}
 				
 			catch(PDOException $e) {
