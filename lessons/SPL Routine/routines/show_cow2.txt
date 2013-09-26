@@ -1,9 +1,0 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `show_cow2`(IN cowid INT)
-BEGIN
-CASE cowid
-WHEN 0 THEN
-SELECT cow_name,cow_color,corral_name FROM cows,corral WHERE cows.corral_id=corral.corral_id;
-ELSE
-SELECT cow_name,cow_color,corral_name FROM cows,corral WHERE cow_id=cowid AND cows.corral_id=corral.corral_id;
-END CASE;
-END//
