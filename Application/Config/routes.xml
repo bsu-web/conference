@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<routes>
+	<routes override="1">
 		<route id="default" path="/" command="DefaultCommand" />
 
 		<route id="profile" path="/users/{uid}" command="ShowProfile">
