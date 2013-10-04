@@ -18,7 +18,7 @@
 */
 namespace System\Network;
 
-class Request implements \ArrayAccess {
+class Request {
 	/**
 	* Параметры запроса
 	* @var array
@@ -43,10 +43,17 @@ class Request implements \ArrayAccess {
 	protected $method;
 
 	/**
-	* Конструктор
+	* Конструктор Запроса, может получить строку, метод и параметры запроса
 	**/
-	function __construct(){
+	function __construct(/*$request=null, $method=null, $params=null*/){
+		// if(is_null($request)){
 		$this->init();
+		// }else{
+		// 	$this->request = $request;
+		// 	//$this->subject = $subject;
+		// 	$this->method = $method;
+		// 	$this->params = $params;
+		// }
 	}
 
 	/**
@@ -63,15 +70,7 @@ class Request implements \ArrayAccess {
 	* Получает строку запроса
 	* @return string Строка запроса
 	**/
-	public function getCleanURI(){
-		$qm = strpos($this->uri, "?");
-		if($qm === false){
-			return $this->uri;
-		}
-		return substr($this->uri, 0, $qm);
-	}
-
-	public function getFullURI(){
+	public function getURI(){
 		return $this->uri;
 	}
 
@@ -84,26 +83,16 @@ class Request implements \ArrayAccess {
 	}
 
 	/**
-	* Акцессоры для доступа к переменным http запроса
-	* Реализация интерфейса ArrayAccess
-	**/
-
-	public function offsetSet($offset, $value){
-		$this->data[$offset] = $value;
-	}
-
-	public function offsetGet($offset){
-		if(!isset($this->data[$offset])){
+	* Получение параметров запроса
+	*/
+	public function __get($key){
+		if(!isset($this->data[$key])){
 			return null;
 		}
-		return $this->data[$offset];
+		return $this->data[$key];
 	}
 
-	public function offsetExists($offset){
-		return isset($this->data[$offset]);
-	}
-
-	public function offsetUnset($offset){
-		unset($this->data[$offset]);
+	public function getData(){
+		return $this->data;
 	}
 }

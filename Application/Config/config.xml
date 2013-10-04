@@ -3,29 +3,19 @@
 	<db host="localhost" user="dbuser" pass="dbpass" dbname="dbname" />
 	<routes>
 		<route id="default" path="/" command="DefaultCommand" />
-
-		<route id="profile" path="/users/{uid}" command="ShowProfile">
-			<param name="uid" pattern="uid" />
-		</route>
-
-		<route id="profile_ex" path="/users/{uid}/{extra}" command="ShowProfile">
-			<param name="uid" pattern="uid" />
-			<param name="extra">hello|world</param>
-		</route>
-
-		<route id="profile_edit" path="/profile/edit" command="EditProfile" method="get" />
-		<route id="profile_save" path="/profile/edit" command="SaveProfile" method="post" />
-
+		<route id="insertForm" path="/insertForm" command="insertForm"/>
+                <route id="cowInsert" path="/cowInsert" command="cowInsert" method="post"/>
+                <route id="insertORMForm" path="/insertORMForm" command="insertORMForm"/>
+                <route id="cowORMInsert" path="/cowORMInsert" command="cowORMInsert" method="post"/>
 	</routes>
 
 	<commands>
 		<command class="DefaultCommand" view="DefaultView" />
-		<command class="ShowProfile" view="Profile">
-			<param name="uid" required="1" />
-			<param name="extra" required="0">Default value</param>
-		</command>
-		<command class="EditProfile" view="EditProfile" />
-		<command class="SaveProfile" />
+		<command class="insertForm" view="insertForm" />
+                <command class="insertORMForm" view="insertORMForm" />
+                <command class="cowInsert" view="cowInsert"/>
+                <command class="cowORMInsert" view="cowInsert"/>
+ 
 	</commands>
 
 	<patterns>

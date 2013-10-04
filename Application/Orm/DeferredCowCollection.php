@@ -1,7 +1,7 @@
 <?php
 namespace Application\Orm;
 
-class DeferredPaperCollection extends PaperCollection{
+class DeferredCowCollection extends CowCollection{
     private $stmt;
     private $valueArray;
     private $run=false;
@@ -22,4 +22,3 @@ class DeferredPaperCollection extends PaperCollection{
     }
 }
 ?>
-
