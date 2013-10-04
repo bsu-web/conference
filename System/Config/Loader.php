@@ -54,7 +54,7 @@ class Loader {
 				$scope_name = $child->getName();
 				$override = $child["override"] != null;
 				if(isset($result[$scope_name])){
-					if($overrides[$scope_name] == false && $override = true){
+					if($overrides[$scope_name] == false && $override == true){
 						$result[$scope_name] = $child;
 					}
 				}else{
