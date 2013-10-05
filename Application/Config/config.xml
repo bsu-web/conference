@@ -6,6 +6,10 @@
 		<route id="insertForm" path="/insertForm" command="insertForm"/>
                 <route id="cowInsert" path="/cowInsert" command="cowInsert" method="post"/>
                 <route id="insertORMForm" path="/insertORMForm" command="insertORMForm"/>
+                <route id="editForm" path="/editForm/{cowid}" command="editForm">
+                    <param name="cowid" pattern="uid"/>
+                </route>
+                <route id="editProcess" path="/editProcess" command="editProcess" method="post"/>
                 <route id="cowORMInsert" path="/cowORMInsert" command="cowORMInsert" method="post"/>
 	</routes>
 
@@ -13,9 +17,14 @@
 		<command class="DefaultCommand" view="DefaultView" />
 		<command class="insertForm" view="insertForm" />
                 <command class="insertORMForm" view="insertORMForm" />
+                
                 <command class="cowInsert" view="cowInsert"/>
                 <command class="cowORMInsert" view="cowInsert"/>
- 
+                <command class="editProcess" view="cowInsert"/>
+                <command class="editForm" view="editForm">
+                    <param name="cowid" required="1"/>
+                </command>
+                
 	</commands>
 
 	<patterns>

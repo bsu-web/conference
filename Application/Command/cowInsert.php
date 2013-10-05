@@ -3,9 +3,14 @@ namespace Application\Command;
 
 class cowInsert extends \System\Core\Command {
 	protected function exec(){
-            $name=$this->req->__get('name');
-            $color=$this->req->__get('color');
-            $corral=$this->req->__get('corral_id');
+           /* $name=$this->req["name"];
+            $color=$this->req['color'];
+            $corral=$this->req['corral_id'];
+            * 
+            */
+            $name=$this->req->name;
+            $color=$this->req->color;
+            $corral=$this->req->corral_id;
             $pdo=\System\Core\DbConn::getPDO();
             $pdo->prepare("set character_set_client='cp1251'")->execute();
 	    $pdo->prepare("set character_set_results='cp1251'")->execute();
