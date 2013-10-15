@@ -69,7 +69,7 @@ class Dispatcher {
 		* Например, если система расположена в /var/webserver/mysite.com/www/dir1/dir2/dir3,
 		* то все ссылки должны будут иметь префикс "/dir1/dir2/dir3"
 		*/
-		$this->app->set("_url_prefix", URIParser::extractPrefix( $req->getURI() ));
+		$this->app->set("_url_prefix", URIParser::extractPrefix( $req->getCleanURI() ));
 	}
 
 	/**
@@ -118,7 +118,7 @@ class Dispatcher {
 	* @return Route Объект маршрута
 	**/
 	private function matchRequest(&$route_params_to_return){
-		$res = $this->router->match(URIParser::extractRequest( $this->req->getURI() ), $this->req->getMethod());
+		$res = $this->router->match(URIParser::extractRequest( $this->req->getCleanURI() ), $this->req->getMethod());
 		
 		if($res == null){
 			$route = $this->router->getDefaultRoute();
