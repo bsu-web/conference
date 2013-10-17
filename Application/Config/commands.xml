@@ -15,12 +15,12 @@
 		
 		<command class="SignInResult" view="SignInResult"/>
 		
-		<command class="ShowMessageGroups" view="ShowMessageGroups"/>
-		<command class="ShowMessageGroup" view="ShowMessageGroup"  mainObj="MessageGroup">
-			<param name="mgid" required="1" objId="1"/>
+		<command class="MessageSystemGroupsShow" view="MessageSystemGroupsShow"/>
+		<command class="MessageSystemGroupShow" view="MessageSystemGroupShow" mainObj="MessageGroup">
+			<param name="mgid" required="1"  objId="1"/>
 		</command>
-		<command class="CreateMessage"/>
-		<command class="NewMessageGroup" view="NewMessageGroup"/>
-		<command class="CreateMessageGroup" view="CreateMessagegroup"/>
+		<command class="MessageSystemMessageCreate"/>
+		<command class="MessageSystemGroupToCreate" view="MessageSystemGroupToCreate"/>
+		<command class="MessageSystemGroupCreate"/>
 	</commands>
 </config>

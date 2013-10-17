@@ -6,8 +6,11 @@
 				<command class="SignOut"/>
 				<command class="Msg404"/>
 				<command class="DefaultCommand"/>
-				<command class="ShowMessageGroups"/>
-				<command class="ShowMessageGroup"/>
+				<command class="MessageSystemGroupsShow"/>
+				<command class="MessageSystemGroupShow"/>
+				<command class="MessageSystemMessageCreate"/>
+				<command class="MessageSystemGroupToCreate"/>
+				<command class="MessageSystemGroupCreate"/>
 			</allow>
 		</group>
 		<group name="GUEST">
