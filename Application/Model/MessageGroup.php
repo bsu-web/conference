@@ -63,15 +63,15 @@ class MessageGroup extends \System\Orm\DomainObject{
 	}
 	/**
 	 * Задать автора
-	 * @param Application\Models\Account $author
+	 * @param Application\Model\Account $author
 	 */
-	public function setAuthor(\Application\Models\Account $author){
+	public function setAuthor(\Application\Model\Account $author){
 		$this->author = $author;		
 		$this->markDirty();
 	}
 	/**
 	 * Получить автора
-	 * @return \Application\Models\unknown
+	 * @return \Application\Model\unknown
 	 */
 	public function getAuthor(){
 		return $this->author;
@@ -86,7 +86,7 @@ class MessageGroup extends \System\Orm\DomainObject{
 	}
 	/**
 	 * Получить участников группы
-	 * @return \Application\Models\unknown
+	 * @return \Application\Model\Account
 	 */
 	public function getPartners(){
 		if (! isset($this->partners)){
@@ -98,15 +98,15 @@ class MessageGroup extends \System\Orm\DomainObject{
 	 * Задать список сообщений
 	 * @param Application\Orm\MessageCollection $messages
 	 */
-	function setMessages(\Application\Orm\MessageCollection $messages){
+	public function setMessages(\Application\Orm\MessageCollection $messages){
 		$this->messages= $messages;
 		$this->markDirty();
 	}
 	/**
 	 * Получить сообщения
-	 * @return \Application\Models\MessageCollection
+	 * @return \Application\Orm\MessageCollection
 	 */
-	function getMessages(){
+	public function getMessages(){
 		if (! isset($this->messages)){
 			$this->messages = $this->getCollection($this->targetClass(),$this->getId());
 		}
@@ -114,9 +114,9 @@ class MessageGroup extends \System\Orm\DomainObject{
 	}
 	/**
 	 * Вставка сообщения
-	 * @param Application\Models\Message $newmessage
+	 * @param Application\Model\Message $newmessage
 	 */
-	function addMessage(\Application\Models\Message $newmessage){
+	public function addMessage(\Application\Model\Message $newmessage){
 		$this->getMessages()->add($newmessage);
 		$this->markDirty();
 	}

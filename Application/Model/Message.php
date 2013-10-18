@@ -29,15 +29,15 @@ class Message extends \System\Orm\DomainObject{
 	
 	/**
 	 * Задать автора
-	 * @param \Application\Models\Account $author
+	 * @param \Application\Model\Account $author
 	 */
-	public function setAuthor(\Application\Models\Account $author){
+	public function setAuthor($author){
 		$this->author = $author;
 		$this->markDirty();
 	}
 	/**
 	 * Получить автора
-	 * @return \Application\Models\Account
+	 * @return \Application\Model\Account
 	 */
 	public function getAuthor(){
 		return $this->author;

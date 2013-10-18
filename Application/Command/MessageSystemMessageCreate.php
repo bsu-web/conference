@@ -16,6 +16,7 @@ class MessageSystemMessageCreate extends \System\Core\Command{
 		$id_group = $this->req['group_id'];
 		
 		//Загрузка файла
+		/*
 		if(isset($_FILES['uploadfile'])){
 			//В будущем будем тянуть из конфига
 			$uploaddir = 'C:/files/';
@@ -24,6 +25,7 @@ class MessageSystemMessageCreate extends \System\Core\Command{
 			if(is_uploaded_file($_FILES['uploadfile']['tmp_name']))
 				move_uploaded_file($_FILES['uploadfile']['tmp_name'], $uploadfile);
 		}
+		*/
 		$time = date("Y-m-d H:i:s");
 		$STH=$DBH->query("INSERT INTO `message` (`author`, `text`, `datetime`, `file`) VALUES ('$id_author', '$text', '$time', '$filename')");
 		$id_message = $DBH->lastInsertId();

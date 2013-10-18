@@ -1,8 +1,6 @@
 <?php
 namespace Application\Command;
 
-use PDO;
-
 class MessageSystemGroupShow extends \System\Core\Command{
 	public function exec(){		
 		$session = new \System\Session\Session();
