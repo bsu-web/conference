@@ -10,6 +10,7 @@ class MessageGroupDomainObjectFactory extends \System\Orm\DomainObjectFactory{
         
         $obj->setTitle($array['message_group_title']);
         $obj->setId($array['message_group_id']);
+        $obj->setDescription($array['message_group_description']);
         $partners = $this->createAccountCollection($array['message_group_partners']);
         $obj->setPartners($partners);
         

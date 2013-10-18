@@ -1,6 +1,7 @@
 ﻿﻿Пользователь : {$user->getName()} {$user->getFamily()}
 <h1>Группа : {$messagegroup->getTitle()}</h1><br>
-Автор : [{$messagegroup->getAuthor()->getName()} {$messagegroup->getAuthor()->getFamily()}]<br>
+Автор    : [{$messagegroup->getAuthor()->getName()} {$messagegroup->getAuthor()->getFamily()}]<br>
+Описание : [{$messagegroup->getDescription()}]<br>
 Участники : 
 {foreach from = $messagegroup->getPartners() item = p}
 	[{$p->getName()} {$p->getFamily()}]
