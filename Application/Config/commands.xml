@@ -14,6 +14,8 @@
 		<command class="SignOut"/>	
 		
 		<command class="SignInResult" view="SignInResult"/>
+		<command class="RegistrationResult" view="RegistrationResult"/>		
+		<command class="Registration" view="Registration"/>
 		
 		<command class="MessageSystemGroupsShow" view="MessageSystemGroupsShow"/>
 		<command class="MessageSystemGroupShow" view="MessageSystemGroupShow" mainObj="MessageGroup">

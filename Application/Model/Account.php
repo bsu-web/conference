@@ -13,10 +13,33 @@ class Account extends \System\Orm\DomainObject{
 	 * Имя
 	 */
 	private $name;
+	
 	/**
 	 * Фамилия
 	 */
 	private $family;
+
+	/**
+ 	 * Глобальные группы пользователя  
+ 	 */
+	private $groups = array();
+
+	/**
+ 	 * Задание группы 
+	 */
+	public function setGroup($group){
+		if(!isset($this->groups[$group])){
+			$this->groups[] = $group;
+		}
+	}
+
+	/**
+ 	 * Получение списка всех групп
+ 	 */
+	public function getGroupList(){
+		return $this->groups;
+	}
+
 	/**
 	 * Задать имя
 	 * @param string $name

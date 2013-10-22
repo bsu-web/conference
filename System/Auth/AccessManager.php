@@ -12,12 +12,7 @@ use System\Session\Session;
  * 
  */
 class AccessManager {
-	private static $instance;
-	
-	private static $rules = array('USER'			  => 1, 
-								  'GUEST'    		  => 2, 
-								  'TEST'         => 3, 
-									);
+	private static $instance;	
 	
 	public static function instance(){
 		if (!isset(self::$instance)) {
@@ -32,27 +27,34 @@ class AccessManager {
 		$config = $app->getData("rules");
 		$r_map = RuleMap::instance();
 		foreach ($config->group as $group){
-			//print_r($group);
-			//echo "<br>";
 			$name = (string)$group["name"];
-			//print_r($name);
-			//echo "<br>";
 			$parent = (string)$group["parent"];
 			
 			if (!$parent) {
-				$parent = "root";
+				$parent = null;
 			}
 			$obj = new Group($parent);
 			$obj->setName($name);
 			$obj->setParent($parent);
-			foreach ($group->allow->command as $cmd){
-				$obj->Allow((string)$cmd["class"]);
+			
+			$allow = $group->allow->command;
+			$deny = $group->deny->command;
+			
+			if ($allow) {
+				foreach ($group->allow->command as $cmd){
+					$obj->Allow((string)$cmd["class"]);
+				}
+			}			
+			
+			if ($deny) {
+				foreach ($group->deny->command as $cmd){
+						$obj->Deny((string)$cmd["class"]);
+					}
 			}
+			
+				
 			$r_map->addRule($obj);
-			//print_r($obj);
-			//echo "<br>";
 		}
-		//print_r($r_map);
 	}
 	
 	
@@ -68,15 +70,10 @@ class AccessManager {
 		}
 			
 		$rules = $DBH->query("SELECT rule_id FROM rules WHERE user_id = '$user_id' AND obj_id = '$obj_id' AND obj_type = '$obj_type'");
-	 	$rule = $rules->fetch();
-	 	//print_r($rules);
+		$rule = $rules->fetch();
 		
-	 	/*if($rule['id'] = ''){
-	 		return self::$rules['NO']; //не уверен как сейчас
-	 	}*/
-	 	/*if (!isset($rule['rule_id'])) {
-	 		return "NO";
-	 	}*/
+		//$rule_name = $DBH->query("SELECT rule_name FROM rulemap WHERE rule_id = ")
+
 	 	return $rule['rule_id'];
 	}
 	
@@ -104,7 +101,7 @@ class AccessManager {
 		$cmd_name = get_class($cmd);
 		$temp = explode("\\", $cmd_name);
 		$cmd_name = end($temp);
-		//print_r($cmd_name);
+
 		return $r_map->getRole($cmd_name);
 	}
 	
@@ -119,15 +116,20 @@ class AccessManager {
 	
 	//проверка присутствия $cmd в списке разрешений $group
 	public function can($cmd, Group $group){
-		$r = $group->isAllowed($cmd);
+		$allow = $group->isAllowed($cmd);
+		$deny = $group->isDenied($cmd);
 		$parent_group_name = $group->getParent();
 		
-		if ($r) {
-			return $r;
+		if (!$parent_group_name) {
+			return ($allow)&&(!$deny) ;
 		}
 		
-		if ($parent_group_name === "root"){
-			return $r;
+		if ($deny) {
+			return false;
+		}
+		
+		if ($allow) {
+			return true;
 		}
 		
 		$r_map = RuleMap::instance();
@@ -135,47 +137,68 @@ class AccessManager {
 		return $this->can($cmd, $parent_group);
 	}
 	
-	public function check(Command $cmd, $obj_id, $obj_type){
+	public function check(Command $cmd){
 		$r_map = RuleMap::instance();
 		$session = new Session();
-		$user_id = $session->get("user_id");
-		
-		//echo "<br>user_id: ";
-		//print_r($user_id);
-		
-		if ($obj_id) {
-			if ($user_id) {
-				$obj_rule = $this->getRuleObj($user_id, $obj_id, $obj_type);
-				
-				//echo "<br>obj_rule: ";
-				//print_r($obj_rule);
-				
-				if ($obj_rule) {
-					$group = $r_map->getGroup($obj_rule);
-				}	
-				else {
-					$group = $r_map->getGroup("GUEST");
-				}	
-			}			
-		}
-		else {
-			if ($user_id) {
-				$group = $r_map->getGroup("USER");
-			}
-			else {
-				$group = $r_map->getGroup("GUEST");
-			}
-		}
-		
-		//echo "<br>group: ";
-		//print_r($group);
+		$acc = $session->get("acc");
+
+		$objType = NULL;
+		$obj_id = NULL;
+		$app = Application::instance();
 		
 		$cmd_name = get_class($cmd);
 		$temp = explode("\\", $cmd_name);
 		$cmd_name = end($temp);
 		
+		$command = $app->getCommandByClass($cmd_name);
 		
-		return $this->can($cmd_name, $group);
+		$objType = (string)$command["mainObj"];
+
+		$group = array();
+
+		if ($objType) {
+
+			foreach ($command->param as $param){
+				if ($param["objId"]) {
+					$param_name = (string)$param["name"];
+					$obj_id = $cmd->getData($param_name);
+				}
+			}
+			
+			if ($acc) {
+				$obj_rule = $this->getRuleObj($acc->getId(), $obj_id, $objType);
+				if ($obj_rule) {
+					//$group[] = $r_map->getGroup($obj_rule);
+					$group[] = $obj_rule;
+				}	
+				else {
+					return false; 
+				}	
+			}
+		}
+		else{
+			if($acc){
+				$group = $acc->getGroupList();
+			}
+			else{
+				$group[] = "GUEST";
+			}
+		}
+		
+			
+		
+
+		$cmd_name = get_class($cmd);
+		$temp = explode("\\", $cmd_name);
+		$cmd_name = end($temp);
+
+		foreach($group as $g){
+			$r = $this->can($cmd_name, $r_map->getGroup($g));
+			if($r){
+				return $r;
+			}
+		}
+		return false;
 	}
 	
 }

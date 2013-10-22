@@ -20,6 +20,15 @@ abstract class Command {
 		$this->data = $data;
 	}
 
+	public function getData($key){
+		if(isset($this->data[$key])){
+			return $this->data[$key];
+		}
+		else {
+			return null;
+		}
+	}
+
 	/**
 	* Метод для переопределения
 	* @return mixed
@@ -32,28 +41,8 @@ abstract class Command {
 	**/
 	public function _exec(){
 		$acm = AccessManager::instance();
-		$objType = NULL;
-		$obj_id = NULL;
-		$app = Application::instance();
 		
-		$cmd_name = get_class($this);
-		$temp = explode("\\", $cmd_name);
-		$cmd_name = end($temp);
-		
-		$command = $app->getCommandByClass($cmd_name);
-		
-		$objType = (string)$command["mainObj"];
-				
-		if ($objType) {
-			foreach ($command->param as $param){
-				if ($param["objId"]) {
-					$param_name = (string)$param["name"];
-					$obj_id = $this->data[$param_name];
-				}
-			}
-		}
-		
-		if($acm->check($this, $obj_id, $objType)){
+		if($acm->check($this)){
 			return $this->exec();
 		}
 		else {

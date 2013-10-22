@@ -17,6 +17,9 @@
 		
 		<route id="SignIn" path="/SignIn" command="SignIn" method="get" />
 		<route id="SignInResult" path="/SignIn" command="SignInResult" method="post" />
+
+		<route id="Registration" path="/Registration" command="Registration" method="get" /> 
+		<route id="RegistrationResult" path="/Registration" command="RegistrationResult" method="post" />
 		
 		<route id="SignOut" path="/SignOut" command="SignOut" method="get"/>
 		

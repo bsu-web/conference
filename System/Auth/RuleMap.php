@@ -46,13 +46,11 @@ class RuleMap {
 			}
 			
 			$group = $DBH->query("SELECT rule_name FROM rulemap WHERE rule_id = '$group_name'");
-			$group_name = $group->fetch();
-			//print_r($group_name);		
+			$group_name = $group->fetch();		
 			
 			$group_name = $group_name['rule_name'];
-			//print_r($group_name);
+			
 		}
-		//print_r($group_name);
 		return $this->rules[$group_name];
 	}
 }

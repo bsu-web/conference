@@ -19,6 +19,8 @@
 				<command class="SignInResult"/>
 				<command class="DefaultCommand"/>
 				<command class="Msg404"/>
+				<command class="RegistrationResult"/>
+				<command class="Registration"/>
 			</allow>
 		</group>
 		<group name="TEST" parent="USER">
