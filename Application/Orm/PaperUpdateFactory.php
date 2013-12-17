@@ -2,27 +2,30 @@
 namespace Application\Orm;
 
 class PaperUpdateFactory extends \System\Orm\UpdateFactory{
-    function newUpdate(\app\models\DomainObject $obj){
+    function newUpdate(\System\Orm\DomainObject $obj){
         //Проверку типов желательно добавить
         $id= $obj->getId();
-        $cond=null;
+        $values['url']=$obj->getUrl();
         $values['title']=$obj->getTitle();
-        $values['content']=$obj->getContent();
-        if ($id >-1){
-            $cond['id']=$id;
-            return $this->buildStatement('paper',$values,$cond);
+        $values['abstract']=$obj->getAbstract();
+        $values['bibl']=$obj->getBibliography();
+        $values['status']=$obj->getStatus();
+        $values['descr']=$obj->getDescription();
+        $authors=$obj->getUsers();
+        $users=array();
+        foreach ($authors as $author){
+            $users[]=$author->getId().'.1';
         }
-        return $this->buildStatement('paper',$values,$cond,true);
-    }
-    
-    function InsertLink(\app\models\DomainObject $obj){
-        $authors=$obj->getAuthors();
-        $links= array('paper_id','author_id'); //поля табоицы связей
-        $query=$this->buildLinks('paper_authors',$links); // имя таблицы связей + массив полей
-        foreach ($authors as $author){ // задаем массив для вставки в БД
-            $values[]=array($obj->getId(),$author->getId());
-        }  
-        return array($query,$values);
+        $values['users']=implode(",",$users);
+        $values['tags']='1,2,3'; // Когда тэги будут- изменить
+        $values['pos_begin']=$obj->getPosBegin();
+        $values['pos_end']=$obj->getPosEnd();
+        $values['tag_id']=$obj->getTagId();
+        if ($id >-1){
+            $values['id']=$obj->getId();
+            return $this->buildStatement('update_paper',$values);
+        }
+        return $this->buildStatement('insert_paper',$values,1);
     }
 }
 
