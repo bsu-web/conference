@@ -1,38 +1,39 @@
 <?php
+
 namespace System\Orm;
+
 class ObjectWatcher{
-	private $all=array();
+    private $all=array();
     private $dirty= array();
     private $new= array();
     private $delete= array();
-	private static $instance;
-	
-	private function __construct(){
-		
-	}
-	static function instance(){
-	
-		if (!isset(self::$instance)){
-			self::$instance=new ObjectWatcher();
-		}
-		return self::$instance;
-	}
-	function globalKey(DomainObject $obj){
-		$key=get_class($obj).".".$obj->getId();
-		return $key;
-	}
-	static function add(DomainObject $obj){
-		$inst=self::instance();
-		$inst->all[$inst->globalKey($obj)]=$obj;
-	}
-	static function exists($classname,$id){
-		$inst=self::instance();
-		$key="$classname.$id";
-		if(isset($inst->all[$key])){
-			return $inst->all[$key];
-		}
-		return null;
-	}
+    private static $instance;
+    
+    private function __construct(){
+        
+    }
+    static function instance(){
+        if (!isset(self::$instance)){
+            self::$instance=new ObjectWatcher();
+        }
+        return self::$instance;
+    }
+    function globalKey(DomainObject $obj){
+        $key=get_class($obj).".".$obj->getId();
+        return $key;
+    }
+    static function add(DomainObject $obj){
+        $inst=self::instance();
+        $inst->all[$inst->globalKey($obj)]=$obj;
+    }
+    static function exists($classname,$id){
+        $inst=self::instance();
+        $key="$classname.$id";
+        if(isset($inst->all[$key])){
+            return $inst->all[$key];
+        }
+        return null;
+    }
     
     static function addDelete(DomainObject $obj){
         $self= self::instance();
@@ -48,11 +49,11 @@ class ObjectWatcher{
     
     static function addNew(DomainObject $obj){
         $inst=self::instance();
-        //У нас еще нет идентификатора id
+        //?????????????? id
         $inst->new[]= $obj;
     }
     
-    static function addClean(\System\Orm\DomainObject $obj){
+    static function addClean(DomainObject $obj){
         $self= self::instance();
         unset($self->delete[$self->globalKey($obj)]);
         unset($self->dirty[$self->globalKey($obj)]);

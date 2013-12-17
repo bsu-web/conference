@@ -1,4 +1,5 @@
 <?php
+
 namespace System\Orm;
 
 abstract class Collection implements \Iterator{
@@ -21,7 +22,7 @@ abstract class Collection implements \Iterator{
     function add(DomainObject $object){
         $class=$this->targetClass();
         if (! ($object instanceof $class)){
-            throw new Exception ('Это коллекция {$class}');
+            throw new Exception ('??????? {$class}');
         }
         $this->notifyAccess();
         $this->objects[$this->total]=$object;
@@ -31,7 +32,7 @@ abstract class Collection implements \Iterator{
     abstract function targetClass();
     
     protected function notifyAccess(){
-        //Специально оставлена пустой
+        //????? ????????
     }
     
     private function getRow($num){

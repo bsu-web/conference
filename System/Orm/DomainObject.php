@@ -1,7 +1,8 @@
 <?php
+
 namespace System\Orm;
 
-abstract class DomainObject{ //абстрактный класс для всех(!) объектов
+abstract class DomainObject{ //??????????? ??(!) ?????
     private $id= -1;
     
     function __construct($id=null){
@@ -12,13 +13,13 @@ abstract class DomainObject{ //абстрактный класс для всех(!) объектов
         }
     }
     
-	function getId(){ //получение id объекта
-		return $this->id;
-	}
+    function getId(){ //????? id ????
+        return $this->id;
+    }
     
-	function setId($id){ //задание id объекта
-		$this->id=$id;
-	}
+    function setId($id){ //????id ????
+        $this->id=$id;
+    }
     
     function getCollection($type,$id){
         $factory= PersistenceFactory::getFactory($type);
