@@ -48,14 +48,14 @@ class DomainObjectAssembler{
         $upfact=$this->factory->getUpdateFactory();
         list($update, $values)= $upfact->newUpdate($obj);
         $stmt= $this->getStatement($update);
-        echo $update.'<br/>';
+        //echo $update.'<br/>';
         foreach ($values as $key=>$value){
             $stmt->bindValue(':'.$key,$value);
         }
         $stmt->execute();
         $stmt->closeCursor();
         if ($obj->getId()<0){
-            $output = self::$pdo->query("select @id")->fetch(PDO::FETCH_ASSOC);
+            $output = self::$pdo->query("select @id")->fetch(\PDO::FETCH_ASSOC);
             $obj->setId($output['@id']);
         }
         $obj->markClean();
