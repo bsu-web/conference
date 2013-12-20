@@ -2,6 +2,8 @@
 
 namespace System\Orm;
 
+use Exception;
+
 abstract class Collection implements \Iterator{
     protected $dofact;
     protected $total=0;
@@ -11,7 +13,7 @@ abstract class Collection implements \Iterator{
     private $pointer=0;
     private $objects=array();
     
-    function __construct(array $raw=null, DomainObjectFactory $dofact=null){
+    function __construct(array $raw=null, \System\Orm\DomainObjectFactory $dofact=null){
         if (! is_null($raw) && ! is_null($dofact)){
             $this->raw=$raw;
             $this->total= count($raw);
@@ -19,9 +21,11 @@ abstract class Collection implements \Iterator{
         $this->dofact=$dofact;
     }
     
-    function add(DomainObject $object){
-        $class=$this->targetClass();
+    function add(\System\Orm\DomainObject $object){
+        $class = "\Application\Model\\".$this->targetClass();
         if (! ($object instanceof $class)){
+            print_r($object);
+            echo 'werwerew   '.$class;
             throw new Exception ('??????? {$class}');
         }
         $this->notifyAccess();
