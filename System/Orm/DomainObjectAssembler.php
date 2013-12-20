@@ -61,5 +61,12 @@ class DomainObjectAssembler{
         $obj->markClean();
     }
     
+    function delete(IdentityObject $obj, $table){
+        $delfact= $this->factory->getDeleteFactory();
+        list($delete, $values)= $delfact->newDelete($obj,$table);
+        $stmt= $this->getStatement($delete);
+        $stmt->execute($values);
+    }
+    
 }
 ?>

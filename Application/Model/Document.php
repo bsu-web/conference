@@ -7,29 +7,38 @@ namespace Application\Model;
  * @package files
  */
 abstract class Document extends \System\Orm\DomainObject{
-    private $authors; 
+    private $users; 
     private $title;    
-	private $content;
+	private $abstract;
+    private $url;
+    private $bibliography;
+    private $status;
+    private $description;
+    private $posBegin;
+    private $posEnd;
+    private $tagId;
     abstract function getDocument();
     /**
      * задаем список авторов
      * @param $Authors Список авторов
+
      */
-    function setAuthors(Application\Orm\AuthorCollection $authors){
-        $this->authors= $authors;        
+    function setUsers(\Application\Orm\UserCollection $users){
+        $this->users= $users;
+        $this->markDirty();        
     }
     /**
      * выдаем список авторов
      */    
-    function getAuthors(){   
-        if (! isset($this->authors)){
-            $this->authors= $this->getCollection($this->targetClass(),$this->getId());
+    function getUsers(){   
+        if (! isset($this->users)){
+            $this->users= $this->getCollection($this->targetClass(),$this->getId());
         }
-        return $this->authors;
+        return $this->users;
     }
     
-    function addAuthor(Author $author){
-        $this->getAuthors()->add($author);
+    function addUser(User $user){
+        $this->getUsers()->add($user);
     }
     /**
      * задаем заголовок
@@ -37,6 +46,7 @@ abstract class Document extends \System\Orm\DomainObject{
      */    
     function setTitle($title){  
         $this->title= $title;
+        $this->markDirty();
     }
     /**
      * выдаем заголовок документа
@@ -49,15 +59,79 @@ abstract class Document extends \System\Orm\DomainObject{
      * задаем заголовок
      * @param $title заголвок
      */    
-    function setContent($content){  
-        $this->content= $content;
+    function setAbstract($abstract){  
+        $this->abstract= $abstract;
+        $this->markDirty();
     }
     /**
      * выдаем заголовок документа
      * @return string
      */    
-    function getContent(){  
-        return $this->content;
+    function getAbstract(){  
+        return $this->abstract;
+    }
+    
+    function setUrl($url){
+        $this->url=$url;
+        $this->markDirty();
+    }
+    
+    function getUrl(){
+        return $this->url;
+    }
+    
+    function setBibliography($bibliography){
+        $this->bibliography=$bibliography;
+        $this->markDirty();
+    }
+    
+    function getBibliography(){
+        return $this->bibliography;
+    }
+    
+    function setStatus($status){
+        $this->status=$status;
+        $this->markDirty();
+    }
+    
+    function getStatus(){
+        return $this->status;
+    }
+    
+    function setDescription($description){
+        $this->description=$description;
+        $this->markDirty();
+    }
+    
+    function getDescription(){
+        return $this->description;
+    }
+    
+    function setPosBegin($posBegin){
+        $this->posBegin=$posBegin;
+        $this->markDirty();
+    }
+    
+    function getPosBegin(){
+        return $this->posBegin;
+    }
+    
+    function setPosEnd($posEnd){
+        $this->posEnd=$posEnd;
+        $this->markDirty();
+    }
+    
+    function getPosEnd(){
+        return $this->posEnd;
+    }
+    
+    function setTagId($tagId){
+        $this->tagId=$tagId;
+        $this->markDirty();
+    }
+    
+    function getTagId(){
+        return $this->tagId;
     }
 }
 ?>

@@ -44,6 +44,11 @@ class PersistenceFactory {
     public function getSelectionFactory(){
         return new SelectionFactory();     
     }
+    
+    public function getDeleteFactory(){
+        return new DeleteFactory();     
+    }
+    
     public function getUpdateFactory(){
         $update="\Application\Orm\\".$this->type."UpdateFactory";
         if(class_exists($update)){
