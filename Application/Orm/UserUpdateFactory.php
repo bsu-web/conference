@@ -4,6 +4,7 @@ namespace Application\Orm;
 
 class UserUpdateFactory extends \System\Orm\UpdateFactory{
     function newUpdate(DomainObject $obj){
+        //???? ???????? ????
         $id= $obj->getId();
         $values['name']=$obj->getName();
         $values['family']=$obj->getFamily();
@@ -17,7 +18,7 @@ class UserUpdateFactory extends \System\Orm\UpdateFactory{
             $values['id']=$obj->getId();
             return $this->buildStatement('update_user',$values);
         }
-        return $this->buildStatement('insert_user',$values,1);
+        //return $this->buildStatement('insert_user',$values);
     }
 }
 

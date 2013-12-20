@@ -3,6 +3,7 @@ namespace System\Core;
 
 use \System\Network\Request;
 use \System\Network\Response;
+use \System\Auth\AccessManager;
 
 abstract class Command {
 	protected $data;
@@ -19,6 +20,15 @@ abstract class Command {
 		$this->data = $data;
 	}
 
+	public function getData($key){
+		if(isset($this->data[$key])){
+			return $this->data[$key];
+		}
+		else {
+			return null;
+		}
+	}
+
 	/**
 	* Метод для переопределения
 	* @return mixed
@@ -30,7 +40,15 @@ abstract class Command {
 	* @return mixed
 	**/
 	public function _exec(){
-		return $this->exec();
+		$acm = AccessManager::instance();
+		
+		if($acm->check($this)){
+			return $this->exec();
+		}
+		else {
+			//print_r("ACCESS DENIED<br>");
+			return $this->forward("Msg404", null);
+		}
 	}
 
 	/**

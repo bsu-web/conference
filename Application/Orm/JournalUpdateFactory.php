@@ -5,29 +5,24 @@ class JournalUpdateFactory extends \System\Orm\UpdateFactory{
     function newUpdate(\app\models\DomainObject $obj){
         //ѕроверку типов желательно добавить
         $id= $obj->getId();
+        $cond=null;
         $values['title']=$obj->getTitle();
-        $values['status']=$obj->getStatus();
-        $values['imprint']=$obj->getImprint();
-        $values['descr']=$obj->getDescription();
-        $users=$obj->getUsers();
-        $str=array();
-        foreach ($users as $user){
-            $str[]=$user->getId().'.1';
-        }
-        $values['users']=implode(",",$str);
         if ($id >-1){
-            $papers=$obj->getPapers();
-            $pap='';
-            foreach ($papers as $paper){
-                $pap.=$paper->getId().',';
-            }
-            $values['papers']=$pap;
-            $values['id']=$id;
-            return $this->buildStatement('update_paperset',$values);
+            $cond['id']=$id;
+            return $this->buildStatement('journal',$values,$cond);
         }
-        return $this->buildStatement('insert_paperset',$values);
+        return $this->buildStatement('journal',$values,$cond,true);
     }
     
+    function InsertLink(\app\models\DomainObject $obj){
+        $papers=$obj->getPapers();
+        $links= array('journal_id','paper_id'); 
+        $query=$this->buildLinks('journal_paper',$links);
+        foreach ($papers as $paper){
+            $values[]=array($obj->getId(),$paper->getId());
+        }  
+        return array($query,$values);
+    }
 }
 
 ?>

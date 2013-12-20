@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<rules override="1">
+		<group name="TEST">
+			<allow>
+				<command class="DefaultCommand"/>
+				<command class="ShowMessageGroups"/>
+
+			</allow>
+		</group>
+		<group name="MESS">
+			<allow>
+				<command class="ShowMessageGroup"/>
+				<command class="ShowMessageGroups"/>
+			</allow>
+		</group>
+	</rules>
+
+
+	<roles>
+		<group name="ALL" role="1">
+			<allow>
+				<command class="Msg404"/>
+				<command class="DefaultCommand"/>
+			</allow>
+		</group>
+		<group name="USER" parent="ALL" role="1">
+			<allow>
+				<command class="SignOut"/>
+				<command class="ShowMessageGroup">
+					<status name = "open"/>
+				</command>
+			</allow>
+			<deny>
+			</deny>
+		</group>
+		<group name="GUEST" parent="ALL" role="1">
+			<allow>
+				<command class="SignIn"/>
+				<command class="SignInResult"/>
+				<command class="RegistrationResult"/>
+				<command class="Registration"/>
+			</allow>
+		</group>
+	</roles>
+
+</config>
