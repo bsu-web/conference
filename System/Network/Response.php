@@ -1,23 +1,12 @@
 <?php
 /**
  * Класс, представляющий окончательный ответ пользователю
- *
- * Всё, что отдаётся в ответ пользователю (Тело Ответа, Заголовки Ответа), регулируется здесь.
- * 
- * @see http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol		Если вы не знаете что такое тело и заголовки ответа
- * @author nekjine
  */
 namespace System\Network;
 
 class Response {
 	/**
-	* Были ли посланы заголовки http-ответа, если были, то дальнейший вывод невозможен
-	* @var bool
-	**/
-	protected $headers_sent = false;
-
-	/**
-	* Конструктор (пустой)
+	* Конструктор
 	**/
 	public function __construct(){}
 
@@ -29,10 +18,7 @@ class Response {
 	public function write($str){
 		header("Content-Type: text/html; charset=utf-8");
 
-		if(!$this->headers_sent){
-			echo $str;
-			$this->headers_sent = true;
-		}
+		echo $str;
 	}
 
 	/**
@@ -42,7 +28,6 @@ class Response {
 	**/
 	public function setStatus($statusCode){
 		if(is_int($statusCode) || is_string($statusCode)){
-			//$this->headers
 			header(' ', true, $statusCode);
 		}
 	}
@@ -53,11 +38,10 @@ class Response {
 	* @param int $status Статус http-ответа
 	* @return void
 	**/
-	public function setRedirection($url, $status = 301){
+	public function setRedirection($url, $status = 302){
 		if(is_string($url)){
 			$this->setStatus($status);
 			header("Location: ${url}");
-			$this->headers_sent = true;
 		}
 	}
 
@@ -66,8 +50,8 @@ class Response {
 	* @param bool $to Кэшировать или нет
 	* @return void
 	**/
-	public function setCaching($to=true){
-		if(!$to){
+	public function setCaching($enabled=true){
+		if(!$enabled){
 			// cache off
 			header("Cache-Control: no-cache, must-revalidate");
 			header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
