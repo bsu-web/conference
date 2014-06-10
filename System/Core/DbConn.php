@@ -50,8 +50,9 @@ class DbConn {
 		$pdo_dbname = (string) $db_data["dbname"];
 
 		try{
-			self::$pdo = new \PDO("mysql:host=${pdo_host};dbname=${pdo_dbname}", $pdo_user, $pdo_pass, array(
-				\PDO::ATTR_PERSISTENT => true
+			self::$pdo = new \PDO("mysql:host=${pdo_host};dbname=${pdo_dbname};charset=utf8", $pdo_user, $pdo_pass, array(
+				\PDO::ATTR_PERSISTENT => true,
+				\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"
 			));
 		}catch(\PDOException $e){
 			trigger_error("Unable to connect to the database");

@@ -111,7 +111,7 @@ class AccessManager {
 		$finder= new DomainObjectAssembler($factory);
 		$idobj=$factory->getIndentityObject();
 		$idobj->field('user_id')->eq($user_id);
-		$idobj->field('type_object_map_name')->eq($obj_type);
+		$idobj->field('object_name')->eq($obj_type);
 		$idobj->field('object_id')->eq($obj_id);
 		$rule = $finder->findOne($idobj, 'rule');
 		if ($rule) {
@@ -135,10 +135,10 @@ class AccessManager {
 		//тут запрос к VIEW на статус объекта
 		$factory= PersistenceFactory::getFactory('StatusObj');
 		$finder= new DomainObjectAssembler($factory);
-		$idobj=$factory->getIndentityObject()->field('object_id')->eq($obj_id)->field('type_object_map_name')->eq($objType);
+		$idobj=$factory->getIndentityObject()->field('object_id')->eq($obj_id)->field('object_type')->eq($objType);
 		$status = $finder->findOne($idobj,'status');
 		if ($status){
-			return $status->getStatus();
+			return $status->getObj_Status();
 		}
 		return NULL;
 		
@@ -209,7 +209,7 @@ class AccessManager {
 		$g_map = GroupMap::instance();
 		$session = new Session();
 		$user = $session->get("user");
-
+	
 		$objType = NULL;
 		$obj_id = NULL;
 		$app = Application::instance();
@@ -230,7 +230,6 @@ class AccessManager {
 		else {				//получение ролей
 			$roles[] = "GUEST";
 		}
-
 
 		if ($objType) {
 			foreach ($command->param as $param) {

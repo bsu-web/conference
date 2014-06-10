@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Orm;
 
 class UserCollection extends \System\Orm\Collection{
@@ -7,5 +6,4 @@ class UserCollection extends \System\Orm\Collection{
         return "User";
     }
 }
-
 ?>

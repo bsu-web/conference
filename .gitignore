@@ -1,7 +1,4 @@
-# sublime project file
+templates_c/
 *.sublime-*
-# eclipse project files
 .buildpath
 .project
-# custom config
-o_*.xml

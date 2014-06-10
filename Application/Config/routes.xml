@@ -2,35 +2,128 @@
 <config>
 	<routes override="1">
 		<route id="default" path="/" command="DefaultCommand" />
+		
+		<route id="SignIn" 				path="/SignIn" 		 command="SignIn" 		method="get" />
+		<route id="SignInResult" 		path="/SignIn"		 command="SignInResult" method="post" />
+		<route id="Registration" 		path="/Registration" command="Registration" method="get" />
+		<route id="RegistrationResult" 	path="/Registration" command="RegistrationResult" method="post" />
 
-		<route id="profile" path="/users/{uid}" command="ShowProfile">
-			<param name="uid" pattern="uid" />
-		</route>
-
-		<route id="profile_ex" path="/users/{uid}/{extra}" command="ShowProfile">
-			<param name="uid" pattern="uid" />
-			<param name="extra">hello|world</param>
-		</route>
-
-		<route id="profile_edit" path="/profile/edit" command="EditProfile" method="get" />
-		<route id="profile_save" path="/profile/edit" command="SaveProfile" method="post" />
-		
-		<route id="SignIn" path="/SignIn" command="SignIn" method="get" />
-		<route id="SignInResult" path="/SignIn" command="SignInResult" method="post" />
-		
-		<route id="Registration" path="/Registration" command="Registration" method="get" /> 
-		<route id="RegistrationResult" path="/Registration" command="RegistrationResult" method="post" />		
-		
-		<route id="SignOut" path="/SignOut" command="SignOut" method="get"/>
-		
+		<route id="SignOut" path="/SignOut" command="SignOut" method="get"/>		
 		<route id="Msg404" path="/Msg404" command="Msg404" method="get"/>
+				
 		
-		<route id="show_messagegroups" path="/message/show/groups" command="ShowMessageGroups" method="get" />
-		<route id="show_messagegroup" path="/message/show/group/{mgid}" command="ShowMessageGroup">
-			<param name="mgid">[1-333]</param>
+		<route id="hilist" 					path="/hilist" 					command="hilist" 				method="get"/>
+	
+		<route id="profile_all" 			path="/profile/all"				command="AllProfile" 			method="get"/>
+		<route id="paper_all" 				path="/paper/all" 				command="AllPaper" 				method="get"/>
+		<route id="journal_all" 			path="/journal/all" 			command="AllJournal" 			method="get"/>
+		
+		<route id="profile_edit_uid" 		path="/profile/edit" 			command="EditUidProfile" 		method="get" />
+		<route id="profile_edit_uid_result" path="/profile/edit" 			command="EditUidProfileResult"	method="post" />
+		<route id="profile_show" 			path="/profile/{uid}/show" 		command="ShowProfile" 			method="get">
+			<param name="uid" pattern="uid" />
 		</route>
-		<route id="create_message" path="/message/create/message" command="CreateMessage" method="post"/>
-		<route id="new_messagegroup" path="/message/new/group" command="NewMessageGroup" method="get"/>
-		<route id="create_messagegroup" path="/message/create/group" command="CreateMessageGroup" method="post"/>
+        <route id="profile_papers" 			path="/profile/papers" 			command="PapersProfile" 		method="get" />
+        <route id="profile_journals" 		path="/profile/journals" 		command="JournalsProfile" 		method="get" />
+
+		
+		<route id="paper_create" 			path="/paper/create" 			command="CreatePaper" 			method="get" />
+		<route id="paper_create_result" 	path="/paper/create" 			command="CreatePaperResult" 	method="post" />
+		<route id="paper_edit_pid" 			path="/paper/{pid}/edit" 		command="EditPidPaper" 			method="get" >
+			<param name="pid" pattern="pid" />
+		</route>
+		<route id="paper_edit_pid_result" 	path="/paper/{pid}/edit" 		command="EditPidPaperResult"	method="post" >	
+			<param name="pid" pattern="pid" />
+		</route>
+		<route id="paper_show" 				path="/paper/{uid}/show" 		command="ShowPaper" 			method="get">
+			<param name="uid" pattern="uid" />
+		</route>		
+		
+		<route id="journal_create" 			path="/journal/create" 			command="CreateJournal" 		method="get" /> 
+		<route id="journal_create_result" 	path="/journal/create" 			command="CreateJournalResult" 	method="post" />
+
+		<route id="journal_edit_pid" 			path="/journal/{pid}/edit" 	command="EditPidJournal" 		method="get" >
+			<param name="pid" pattern="pid" />
+		</route>
+		<route id="journal_edit_pid_result" 	path="/journal/{pid}/edit" 	command="EditPidJournalResult" 	method="post" >
+			<param name="pid" pattern="pid" />
+		</route>
+		<route id="journal_pid_expert" 	      	path="/journal/{pid}/expert" 	command="ExpertPidJournal" 	  method="get" >
+			<param name="pid" pattern="pid" />	
+		</route>		
+		<route id="journal_pid_expert_result" 	path="/journal/{pid}/expert" 	command="ExpertPidJournalResult" 	  method="post" >
+			<param name="pid" pattern="pid" />
+		</route>
+		<route id="journal_pid_show" 	      	path="/journal/{pid}/show" 		command="ShowPidJournal" 	  method="get" >
+			<param name="pid" pattern="pid" />
+		</route>		
+		<route id="journal_pid_state" 	         path="/journal/{pid}/to_state" command="StatePidJournal" 	          method="get" >
+			<param name="pid" pattern="pid" />
+		</route>		
+		<route id="journal_pid_state_result" 	 path="/journal/{pid}/to_state" command="StatePidJournalResult" 	  method="post" >
+			<param name="pid" pattern="pid" />
+		</route>
+		<route id="journal_pid_papersexperts" 	 path="/journal/{pid}/papers_experts" 	command="ShowPapersExpertsPidJournal" 	  method="get" >
+			<param name="pid" pattern="pid" />	
+		</route>	
+		<route id="journal_pid_expertpapers" 	 path="/journal/{pid}/{eid}/papers" 	command="ShowExpertPapersPidJournal" 	  method="get" >
+			<param name="pid" pattern="pid" />	
+			<param name="eid" pattern="pid" />	
+		</route>
+		<route id="journal_pid_messageset" path="/journal/{pid}/{mid}/message" command="ShowPaperMessageset" method="get" >
+			<param name="pid" pattern="pid" />	
+			<param name="mid" pattern="pid" />	
+		</route>
+
+		<route id="admin_journals" 			path="/admin/journals" 			command="ShowAdminJournals" 	method="get" /> 
+		<route id="admin_journals_to_conf" 	path="/admin/journals/to_conf" 	command="ToConfAdminJournals" 	method="get" /> 
+		<route id="admin_journals_to_conf_result" 	path="/admin/journals/to_conf" 	command="ToConfAdminJournalsResult" 	method="post" /> 
+
+
+
+		<route id="message_groups_types" path="/message" command="MessageSystemShow" method="get" />
+		<route id="message_groups_show" path="/message/{mg_type}/groups" command="MessageSystemGroupsShow" method="get">
+			<param name="mg_type" pattern="mg_type"/>
+		</route>
+		<route id="to_create_mg" path="/message/{mg_type}/group/create" command="MessageSystemGroupToCreate" method="get">
+			<param name="mg_type" pattern="mg_type"/>
+		</route>
+		<route id="personal_create_mg" path="/message/personal/group/create" command="MSPersonalGroupCreate" method="post"/>
+		<route id="message_group_show" path="/message/{mg_type}/group/{mg_id}" command="MessageSystemGroupShow" method="get" >
+			<param name="mg_type" pattern="mg_type"/>
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="expertise_create_mg" path="/message/expertise/group/create" command="MSExpertiseGroupCreate" method="post"/>
+		<route id="unsubcribe_personal_mg" path="/message/personal/group/{mg_id}/unsubcribe" command="MSPersonalGroupUnsubscribe" method="get">
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="create_message" path="/message/{mg_type}/group/{mg_id}/send_message/{pid}" command="MessageSystemMessageCreate" method="post">
+			<param name="mg_type" pattern="mg_type"/>
+			<param name="mg_id" pattern="uid"/>
+			<param name="pid" pattern="uid"/>
+		</route>
+		<route id="mg_settings_show" path="/message/{mg_type}/group/{mg_id}/settings" command="MessageSystemGroupSettingsShow" method="get">
+			<param name="mg_type" pattern="mg_type"/>
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="mg_settings_save" path="/message/{mg_type}/group/{mg_id}/settings" command="MessageSystemGroupSettingsSave" method="post">
+			<param name="mg_type" pattern="mg_type"/>
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="get_file" path="/message/get/file/{code}" command="MessageSystemFileGet" method="get">
+			<param name="code">[a-zA-Z0-9]{1,32}</param>
+		</route>
+		<route id="ok_expertise" path="/message/expertise/group/{mg_id}/ok" command="MSExpertiseGroupOk" method="get">
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="start_expertise" path="/message/expertise/group/{mg_id}/start" command="MSExpertiseGroupStart" method="post">
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="return_expertise" path="/message/expertise/group/{mg_id}/return" command="MSExpertiseGroupReturn" method="post">
+			<param name="mg_id" pattern="uid"/>
+		</route>
+		<route id="paper_confirmed" path="/journal/{pid}/confirmed" command="PaperConfirmed" method="get">
+			<param name="pid" pattern="uid"/>
+		</route>
 	</routes>
 </config>

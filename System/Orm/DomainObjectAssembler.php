@@ -1,6 +1,7 @@
 <?php
 
 namespace System\Orm;
+use PDO;
 
 class DomainObjectAssembler{
     protected static $pdo;
@@ -16,9 +17,9 @@ class DomainObjectAssembler{
             self::$pdo=\System\Core\DbConn::getPDO();
             // new \PDO("mysql:host=localhost;dbname=".$base,$user,$password);
             // self::$pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
-            self::$pdo->prepare("set character_set_client='cp1251'")->execute();
-            self::$pdo->prepare("set character_set_results='cp1251'")->execute();
-            self::$pdo->prepare("set collation_connection='cp1251_general_ci'")->execute();
+            self::$pdo->prepare("set character_set_client='utf8'")->execute();
+            self::$pdo->prepare("set character_set_results='utf8'")->execute();
+            self::$pdo->prepare("set collation_connection='utf8'")->execute();
         }        
     }
 
@@ -37,6 +38,7 @@ class DomainObjectAssembler{
     function find(IdentityObject $idobj, $table){
         $selfact= $this->factory->getSelectionFactory();
         list($selection, $values)= $selfact->newSelection($idobj,$table);
+       // echo $selection.'<br/><br/>';
         $stmt= $this->getStatement($selection);
         //$stmt->execute($values);
         //$raw=$stmt->fetchAll();
@@ -48,14 +50,13 @@ class DomainObjectAssembler{
         $upfact=$this->factory->getUpdateFactory();
         list($update, $values)= $upfact->newUpdate($obj);
         $stmt= $this->getStatement($update);
-        //echo $update.'<br/>';
         foreach ($values as $key=>$value){
             $stmt->bindValue(':'.$key,$value);
         }
         $stmt->execute();
         $stmt->closeCursor();
         if ($obj->getId()<0){
-            $output = self::$pdo->query("select @id")->fetch(\PDO::FETCH_ASSOC);
+            $output = self::$pdo->query("select @id")->fetch(PDO::FETCH_ASSOC);
             $obj->setId($output['@id']);
         }
         $obj->markClean();

@@ -2,27 +2,41 @@
 namespace Application\Orm;
 
 class JournalUpdateFactory extends \System\Orm\UpdateFactory{
-    function newUpdate(\app\models\DomainObject $obj){
-        //ѕроверку типов желательно добавить
+    function newUpdate(\System\Orm\DomainObject $obj){
+        //???? ???????? ????
         $id= $obj->getId();
-        $cond=null;
         $values['title']=$obj->getTitle();
-        if ($id >-1){
-            $cond['id']=$id;
-            return $this->buildStatement('journal',$values,$cond);
+        $values['status']=$obj->getStatus();
+        $values['imprint']=$obj->getImprint();
+        $values['descr']=$obj->getDescription();
+        $users=$obj->getUsers();
+        $str=array();
+        foreach ($users as $user){
+            $str[]=$user->getId().'.'.$user->getStatus();
         }
-        return $this->buildStatement('journal',$values,$cond,true);
+        $values['users']=implode(",",$str);
+        $values['date_begin']=$obj->getDateBegin();
+        $values['date_end_send']=$obj->getDateSend();
+        $values['date_end_exp']=$obj->getDateExp();
+        $tags=$obj->getTags();
+        $str='';
+        foreach ($tags as $tag){
+                $str.=$tag->getId().',';
+        }
+        $values['tags']=$str;
+        if ($id >-1){
+            $papers=$obj->getPapers();
+            $pap='';
+            foreach ($papers as $paper){
+                $pap.=$paper->getId().',';
+            }
+            $values['papers']=$pap;
+            $values['id']=$id;
+            return $this->buildStatement('update_paperset',$values);
+        }
+        return $this->buildStatement('insert_paperset',$values,1);
     }
     
-    function InsertLink(\app\models\DomainObject $obj){
-        $papers=$obj->getPapers();
-        $links= array('journal_id','paper_id'); 
-        $query=$this->buildLinks('journal_paper',$links);
-        foreach ($papers as $paper){
-            $values[]=array($obj->getId(),$paper->getId());
-        }  
-        return array($query,$values);
-    }
 }
 
 ?>

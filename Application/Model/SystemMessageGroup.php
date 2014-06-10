@@ -3,15 +3,19 @@
 namespace Application\Model;
 
 /**
- * Группа системных сообщений
  * @author Zalutskii
- * @version 14.11.13
+ * @version 29.01.14
+ * Класс системных оповещений
  */
 
-class SystemlMessageGroup extends \Application\Model\MessageGroup {
+class SystemMessageGroup extends \Application\Model\PersonalMessageGroup {
+
+    public function getTypeId() {
+        return \System\Msg\FactoryMGManager::SYSTEM_GROUP;
+    }
 
     public function targetClass() {
-        return 'SystemlMessageGroup';
+        return 'SystemMessageGroup';
     }
 }
 

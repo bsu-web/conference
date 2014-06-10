@@ -4,6 +4,7 @@ define("ROOT", str_replace("/", DS, dirname($_SERVER["SCRIPT_FILENAME"])));
 define("APP", ROOT.DS."Application");
 define("TMP", APP.DS."Tmp");
 define("SYS", ROOT.DS."System");
+define("UPL", ROOT.DS.'Uploads'.DS);
 /**
 * Режим работы приложения
 * Возможные значения: 

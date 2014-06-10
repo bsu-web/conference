@@ -2,7 +2,7 @@
 namespace Application\Model;
 
 //класс для статьи
-class Paper extends Application\Model\Document{
+class Paper extends Document{
     function getDocument(){
      //clear   
     }

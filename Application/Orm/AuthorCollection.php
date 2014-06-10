@@ -6,5 +6,4 @@ class AuthorCollection extends \System\Orm\Collection{
         return "Author";
     }
 }
-
 ?>

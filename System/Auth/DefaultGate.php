@@ -12,10 +12,10 @@ use System\Orm\DomainObjectAssembler;
 
 
 class DefaultGate extends Gate{
-	
-	
+		
 	public function __construct(){
-	}
+	
+    }
 
 	public function SignIn($user, $pass){
 
@@ -25,21 +25,22 @@ class DefaultGate extends Gate{
 		$idobj->field('authorization_login')->eq($user);
 		$acc = $finder->findOne($idobj,'authorization');
 
-		
 		if (!$acc){
 			return "Not Found";
 		}
+        
 		$passwd = Crypter::genPass($pass, $acc->getSalt());
 		if ($acc->getPass() === $passwd){
 			$session = new Session();
-
+			
 			$factory= PersistenceFactory::getFactory('User');
 			$finder= new DomainObjectAssembler($factory);
 			$idobj=$factory->getIndentityObject();
 			$idobj->field('user_id')->eq($acc->getId());
 			$user = $finder->findOne($idobj,'user');
 			//дальше не знаю. Что с группами и где они хранятся (к какому объекту)  - предстоит выяснить
-
+			//print_r($user);
+			//$t=$user->getTags();
 			$session->set('user', $user);
 			return "OK";	
 		}

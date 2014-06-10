@@ -6,3 +6,4 @@ class SignIn extends \System\Core\Command{
 
 	}
 }
+?>

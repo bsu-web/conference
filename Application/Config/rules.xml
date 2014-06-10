@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<rules override="1">
-		<group name="TEST">
+		<group name="pmg_partner">
+			<allow>
+				<command class="MessageSystemGroupShow"/>
+				<command class="MessageSystemMessageCreate"/>
+				<command class="MSPersonalGroupUnsubscribe"/>
+				<command class="MessageSystemFileGet"/>
+			</allow>
+		</group>
+		<group name="pmg_admin">
+			<allow>
+				<command class="MessageSystemGroupShow"/>
+				<command class="MessageSystemMessageCreate"/>
+				<command class="MessageSystemGroupSettingsShow"/>
+				<command class="MessageSystemGroupSettingsSave"/>
+				<command class="MSPersonalGroupUnsubscribe"/>
+				<command class="MessageSystemFileGet"/>
+			</allow>
+		</group>
+
+		<group name="emg_expert">
+			<allow>
+				<command class="MessageSystemGroupShow"/>
+				<command class="MessageSystemMessageCreate"/>
+				<command class="MSExpertiseGroupOk"/>
+				<command class="MSExpertiseGroupReturn"/>
+			</allow>
+		</group>
+		<group name="emg_author">
+			<allow>
+				<command class="MessageSystemGroupShow"/>
+				<command class="MessageSystemMessageCreate"/>
+				<command class="MSExpertiseGroupStart"/>
+			</allow>
+		</group>
+
+		<group name="author">
 			<allow>
 				<command class="DefaultCommand"/>
-				<command class="ShowMessageGroups"/>
-
+				<command class="MessageSystemGroupShow"/>
+				<command class="MessageSystemMessageCreate"/>
+				<command class="MessageSystemGroupSettingsShow"/>
+				<command class="MessageSystemGroupSettingsSave"/>
 			</allow>
 		</group>
 		<group name="MESS">
 			<allow>
-				<command class="ShowMessageGroup"/>
-				<command class="ShowMessageGroups"/>
 			</allow>
 		</group>
 	</rules>
-
 
 	<roles>
 		<group name="ALL" role="1">
@@ -27,9 +61,46 @@
 		<group name="USER" parent="ALL" role="1">
 			<allow>
 				<command class="SignOut"/>
-				<command class="ShowMessageGroup">
-					<status name = "open"/>
-				</command>
+				<command class="MessageSystemFileGet"/>
+				<command class="MessageSystemGroupsShow"/>
+			
+				<command class="hilist"/>
+				<command class="AllProfile"/>
+				<command class="AllPaper"/>
+				<command class="AllJournal"/>
+				<command class="EditUidProfile"/>
+				<command class="EditUidProfileResult"/>
+				<command class="CreatePaper"/>
+				<command class="CreatePaperResult"/>
+				<command class="EditPidPaper"/>
+				<command class="EditPidPaperResult"/>	
+				<command class="CreateJournal"/>
+				<command class="CreateJournalResult"/>				
+				<command class="ShowProfile"/>				
+				<command class="ShowPaper"/>				
+				<command class="EditPidJournal"/>
+				<command class="EditPidJournalResult"/>					
+				<command class="ExpertPidJournal"/>
+				<command class="ExpertPidJournalResult"/>	
+				<command class="ShowPidJournal"/>	
+ 				<command class="StatePidJournal"/>
+				<command class="StatePidJournalResult"/>
+				<command class="ShowPapersExpertsPidJournal"/>
+				<command class="ShowExpertPapersPidJournal"/>
+				<command class="PapersProfile"/>
+                <command class="JournalsProfile"/>
+				<command class="ShowAdminJournals"/>
+                <command class="ToConfAdminJournals"/>
+                <command class="ToConfAdminJournalsResult"/>
+                <command class="ShowPaperMessageset"/>
+                <command class="PaperConfirmed"/>
+                
+                				
+                <command class="MessageSystemMessageCreate"/>
+				<command class="MessageSystemGroupToCreate"/>
+				<command class="MSExpertiseGroupCreate"/>
+				<command class="MSPersonalGroupCreate"/>
+				<command class="MessageSystemShow"/>
 			</allow>
 			<deny>
 			</deny>
@@ -37,6 +108,14 @@
 		<group name="GUEST" parent="ALL" role="1">
 			<allow>
 				<command class="SignIn"/>
+				
+				
+				<command class="hilist"/>
+				<command class="AllProfile"/>
+				<command class="AllPaper"/>
+				<command class="AllJournal"/>
+				
+				
 				<command class="SignInResult"/>
 				<command class="RegistrationResult"/>
 				<command class="Registration"/>

@@ -46,7 +46,7 @@ class IdentityObject{
     function enforceField($fieldname){
         if (!in_array($fieldname,$this->enforce)&&!empty($this->enforce)){
             $forcelist=implode(',',$this->enforce);
-            throw new Exception("?? {$fieldname} ? ????? ?????????{$forcelist}");
+            throw new \Exception("?? {$fieldname} ? ????? ?????????{$forcelist}");
         }
     }
     function eq($value){

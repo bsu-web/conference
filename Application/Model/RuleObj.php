@@ -1,7 +1,6 @@
 <?php
-namespace System\Auth;
+namespace Application\Model;
 
-use System\Orm\DomainObject;
 
 /**
  * RuleObj 
@@ -13,7 +12,7 @@ use System\Orm\DomainObject;
  * @author Derjugin 
  * @license IDK (I Dont Know)
  */
-class RuleObj extends DomainObject{
+class RuleObj extends \System\Orm\DomainObject{
 	/**
 	 * Id пользователя 
 	 * 
@@ -64,7 +63,7 @@ class RuleObj extends DomainObject{
 	 * @return void
 	 */
 	public function setUser_id($user_id){
-		$this->user_id - $user_id;
+		$this->user_id = $user_id;
 		$this->markDirty();
 	}
 

@@ -1,7 +1,7 @@
 <?php
 namespace Application\Model;
 
-class StatusObj extends DoamibObject{
+class StatusObj extends \System\Orm\DomainObject{
 	private $obj_id;
 	private $obj_type;
 	private $obj_status;

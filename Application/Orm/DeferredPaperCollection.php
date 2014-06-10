@@ -22,4 +22,3 @@ class DeferredPaperCollection extends PaperCollection{
     }
 }
 ?>
-
