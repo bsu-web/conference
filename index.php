@@ -31,6 +31,6 @@ $dispatcher = new Dispatcher(new Request, new Response);
 $dispatcher->dispatch();
 
 function sd(){
-	xlog("Application finish");
+	xlog("Application finish, doh");
 }
 register_shutdown_function("sd");
